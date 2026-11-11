@@ -6,6 +6,7 @@ Guides.push({ id: 'survival-still', title: 'Survival distilling: building & runn
   html: `
 <div class="callout warn"><b>Read first</b><div><b>Only distil where it's legal.</b> In the UK you need an HMRC licence (and must follow its conditions, including rules on owning a still), even for personal use. In New Zealand distilling for your own consumption is legal; selling isn't. Elsewhere, check your local law.<br><br><b>It's genuinely dangerous done badly:</b> fire, burst equipment and contaminated spirit are the real risks. Most of them come from <b>pressure</b> and <b>bad materials</b>. If you can, learn your first run with an experienced distiller or club.</div></div>
 
+<div class="callout info"><b>Scotland</b><div>The <a href="#/scotland/distilling">Off-grid Scotland distilling tab</a> covers Scottish conditions: burn-water condensers, peat and wood heat, fire rules and the HMRC licence.</div></div>
 <h3>1. The idea in one paragraph</h3>
 <p>You start with a fully fermented, clear liquid (the <b>wash</b>, a bit like strong unhopped beer or rough wine). Alcohol boils at about <b>78 °C</b> and water at <b>100 °C</b>, so when you heat the wash gently, the vapour coming off contains much more alcohol than the liquid. That vapour travels up and out through a pipe, gets cooled until it turns back into liquid, and drips out as spirit. A still doesn't create alcohol; it <b>separates</b> what fermentation already made.</p>
 

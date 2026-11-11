@@ -261,19 +261,19 @@ defCalc({ id: 'forage', title: 'Forage brew planner (Scotland)', icon: 'hop', gr
 }
 
 /* ---------- The hub page ---------- */
-const SCOT_TABS = [['month', '📅 This month'], ['plants', '🌿 Plants'], ['danger', '☠️ Deadly'], ['water', '💧 Water & fire'], ['shelter', '⛺ Shelter & cold'], ['living', '🥔 Food & stores'], ['hazards', '⚠️ Hazards & 999'], ['law', '⚖️ The law'], ['brewing', '🍺 Brewing'], ['handbook', '🖨️ Handbook']];
+const SCOT_TABS = [['month', '📅 This month'], ['plants', '🌿 Plants'], ['danger', '☠️ Deadly'], ['water', '💧 Water & fire'], ['shelter', '⛺ Shelter & cold'], ['living', '🥔 Food & stores'], ['hazards', '⚠️ Hazards & 999'], ['law', '⚖️ The law'], ['brewing', '🍺 Brewing'], ['survival', '🏕️ Survival brewing'], ['distilling', '⚗️ Distilling'], ['handbook', '🖨️ Handbook']];
 
 function pageScotland(el, tab) {
-  tab = SCOT_TABS.some(t => t[0] === tab) ? tab : store.get('scot.tab', 'month');
+  tab = SCOT_TABS.some(t => t[0] === tab) ? tab : (location.hash.includes('/scotland/') ? 'month' : store.get('scot.tab', 'month'));
   const q = new URLSearchParams((location.hash.split('?')[1]) || '');
   el.innerHTML = `<a class="back" href="#/drink/scot">${I.arrowL} Off-grid Scotland drinks</a>
     <div class="eyebrow" style="color:${DRINK.scot.c}">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Off-grid Scotland</div><h1>Living off the land in Scotland</h1>
-    <p class="lead">A complete off-grid guide built around Scotland: what to forage each month, what will kill you, water, fire, shelter, food, staying safe in the hills, the law, and brewing it all into drink. Works offline once loaded, and prints as a handbook.</p>
+    ${tab === 'month' ? `<p class="lead">A complete off-grid guide built around Scotland: what to forage each month, what will kill you, water, fire, shelter, food, staying safe in the hills, the law, and brewing it all into drink. Works offline once loaded, and prints as a handbook.</p>` : ''}
     <div class="scot-tabs" role="tablist">${SCOT_TABS.map(([k, l]) => `<a href="#/scotland/${k}" class="${k === tab ? 'on' : ''}" role="tab">${l}</a>`).join('')}</div>
     <div id="sc" class="fade-in"></div>`;
   store.set('scot.tab', tab);
   const box = $('#sc', el);
-  ({ month: scotMonth, plants: scotPlants, danger: scotDanger, water: scotWater, shelter: scotShelter, living: scotLiving, hazards: scotHazards, law: scotLaw, brewing: scotBrewing, handbook: scotHandbook })[tab](box, q);
+  ({ month: scotMonth, plants: scotPlants, danger: scotDanger, water: scotWater, shelter: scotShelter, living: scotLiving, hazards: scotHazards, law: scotLaw, brewing: scotBrewing, survival: scotSurvival, distilling: scotDistilling, handbook: scotHandbook })[tab](box, q);
   setTimeout(() => $('.scot-tabs .on', el)?.scrollIntoView({ inline: 'center', block: 'nearest' }), 0);
 }
 
@@ -501,6 +501,54 @@ function scotBrewing(box) {
     <div class="btns"><a class="btn pri" href="#/calc/forage">🧮 Forage brew planner</a><a class="btn" href="#/drink/scot">🪜 Skill ladder</a><a class="btn ghost" href="#/guide/scotland">📜 History & legend</a></div>`;
 }
 
+function scotSurvival(box) {
+  const sec = (h, em, t, d) => `<a class="card" href="${h}"><div style="font-size:26px;margin-bottom:6px">${em}</div><h3>${t}</h3><p>${d}</p></a>`;
+  box.innerHTML = `<p class="prose">If the shops shut and the internet went down, this is how you'd keep making drink in Scotland with nothing bought: wild yeast, foraged sugar, home-made kit. The full guide covers it step by step; here's how it fits the Scottish year.</p>
+    <div class="callout info"><b>Full guide</b><div><a href="#/guide/survival">Off-grid & survival brewing: no shops, no internet →</a> (10 sections, 15 minutes)</div></div>
+    <div class="grid">
+      ${sec('#/guide/survival', '🍯', 'Sugar from the land', 'Birch sap in March, heather honey, blaeberries, brambles, rowan and crab apples in autumn, dried fruit for winter.')}
+      ${sec('#/recipe/wild-yeast-starter', '🦠', 'Catch & keep yeast', 'Blaeberries, sloes and crab apples carry plenty of wild yeast. Dry your best sediment on wood or cloth for next year.')}
+      ${sec('#/guide/survival', '🪣', 'Vessels & airlocks', 'Crocks, glass jars and barrels; a tube into a cup of water as an airlock. Never a hollow plant stem.')}
+      ${sec('#/guide/survival', '📏', 'No hydrometer?', 'Measure sugar by weight and taste; the egg-float test; 17 g sugar per litre ≈ 1%.')}
+      ${sec('#/guide/survival', '💪', 'Maximum strength', 'Step-feed honey to a strong saved yeast for 14–18% without a still.')}
+      ${sec('#/guide/survival', '🫙', 'Vinegar', 'Wine left open becomes vinegar: pickles fish, kale and neeps through a Scottish winter.')}
+    </div>
+    <h2>Off-grid in Scotland: what changes</h2>
+    <ul class="ticks"><li><b>Cold:</b> wild ferments crawl below 12 °C. Start them warm and use a hay box (see Brewing)</li>
+    <li><b>Water:</b> plentiful, but boil it, which also sterilises your kit</li>
+    <li><b>Fuel:</b> boiling wort and water takes a lot of wood; dead fallen wood only, and check fire rules</li>
+    <li><b>Season:</b> the big brewing sugar arrives August–October. Dry fruit and store honey then, or you'll have nothing to brew in spring</li>
+    <li><b>Grain:</b> bere and oats are the crops that ripen here: malt them for ale (<a href="#/recipe/orkney-ale">recipe</a>)</li></ul>
+    <h2>Skill ladders</h2><div class="btns"><a class="btn pri" href="#/drink/scot">🦌 Off-grid Scotland ladder</a><a class="btn" href="#/drink/wild">🏕️ Survival brewing ladder</a></div>`;
+}
+
+function scotDistilling(box) {
+  box.innerHTML = `<div class="callout warn"><b>Legal first</b><div>In Scotland (as everywhere in the UK) you can only distil with an <b>HMRC distiller's licence</b>, and you must follow its conditions, whatever the size of the still. Never sell or give away spirit without the right licences and duty paid. Everything here assumes you hold a licence.</div></div>
+    <p class="prose">Scotland is the spiritual home of the pot still. For two centuries, Highland smugglers ran small copper stills in hidden bothies beside burns, using peat fires for heat and cold burn water for the condenser. The same basic set-up is in the full guide, done safely.</p>
+    <div class="callout info"><b>Full guide</b><div><a href="#/guide/survival-still">Survival distilling: building & running a simple pot still safely →</a> (11 sections: parts, safe materials, three improvised builds, the wash, set-up, running, cuts, troubleshooting, non-negotiables)</div></div>
+    <div class="grid two">
+      <div class="panel"><h3>🌊 Scotland's advantages</h3><ul class="ticks">
+        <li><b>Cold water everywhere:</b> burn water at 5–10 °C makes a very efficient condenser (a coil sitting in a bucket fed from the burn)</li>
+        <li><b>Grain:</b> home-malted bere or barley makes a whisky-style wash (<a href="#/recipe/orkney-ale">malting steps</a>; skip the herbs)</li>
+        <li><b>Heather honey</b> makes a clean, floral honey wash</li>
+        <li><b>Cool weather</b> keeps the collection jars cool, so less alcohol is lost</li></ul></div>
+      <div class="panel"><h3>⚠️ Scotland's risks</h3><ul class="ticks">
+        <li><b>Fire:</b> an open flame under a still is the most dangerous set-up there is. Alcohol vapour catches fire. Run it outdoors or well ventilated, never in a closed bothy or tent, with a fire blanket and water to hand</li>
+        <li><b>Peat and wood fires</b> are hard to control. Steady, gentle heat matters more than speed; a water bath or sand bath makes it much safer</li>
+        <li><b>Fruit washes</b> (bramble, rowan, crab apple, elderberry) make more methanol: discard bigger foreshots</li>
+        <li><b>Fire rules:</b> no open flames outdoors in the Cairngorms from 1 April to 30 September</li></ul></div>
+    </div>
+    <h2>The cuts, in one table</h2>
+    <div class="tbl-wrap"><table class="tbl"><tr><th>Part</th><th>What it is</th><th>What to do</th></tr>
+      <tr><td><b>Foreshots</b></td><td>The first drips: methanol and acetone, smells like solvent or nail varnish</td><td><b>Always throw away.</b> At least 50 ml per 20 L of wash (100 ml+ for fruit)</td></tr>
+      <tr><td><b>Heads</b></td><td>Sharp, solvent-like, harsh</td><td>Collect in small numbered jars; keep separate</td></tr>
+      <tr><td><b>Hearts</b></td><td>Clean, sweet, smooth: the spirit you keep</td><td>Collect in numbered jars; blend the best ones by smell and taste (diluted)</td></tr>
+      <tr><td><b>Tails</b></td><td>Wet cardboard, oily, wet dog; strength falls fast</td><td>Stop collecting or keep separate for the next run</td></tr></table></div>
+    <h2>Non-negotiables</h2>
+    <ol class="mini-steps"><li>Licence first.</li><li>Only copper, stainless steel or glass touch hot vapour or spirit. <b>No plastic, lead solder, galvanised metal or aluminium.</b></li><li>Never seal the still: it must always be open to the air through the condenser.</li><li>Fill the pot no more than two-thirds.</li><li>Always discard the foreshots.</li><li>Never leave it running unattended; no smoking or flames near the collection jars.</li><li>Dilute to drinking strength before tasting, and drink responsibly.</li></ol>
+    <div class="btns"><a class="btn pri" href="#/guide/survival-still">⚗️ Full distilling guide</a><a class="btn" href="#/calc/still">🧮 Still run planner</a><a class="btn ghost" href="#/guide/distilling-history">📜 Smugglers & bothy stills</a></div>`;
+}
+
 function scotHandbook(box) {
   const cell = s => String(s).replace(/<a [^>]*>|<\/a>/g, '');
   box.innerHTML = `<div class="callout info"><b>Offline</b><div>Print this page or save it as a PDF (in the print dialog choose "Save as PDF") and keep a copy in your pack. Phones die; paper doesn't.</div></div>
@@ -520,6 +568,8 @@ function scotHandbook(box) {
       <h2>🔥 Fire</h2><p>No fires 1 Apr–30 Sep in the Cairngorms. Elsewhere only small, safe fires: never on peat, near trees or in dry spells. Dead fallen wood only. Tinder: birch bark, pine fatwood, King Alfred's cakes. No stoves in closed tents (carbon monoxide).</p>
       <h2>🧥 Cold</h2><p>Wet + wind = hypothermia in any month. Wool or synthetic layers, waterproofs, hat and gloves. Signs: shivering, stumbling, mumbling, fumbling. Shelter, dry layers, warm sweet drinks, no alcohol.</p>
       <h2>🍺 Brewing ratios</h2><p>17 g sugar per litre ≈ 1% alcohol · honey ≈ 80% sugar · 1 kg sugar in 4.5 L ≈ 1.085 SG ≈ 11–12% · fruit wine: 1.5–2.5 kg fruit + 1 kg sugar or 1.25 kg honey per 4.5 L · wild yeast tops out around 8–12% · freeze rowan, cook elderberries, strain rosehips.</p>
+      <h2>🏕️ Survival brewing</h2><p>Catch yeast in a jar of honey water with unwashed berries; save and dry your best sediment. Airlock = tube into a cup of water. Boil water and kit. Dry fruit and store honey in autumn for spring brewing. Step-feed honey for 14–18% without a still. Wine left open becomes vinegar for pickling.</p>
+      <h2>⚗️ Distilling (HMRC licence only)</h2><p>Copper, stainless steel or glass only: no plastic, lead solder, galvanised metal or aluminium. Never seal the still. Fill the pot no more than ⅔. Gentle, steady heat (water or sand bath); outdoors or well ventilated; fire blanket and water ready; never unattended. <b>Always discard foreshots</b>: at least 50 ml per 20 L of wash, 100 ml+ for fruit. Collect heads, hearts and tails in small numbered jars; keep only clean hearts. Cool burn water makes a good condenser.</p>
       <h2>⚖️ Law</h2><p>Personal-use foraging OK; selling, uprooting, tapping trees, cutting peat, freshwater fishing and hunting need permission. Home brewing legal without a licence; distilling needs an HMRC licence.</p>
     </div>`;
   $('#hbp', box).onclick = () => { document.body.classList.add('printing-hb'); window.print(); setTimeout(() => document.body.classList.remove('printing-hb'), 500); };

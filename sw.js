@@ -1,5 +1,5 @@
 // Brew Lab service worker: network first, cache fallback so it works offline (e.g. in the garage on brew day).
-const CACHE = 'brew-lab-v15';
+const CACHE = 'brew-lab-v16';
 const FILES = ['./', 'index.html', 'css/style.css', 'icon.svg', 'manifest.webmanifest',
   'js/calc.js', 'js/data.js', 'js/guides.js', 'js/recipes.js', 'js/core.js', 'js/calcs.js', 'js/tools.js', 'js/juice.js', 'js/paths.js', 'js/beginner.js', 'js/extras.js', 'js/more.js', 'js/coach.js', 'js/school.js', 'js/starch.js', 'js/history.js', 'js/distilhist.js', 'js/survival.js', 'js/still.js', 'js/scotland.js', 'js/planner.js', 'js/app.js', 'icon-192.png', 'icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });

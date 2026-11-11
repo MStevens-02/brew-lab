@@ -49,6 +49,7 @@ Guides.push({ id: 'survival', title: 'Off-grid & survival brewing: no shops, no 
   summary: 'How people made alcohol before shops existed: wild yeast, foraged sugar, home-made vessels and airlocks, measuring without a hydrometer, maximum strength, vinegar, and the truth about distilling.',
   html: `
 <p>Imagine no shops and no internet: no yeast sachets, no sanitiser, no hydrometer. People brewed like this for about 9,000 years, so it absolutely works. You just need the right sugar, yeast you can catch and keep, clean vessels, and patience. This guide is written for that situation, and it's also a brilliant way to brew for free from hedgerows today.</p>
+<div class="callout info"><b>Scotland</b><div>Living in Scotland? <a href="#/scotland">Off-grid Scotland</a> has the month-by-month forage calendar, deadly lookalikes, water, shelter and the law.</div></div>
 ${calc('juice', 'Back in the modern world? The juice wizard is easier')}
 
 <h3>1. Why you'd bother</h3>
