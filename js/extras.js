@@ -377,32 +377,33 @@ function pageApp(el) {
 }
 
 /* ---------- "More" page (everything, for phones) ---------- */
+const MORE_GROUPS = [
+  ['🍺 Make', [
+    ['#/recipes', '📖', 'Recipes', 'Dozens of recipes with brew-along mode'], ['#/calcs', '🧮', 'Calculators', 'ABV, sugar, priming, planners and more'],
+    ['#/paths', '🪜', 'Skill ladders', 'Every drink, super easy → expert'], ['#/juice', '🧃', 'Shop-juice brewing', 'Juice wizard, label checker, levels'],
+    ['#/calc/planner', '🛒', 'Batch shopping planner', 'Amounts, packs to buy & cost'], ['#/calc/timer', '⏱', 'Brew-day timer', 'Mash & boil with hop alarms'],
+    ['#/calc/labels', '🏷️', 'Bottle labels', 'Design & print a sheet of labels']]],
+  ['🎓 Learn & fix problems', [
+    ['#/learn', '🎓', 'Learn hub', 'Everything to learn, in one place'], ['#/school', '📝', 'Brew School', '10 lessons + distilling course, with quizzes'],
+    ['#/start', '🌱', 'Find your first brew', '5-question beginner quiz'], ['#/kit', '🧰', 'Kit explained', 'What every bit of equipment is for'],
+    ['#/calc/doctor', '🩺', 'Problem Doctor', 'Step-by-step troubleshooting'], ['#/calc/normal', '🤔', 'Is this normal?', 'Weird foam, smells, film, flat bottles'],
+    ['#/calc/bottlecheck', '✅', 'Ready to bottle?', 'Safety check before bottling'], ['#/ref', '📚', 'Reference', 'Styles, malts, hops, yeasts, glossary']]],
+  ['📒 My brewery', [
+    ['#/log', '📒', 'Batch log', 'Every brew, readings and notes'], ['#/calendar', '📅', 'Calendar & reminders', 'Batch timelines and phone-calendar export'],
+    ['#/inbox', '🔔', 'Notifications', 'Batch nudges, reminders, tips'], ['#/cellar', '🍾', 'Cellar', 'Bottles ready to drink'],
+    ['#/shop', '🛒', 'Shopping list', 'Tick off in the shop'], ['#/stats', '📊', 'Your stats', 'Litres brewed, ratings, money saved']]],
+  ['🦌 Off-grid & survival', [
+    ['#/scotland', '🦌', 'Off-grid Scotland', 'Forage calendar, plant photos, water, shelter, law, handbook'], ['#/drink/wild', '🏕️', 'Survival brewing', 'No shops: wild yeast, home-made kit'],
+    ['#/guide/survival-still', '⚗️', 'Distilling (licensed)', 'Pot still, safe materials, cuts and safety'], ['#/guide/history', '📜', 'History', 'Bootleggers, smugglers and moonshine']]],
+  ['⚙️ App', [
+    ['#/search', '🔍', 'Search', 'Everything in the app'], ['#/features', '📖', 'Feature guide', 'Everything Brew Lab can do + tour'],
+    ['#/whatsnew', '🆕', 'What\'s new', 'Latest updates'], ['#/app', '⚙️', 'App & settings', 'Install, theme, notifications, backup']]],
+];
 function pageMore(el) {
-  const items = [
-    ['#/scotland', '🦌', 'Off-grid Scotland', 'Forage calendar, deadly plants, water, shelter, law, handbook'],
-    ['#/calc/planner', '🛒', 'Batch shopping planner', 'Amounts, packs to buy & cost'],
-    ['#/features', '📖', 'Feature guide', 'Everything Brew Lab can do + tour'],
-    ['#/whatsnew', '🆕', 'What\'s new', 'Latest updates'],
-    ['#/learn', '🎓', 'Learn & Brew School', 'Lessons, quizzes, flashcards, simulator'],
-    ['#/calc/doctor', '🩺', 'Problem Doctor', 'Step-by-step troubleshooting'],
-    ['#/inbox', '🔔', 'Notifications', 'Inbox of batch nudges, reminders, tips'],
-    ['#/kit', '🧰', 'Kit explained', 'What every bit of equipment is for'],
-    ['#/calc/bottlecheck', '✅', 'Ready to bottle?', 'Safety check before bottling'],
-    ['#/calendar', '📅', 'Calendar & reminders', 'Batch timelines, reminders, phone-calendar export'],
-    ['#/cellar', '🍾', 'Cellar', 'Bottles ready to drink, conditioning, "drank one"'],
-    ['#/shop', '🛒', 'Shopping list', 'Ingredients from recipes, tick off in the shop'],
-    ['#/start', '🌱', 'Find your first brew', '5-question beginner quiz'],
-    ['#/paths', '🪜', 'Skill ladders', 'Every drink, super easy → expert'],
-    ['#/juice', '🧃', 'Shop-juice brewing', 'Juice wizard, label checker, levels'],
-    ['#/stats', '📊', 'Your stats', 'Litres brewed, ratings, money saved'],
-    ['#/calc/labels', '🏷️', 'Bottle labels', 'Design & print a sheet of labels'],
-    ['#/calc/normal', '🤔', 'Is this normal?', 'Weird foam, smells, film, flat bottles'],
-    ['#/calc/timer', '⏱', 'Brew-day timer', 'Mash & boil with hop alarms'],
-    ['#/search', '🔍', 'Search', 'Everything in the app'],
-    ['#/ref', '📚', 'Reference', 'Styles, malts, hops, yeasts, glossary'],
-    ['#/app', '⚙️', 'App & settings', 'Install, notifications, backup'],
-  ];
-  el.innerHTML = `<div class="eyebrow">Everything</div><h1>More</h1><a class="card back-tools" href="${HUB}"><span style="font-size:30px">🧰</span><div><h3>← Back to all my tools</h3><p>Revision Hub, Maths for Data Science, Rep Log, SQL Workbench and more.</p></div></a><div class="grid" style="margin-top:14px">${items.map(([h, em, t, d]) => `<a class="card" href="${h}"><div style="font-size:28px;margin-bottom:8px">${em}</div><h3>${t}</h3><p>${d}</p></a>`).join('')}</div>`;
+  el.innerHTML = `<div class="eyebrow">Everything</div><h1>Menu</h1>
+    <div class="inp search" style="margin:4px 0 6px"><input id="mq" type="search" placeholder="Search everything…" onkeydown="if(event.key==='Enter'){store.set('lastq',this.value);location.hash='#/search'}"></div>
+    ${MORE_GROUPS.map(([g, items]) => `<h2 class="menu-h">${g}</h2><div class="menu-grid">${items.map(([h, em, t, d]) => `<a class="menu-item" href="${h}"><span class="mi-em">${em}</span><span><b>${t}</b><small>${d}</small></span></a>`).join('')}</div>`).join('')}
+    <a class="card back-tools" href="${HUB}" style="margin-top:26px"><span style="font-size:30px">🧰</span><div><h3>← Back to all my tools</h3><p>Revision Hub, Maths for Data Science, Rep Log, SQL Workbench and more.</p></div></a>`;
 }
 
 /* ---------- Global handlers ---------- */

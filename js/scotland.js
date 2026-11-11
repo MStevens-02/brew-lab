@@ -9,93 +9,93 @@ const range = (a, b) => { const r = []; for (let m = a; ; m = m % 12 + 1) { r.pu
 
 /* ---------- Plants (use: sugar | flavour | bitter | food) ---------- */
 const SCOT_PLANTS = [
-  { id: 'birch', n: 'Birch sap', g: 'beith', em: '🌳', use: 'sugar', m: [3, 4], sugar: 1, where: 'Birch woods everywhere, from the Borders to Sutherland. Silver and downy birch.',
+  { id: 'birch', w: 'Betula pendula', n: 'Birch sap', g: 'beith', em: '🌳', use: 'sugar', m: [3, 4], sugar: 1, where: 'Birch woods everywhere, from the Borders to Sutherland. Silver and downy birch.',
     brew: 'Sap wine, birch beer, or boil 40–100 L down to 1 L of syrup. Sap goes off in 2–3 days unless kept cold.', id_: 'White papery bark with dark diamonds. Tap in the 2–4 weeks before the leaves open.',
     look: 'None dangerous. <b>Needs the landowner\'s permission</b>; one tap per tree (trunk 25 cm+ across), plug the hole after.', risk: 0, recipe: 'birch-wine' },
-  { id: 'nettle', n: 'Nettle tops', g: 'feanntag', em: '🌿', use: 'flavour', m: [3, 4, 5], where: 'Field edges, ruins, old croft sites, anywhere the soil is rich.',
+  { id: 'nettle', w: 'Urtica dioica', n: 'Nettle tops', g: 'feanntag', em: '🌿', use: 'flavour', m: [3, 4, 5], where: 'Field edges, ruins, old croft sites, anywhere the soil is rich.',
     brew: 'Nettle beer (super easy, fizzy, ready in 2 weeks). Also soup, tea, a hop substitute.', id_: 'Stinging hairs, toothed heart-shaped leaves in opposite pairs. Pick only the top 4–6 leaves before flowering.',
     look: 'Dead-nettles look similar but don\'t sting (harmless). Wear gloves.', risk: 0, recipe: 'nettle-beer' },
-  { id: 'gorse', n: 'Gorse flowers', g: 'conasg', em: '💛', use: 'flavour', m: range(1, 12), peak: [4, 5], where: 'Hillsides, coasts, roadsides. Flowers almost all year, peak in spring.',
+  { id: 'gorse', w: 'Ulex europaeus', n: 'Gorse flowers', g: 'conasg', em: '💛', use: 'flavour', m: range(1, 12), peak: [4, 5], where: 'Hillsides, coasts, roadsides. Flowers almost all year, peak in spring.',
     brew: 'Gorse wine (coconut and vanilla), gorse mead, flower syrup.', id_: 'Bright yellow pea-flowers on a very spiny evergreen bush; smells of coconut on a sunny day.',
     look: '<b>Broom</b> has similar yellow flowers but <b>no spines</b>: it contains toxic alkaloids, so don\'t use it. Gloves on.', risk: 1, recipe: 'gorse-wine' },
-  { id: 'groundivy', n: 'Ground ivy (alehoof)', g: '', em: '🍃', use: 'bitter', m: [3, 4, 5, 6], where: 'Woodland edges, hedge bottoms, shady grass.',
+  { id: 'groundivy', w: 'Glechoma hederacea', n: 'Ground ivy (alehoof)', g: '', em: '🍃', use: 'bitter', m: [3, 4, 5, 6], where: 'Woodland edges, hedge bottoms, shady grass.',
     brew: 'The old "alehoof": used to clarify and bitter ale before hops arrived. A small handful per 5 L.', id_: 'Creeping, kidney-shaped scalloped leaves, small violet-blue flowers, square stems, minty-musty smell.',
     look: 'Low risk. Use sparingly: strong.', risk: 0 },
-  { id: 'spruce', n: 'Spruce & pine tips', g: 'giuthas (Scots pine)', em: '🌲', use: 'flavour', m: [5, 6], where: 'Every forestry plantation (Sitka spruce) and native pinewood (Scots pine).',
+  { id: 'spruce', w: 'Picea sitchensis', n: 'Spruce & pine tips', g: 'giuthas (Scots pine)', em: '🌲', use: 'flavour', m: [5, 6], where: 'Every forestry plantation (Sitka spruce) and native pinewood (Scots pine).',
     brew: 'Spruce beer (an old sailors\' brew that kept scurvy away), tip syrup, gruit ale.', id_: 'Bright lime-green new growth at the branch tips. Needles grow singly (spruce) or in pairs (Scots pine) on a round twig.',
     look: '<b>YEW IS DEADLY.</b> Yew has flat, soft needles in two rows, dark glossy green above, paler below, no cones, red berry-like cups. Every part except the red flesh is poisonous. If in doubt, leave it.', risk: 2 },
-  { id: 'elderflower', n: 'Elderflower', g: 'droman', em: '🌼', use: 'flavour', m: [6, 7], where: 'Hedges, waste ground, villages. Common in the south and east, scarcer in the far north-west.',
+  { id: 'elderflower', w: 'Sambucus nigra', n: 'Elderflower', g: 'droman', em: '🌼', use: 'flavour', m: [6, 7], where: 'Hedges, waste ground, villages. Common in the south and east, scarcer in the far north-west.',
     brew: 'Elderflower champagne, elderflower wine, cordial.', id_: 'Flat creamy flower heads on a <b>woody shrub or small tree</b> with corky bark. Leaves of 5–7 toothed leaflets. Smells sweet and musky.',
     look: '<b>Hemlock, hemlock water dropwort and cow parsley</b> also have flat white flower heads, but they grow from the ground on hollow green stems, not on a woody bush. Never pick white umbels from the ground.', risk: 2, recipe: 'elderflower-wine' },
-  { id: 'meadowsweet', n: 'Meadowsweet', g: 'crios Chù Chulainn', em: '🤍', use: 'flavour', m: [6, 7, 8], where: 'Wet meadows, ditches and burn sides all over Scotland.',
+  { id: 'meadowsweet', w: 'Filipendula ulmaria', n: 'Meadowsweet', g: 'crios Chù Chulainn', em: '🤍', use: 'flavour', m: [6, 7, 8], where: 'Wet meadows, ditches and burn sides all over Scotland.',
     brew: 'One of the old "mead worts": flavours mead and ale with honey-almond sweetness. 1–2 heads per 5 L.', id_: 'Frothy cream flowers in irregular clusters on reddish stems; dark leaves, silvery underneath. Smells of honey and marzipan.',
     look: 'Contains aspirin-like compounds: skip it if you can\'t take aspirin. It grows in the same wet places as hemlock water dropwort, so check every stem.', risk: 1 },
-  { id: 'bogmyrtle', n: 'Bog myrtle (sweet gale)', g: 'roid', em: '🌾', use: 'bitter', m: range(5, 9), where: 'Wet moorland and bogs, especially the west Highlands and islands.',
+  { id: 'bogmyrtle', w: 'Myrica gale', n: 'Bog myrtle (sweet gale)', g: 'roid', em: '🌾', use: 'bitter', m: range(5, 9), where: 'Wet moorland and bogs, especially the west Highlands and islands.',
     brew: 'The classic Scottish gruit herb: bitter, resinous, used in heather ale instead of (or with) hops. 5 g dried per 5 L. Crushed leaves are an old midge repellent.', id_: 'Low bushy shrub, grey-green leaves toothed near the tip, strongly aromatic when rubbed, reddish twigs.',
     look: 'Use sparingly: large amounts were said to cause headaches. Traditionally avoided in pregnancy.', risk: 1, recipe: 'heather-ale' },
-  { id: 'thyme', n: 'Wild thyme', g: 'lus an rìgh', em: '🌱', use: 'flavour', m: [6, 7, 8], where: 'Dry grassland, coastal turf, rocky ground, machair.',
+  { id: 'thyme', w: 'Thymus praecox', n: 'Wild thyme', g: 'lus an rìgh', em: '🌱', use: 'flavour', m: [6, 7, 8], where: 'Dry grassland, coastal turf, rocky ground, machair.',
     brew: 'Herbal mead, a sprig in ale, tea.', id_: 'Tiny mat-forming plant, little oval leaves, pink-purple flower heads, smells of thyme.', look: 'Low risk.', risk: 0 },
-  { id: 'yarrow', n: 'Yarrow', g: 'earr thalmhainn', em: '🤍', use: 'bitter', m: range(6, 9), where: 'Grassland, roadsides, lawns, coasts.',
+  { id: 'yarrow', w: 'Achillea millefolium', n: 'Yarrow', g: 'earr thalmhainn', em: '🤍', use: 'bitter', m: range(6, 9), where: 'Grassland, roadsides, lawns, coasts.',
     brew: 'A gruit bittering herb. A small handful per 5 L.', id_: 'Very finely divided feathery leaves; flat-topped clusters of small white-pink flowers; tough stringy stem.',
     look: '<b>Beginners confuse it with hemlock and other umbellifers.</b> Yarrow leaves are feathery like a fern and the stem is solid and hairy, not hollow and smooth. If unsure, don\'t.', risk: 2 },
-  { id: 'heather', n: 'Heather (ling)', g: 'fraoch', em: '💜', use: 'flavour', m: [8, 9], where: 'Every moor and hill in Scotland.',
+  { id: 'heather', w: 'Calluna', n: 'Heather (ling)', g: 'fraoch', em: '💜', use: 'flavour', m: [8, 9], where: 'Every moor and hill in Scotland.',
     brew: 'Heather ale (Leann fraoich), heather mead. Pick flowering tips when they\'re fully purple. Heather honey from local beekeepers is superb for mead.', id_: 'Tiny scale-like leaves, spikes of small pale purple bell flowers in late summer.',
     look: 'Low risk. Shake out insects; avoid plants next to roads or recently burned (muirburn) ground.', risk: 0, recipe: 'heather-ale' },
-  { id: 'raspberry', n: 'Wild raspberry', g: 'sùbh-craoibh', em: '🍓', use: 'sugar', m: [7, 8], sugar: 5, where: 'Woodland clearings, burn sides, Tayside hedges.',
+  { id: 'raspberry', w: 'Rubus idaeus', n: 'Wild raspberry', g: 'sùbh-craoibh', em: '🍓', use: 'sugar', m: [7, 8], sugar: 5, where: 'Woodland clearings, burn sides, Tayside hedges.',
     brew: 'Raspberry melomel, fruit wine, flavouring ale.', id_: 'Canes with fine prickles; leaves white underneath; red berries that pull off as a hollow cap.', look: 'Low risk.', risk: 0 },
-  { id: 'blaeberry', n: 'Blaeberry (bilberry)', g: 'dearc-mhonaidh', em: '🫐', use: 'sugar', m: [7, 8, 9], sugar: 7, where: 'Pine and birch woods, heather moor. Huge crops in Highland woods.',
+  { id: 'blaeberry', w: 'Vaccinium myrtillus', n: 'Blaeberry (bilberry)', g: 'dearc-mhonaidh', em: '🫐', use: 'sugar', m: [7, 8, 9], sugar: 7, where: 'Pine and birch woods, heather moor. Huge crops in Highland woods.',
     brew: 'Blaeberry wine (deep purple), melomel. About 1.5 kg per 4.5 L.', id_: 'Low bushy shrub, bright green angled stems, small blue-black berries with a crown on the end and purple flesh.',
     look: 'Crowberry (black, bland) and cowberry (red) grow alongside and are edible but sour. Don\'t confuse with any berry growing on a tall plant.', risk: 0, recipe: 'blaeberry-wine' },
-  { id: 'bramble', n: 'Brambles (blackberries)', g: 'smeur', em: '🫐', use: 'sugar', m: [8, 9, 10], sugar: 8, where: 'Hedges, waste ground, woodland edges. Mainly lowland and coast.',
+  { id: 'bramble', w: 'Blackberry', n: 'Brambles (blackberries)', g: 'smeur', em: '🫐', use: 'sugar', m: [8, 9, 10], sugar: 8, where: 'Hedges, waste ground, woodland edges. Mainly lowland and coast.',
     brew: 'Bramble wine, bramble melomel, hedgerow wine. Old Scots lore says not to pick after Michaelmas (end of September) because "the de\'il spits on them": in truth the late ones go mouldy.', id_: 'Arching thorny stems; black glossy berries.', look: 'Low risk.', risk: 0, recipe: 'blackberry-wine' },
-  { id: 'rowan', n: 'Rowan berries', g: 'caorann', em: '🔴', use: 'sugar', m: [8, 9, 10], sugar: 6, where: 'Everywhere, up to the high glens. Traditionally planted by Highland houses to keep witches away.',
+  { id: 'rowan', w: 'Sorbus aucuparia', n: 'Rowan berries', g: 'caorann', em: '🔴', use: 'sugar', m: [8, 9, 10], sugar: 6, where: 'Everywhere, up to the high glens. Traditionally planted by Highland houses to keep witches away.',
     brew: 'Rowan & crab apple wine, rowan jelly. <b>Never use raw:</b> freeze them overnight and pour boiling water over, or cook them.', id_: 'Small tree, leaves of 11–15 toothed leaflets, big clusters of orange-red berries.',
     look: 'Raw berries contain parasorbic acid and upset the stomach; freezing/boiling destroys it. Don\'t mistake for <b>bittersweet</b> (woody nightshade, poisonous), which is a scrambling vine with oval red berries and purple flowers.', risk: 1, recipe: 'rowan-wine' },
-  { id: 'elderberry', n: 'Elderberries', g: 'droman', em: '🟣', use: 'sugar', m: [8, 9, 10], sugar: 10, where: 'Same bushes as the flowers.',
+  { id: 'elderberry', w: 'Elderberry', n: 'Elderberries', g: 'droman', em: '🟣', use: 'sugar', m: [8, 9, 10], sugar: 10, where: 'Same bushes as the flowers.',
     brew: 'Elderberry wine (port-like with age), mixed hedgerow wine.', id_: 'Drooping heads of small shiny black berries on red stalks.',
     look: 'Use only fully ripe black berries, with every stalk removed; always cook or ferment, never eat raw in quantity. Leaves, stems and green berries make you sick.', risk: 1 },
-  { id: 'crabapple', n: 'Crab apples', g: 'ubhal fiadhain', em: '🍏', use: 'sugar', m: [9, 10], sugar: 9, where: 'Old hedges, woodland edges, abandoned crofts and gardens.',
+  { id: 'crabapple', w: 'Malus sylvestris', n: 'Crab apples', g: 'ubhal fiadhain', em: '🍏', use: 'sugar', m: [9, 10], sugar: 9, where: 'Old hedges, woodland edges, abandoned crofts and gardens.',
     brew: 'Wild cider (sharp: blend with sweeter fruit), adds acid and body to rowan and bramble wines.', id_: 'Small spiny tree, little hard yellow-green or red apples.', look: 'Low risk. Don\'t crush pips in quantity.', risk: 0, recipe: 'rowan-wine' },
-  { id: 'rosehip', n: 'Rosehips', g: 'mucag', em: '🌹', use: 'sugar', m: [9, 10, 11], sugar: 6, where: 'Dog rose in hedges; Japanese rose on many coasts and dunes.',
+  { id: 'rosehip', w: 'Rose hip', n: 'Rosehips', g: 'mucag', em: '🌹', use: 'sugar', m: [9, 10, 11], sugar: 6, where: 'Dog rose in hedges; Japanese rose on many coasts and dunes.',
     brew: 'Rosehip wine, rosehip syrup (huge vitamin C: kept wartime children going). Pick after the first frost.', id_: 'Red oval or round hips on thorny rose bushes.',
     look: 'The seeds have irritating hairs: always strain through fine cloth.', risk: 0 },
-  { id: 'haws', n: 'Hawthorn haws', g: 'sgìtheach', em: '🔴', use: 'sugar', m: [9, 10, 11], sugar: 5, where: 'Hedges and field boundaries everywhere.',
+  { id: 'haws', w: 'Crataegus monogyna', n: 'Hawthorn haws', g: 'sgìtheach', em: '🔴', use: 'sugar', m: [9, 10, 11], sugar: 5, where: 'Hedges and field boundaries everywhere.',
     brew: 'Haw wine (light, slightly appley), hedgerow wine.', id_: 'Thorny shrub, lobed leaves, small dark red berries with one big stone.', look: 'Don\'t crush the stones (they contain cyanide-forming compounds).', risk: 1 },
-  { id: 'seabuckthorn', n: 'Sea buckthorn', g: '', em: '🧡', use: 'sugar', m: [9, 10], sugar: 4, where: 'East-coast dunes, e.g. East Lothian, Fife and Angus.',
+  { id: 'seabuckthorn', w: 'Hippophae rhamnoides', n: 'Sea buckthorn', g: '', em: '🧡', use: 'sugar', m: [9, 10], sugar: 4, where: 'East-coast dunes, e.g. East Lothian, Fife and Angus.',
     brew: 'Very sour and oily: use 250–500 g in a mead or blend with sweet fruit. Tropical, passion-fruit flavour.', id_: 'Silvery narrow leaves, thorny, packed clusters of bright orange berries on the stems.', look: 'Low risk. Snip whole twigs and freeze; the berries burst if picked singly.', risk: 0 },
-  { id: 'sloe', n: 'Sloes', g: 'àirneag', em: '⚫', use: 'sugar', m: [10, 11], sugar: 7, where: 'Blackthorn hedges and scrub, mainly the south and east.',
+  { id: 'sloe', w: 'Prunus spinosa', n: 'Sloes', g: 'àirneag', em: '⚫', use: 'sugar', m: [10, 11], sugar: 7, where: 'Blackthorn hedges and scrub, mainly the south and east.',
     brew: 'Sloe wine, sloe & bramble wine, sloe gin (infused into bought gin). Pick after a frost or freeze them.', id_: 'Very thorny shrub; blue-black berries with a dusty bloom; mouth-puckering.',
     look: 'Don\'t crush the stones. <b>Deadly nightshade</b> berries are shiny black without bloom, on a soft-stemmed plant with a star-shaped green collar. It\'s rare in Scotland, but be sure.', risk: 1 },
-  { id: 'juniper', n: 'Juniper berries', g: 'aiteann', em: '🫐', use: 'flavour', m: [9, 10, 11, 12, 1, 2, 3], where: 'Native pinewoods, moorland, Speyside, Deeside and the west. Declining: pick very lightly.',
+  { id: 'juniper', w: 'Juniperus communis', n: 'Juniper berries', g: 'aiteann', em: '🫐', use: 'flavour', m: [9, 10, 11, 12, 1, 2, 3], where: 'Native pinewoods, moorland, Speyside, Deeside and the west. Declining: pick very lightly.',
     brew: 'Gin botanicals (infused into bought neutral spirit), Nordic-style juniper ale, a few in game marinades.', id_: 'Spiky, prickly needles in threes; berries take 2–3 years to ripen from green to blue-black.',
     look: 'Use only ripe blue-black berries. Avoid in pregnancy and with kidney problems.', risk: 1 },
-  { id: 'dandelion', n: 'Dandelion flowers', g: 'beàrnan-Brìde', em: '🌼', use: 'flavour', m: [4, 5], where: 'Everywhere.', brew: 'Dandelion wine (petals only: the green bits are bitter).', id_: 'Single yellow flower on a hollow milky stem; toothed leaves in a rosette.', look: 'Low risk.', risk: 0 },
-  { id: 'wildgarlic', n: 'Wild garlic (ramsons)', g: 'creamh', em: '🧄', use: 'food', m: [3, 4, 5], where: 'Damp woods and burn sides; carpets them in spring.', brew: 'Food, not brewing: soup, pesto, flavouring.', id_: 'Broad shiny leaves growing singly from the ground; <b>strong garlic smell when crushed</b>; white star flowers.',
+  { id: 'dandelion', w: 'Taraxacum officinale', n: 'Dandelion flowers', g: 'beàrnan-Brìde', em: '🌼', use: 'flavour', m: [4, 5], where: 'Everywhere.', brew: 'Dandelion wine (petals only: the green bits are bitter).', id_: 'Single yellow flower on a hollow milky stem; toothed leaves in a rosette.', look: 'Low risk.', risk: 0 },
+  { id: 'wildgarlic', w: 'Allium ursinum', n: 'Wild garlic (ramsons)', g: 'creamh', em: '🧄', use: 'food', m: [3, 4, 5], where: 'Damp woods and burn sides; carpets them in spring.', brew: 'Food, not brewing: soup, pesto, flavouring.', id_: 'Broad shiny leaves growing singly from the ground; <b>strong garlic smell when crushed</b>; white star flowers.',
     look: '<b>Lords-and-ladies</b> (arrow-shaped leaves) and <b>lily of the valley</b> (leaves in pairs, no smell) grow in the same places and are poisonous. Crush every leaf and smell it, and wash your hands between leaves so the smell doesn\'t fool you.', risk: 2 },
-  { id: 'sorrel', n: 'Sorrel', g: 'sealbhag', em: '🍃', use: 'food', m: range(3, 9), where: 'Grassland and hill pasture.', brew: 'Food: a lemony leaf. Contains oxalic acid, so eat in moderation.', id_: 'Arrow-shaped leaves with backward-pointing lobes, sour lemon taste.', look: 'Avoid lords-and-ladies leaves, which are similar in shape but glossy and grow in woods.', risk: 1 },
-  { id: 'dulse', n: 'Dulse & kelp (seaweed)', g: 'duileasg', em: '🌊', use: 'food', m: range(1, 12), peak: [4, 5, 6], where: 'Rocky shores at low tide, especially the islands.',
+  { id: 'sorrel', w: 'Rumex acetosa', n: 'Sorrel', g: 'sealbhag', em: '🍃', use: 'food', m: range(3, 9), where: 'Grassland and hill pasture.', brew: 'Food: a lemony leaf. Contains oxalic acid, so eat in moderation.', id_: 'Arrow-shaped leaves with backward-pointing lobes, sour lemon taste.', look: 'Avoid lords-and-ladies leaves, which are similar in shape but glossy and grow in woods.', risk: 1 },
+  { id: 'dulse', w: 'Palmaria palmata', n: 'Dulse & kelp (seaweed)', g: 'duileasg', em: '🌊', use: 'food', m: range(1, 12), peak: [4, 5, 6], where: 'Rocky shores at low tide, especially the islands.',
     brew: 'Food and salt minerals; kelp has even been used in Scottish ale. Cut with scissors, leave the holdfast.', id_: 'Dulse: flat purple-red fronds. Kelp: big brown straps.',
     look: 'No seaweed in the UK is deadly, but avoid anything near sewage outfalls, and rinse and dry well. Watch the tide.', risk: 0 },
-  { id: 'hazel', n: 'Hazelnuts', g: 'calltainn', em: '🌰', use: 'food', m: [9, 10], where: 'Hazel woods on the west coast (Atlantic hazel) and in lowland hedges.', brew: 'Food: high-calorie nuts that store well. Squirrels get there first, so pick when the husks start to turn brown.', id_: 'Multi-stemmed shrub, round soft leaves, nuts in a frilly husk.', look: 'Low risk.', risk: 0 },
-  { id: 'chanterelle', n: 'Chanterelles', g: '', em: '🍄', use: 'food', m: [7, 8, 9, 10], where: 'Birch and pine woods, mossy banks.', brew: 'Food. <b>Mushrooms only with an expert at your side.</b>', id_: 'Egg-yolk yellow, apricot smell, blunt forked ridges (not true gills) running down the stem.',
+  { id: 'hazel', w: 'Corylus avellana', n: 'Hazelnuts', g: 'calltainn', em: '🌰', use: 'food', m: [9, 10], where: 'Hazel woods on the west coast (Atlantic hazel) and in lowland hedges.', brew: 'Food: high-calorie nuts that store well. Squirrels get there first, so pick when the husks start to turn brown.', id_: 'Multi-stemmed shrub, round soft leaves, nuts in a frilly husk.', look: 'Low risk.', risk: 0 },
+  { id: 'chanterelle', w: 'Cantharellus cibarius', n: 'Chanterelles', g: '', em: '🍄', use: 'food', m: [7, 8, 9, 10], where: 'Birch and pine woods, mossy banks.', brew: 'Food. <b>Mushrooms only with an expert at your side.</b>', id_: 'Egg-yolk yellow, apricot smell, blunt forked ridges (not true gills) running down the stem.',
     look: '<b>Deadly webcap</b> grows in the same Scottish pine and birch woods and has caused kidney failure here. False chanterelle has true gills. Never eat a mushroom identified from a book or app alone.', risk: 2 },
 ];
 
 /* ---------- Deadly plants & fungi of Scotland ---------- */
 const SCOT_DANGER = [
-  ['Hemlock water dropwort', 'Burns, ditches, wet ground and shores, especially western Scotland. Roots wash up on beaches after storms.', 'Wild celery, water parsnip, parsnips, cow parsley. Smells of parsley/celery.', 'Thought to be the most poisonous plant in Britain: all parts, especially the "dead man\'s fingers" roots. Cut stems ooze yellow sap.'],
-  ['Hemlock', 'Riverbanks, waste ground, roadsides.', 'Cow parsley, wild carrot, elderflower (by beginners), yarrow.', 'Smooth hollow stem with purple blotches; mousey smell. Deadly.'],
-  ['Cowbane', 'Rare: lochsides and marshes.', 'Wild celery and other water umbellifers.', 'Deadly. Another reason to never forage white umbels from wet ground.'],
-  ['Yew', 'Churchyards, old estates, some woods.', 'Spruce and pine tips (for spruce beer or tea).', 'Flat needles in two rows, no cones. Leaves and seeds deadly.'],
-  ['Foxglove', 'Woods, hillsides, everywhere in summer.', 'Comfrey and borage leaves before flowering.', 'Contains heart poisons. Deadly.'],
-  ['Lords-and-ladies', 'Damp woods, often among wild garlic.', 'Wild garlic leaves; red berries in late summer.', 'Burning, swelling mouth and throat.'],
-  ['Lily of the valley', 'Gardens and escapes into woods.', 'Wild garlic.', 'Heart poison.'],
-  ['Bittersweet (woody nightshade)', 'Hedges, ditches, shingle.', 'Red berries: redcurrants, rowan.', 'Poisonous berries on a scrambling vine with purple flowers.'],
-  ['Giant hogweed', 'Riverbanks, especially the Tay, Clyde, Tweed and Don.', 'A handy "tube". Never use any hollow plant stem as a straw or siphon.', 'Sap + sunlight = severe burns and blisters for years.'],
-  ['Broom', 'Hillsides with gorse.', 'Gorse flowers.', 'No spines. Toxic alkaloids: don\'t brew with it.'],
-  ['Bracken', 'Most hillsides.', 'Fern fiddleheads.', 'Carcinogenic; don\'t eat it or brew with it. Prime tick habitat.'],
-  ['Deadly webcap & death cap', 'Pine and birch woods (webcap); broadleaf woods (death cap).', 'Ceps, chanterelles, "button mushrooms".', 'Kidney and liver failure, often days later. People have needed transplants after eating deadly webcap picked in the Highlands.'],
-  ['Ergot', 'Dark purple-black spurs replacing grains on rye and grasses.', 'Normal grain.', 'Never malt or bake with spurred grain: causes ergotism.'],
+  ['Hemlock water dropwort', 'Burns, ditches, wet ground and shores, especially western Scotland. Roots wash up on beaches after storms.', 'Wild celery, water parsnip, parsnips, cow parsley. Smells of parsley/celery.', 'Thought to be the most poisonous plant in Britain: all parts, especially the "dead man\'s fingers" roots. Cut stems ooze yellow sap.', 'Oenanthe crocata'],
+  ['Hemlock', 'Riverbanks, waste ground, roadsides.', 'Cow parsley, wild carrot, elderflower (by beginners), yarrow.', 'Smooth hollow stem with purple blotches; mousey smell. Deadly.', 'Conium maculatum'],
+  ['Cowbane', 'Rare: lochsides and marshes.', 'Wild celery and other water umbellifers.', 'Deadly. Another reason to never forage white umbels from wet ground.', 'Cicuta virosa'],
+  ['Yew', 'Churchyards, old estates, some woods.', 'Spruce and pine tips (for spruce beer or tea).', 'Flat needles in two rows, no cones. Leaves and seeds deadly.', 'Taxus baccata'],
+  ['Foxglove', 'Woods, hillsides, everywhere in summer.', 'Comfrey and borage leaves before flowering.', 'Contains heart poisons. Deadly.', 'Digitalis purpurea'],
+  ['Lords-and-ladies', 'Damp woods, often among wild garlic.', 'Wild garlic leaves; red berries in late summer.', 'Burning, swelling mouth and throat.', 'Arum maculatum'],
+  ['Lily of the valley', 'Gardens and escapes into woods.', 'Wild garlic.', 'Heart poison.', 'Convallaria majalis'],
+  ['Bittersweet (woody nightshade)', 'Hedges, ditches, shingle.', 'Red berries: redcurrants, rowan.', 'Poisonous berries on a scrambling vine with purple flowers.', 'Solanum dulcamara'],
+  ['Giant hogweed', 'Riverbanks, especially the Tay, Clyde, Tweed and Don.', 'A handy "tube". Never use any hollow plant stem as a straw or siphon.', 'Sap + sunlight = severe burns and blisters for years.', 'Heracleum mantegazzianum'],
+  ['Broom', 'Hillsides with gorse.', 'Gorse flowers.', 'No spines. Toxic alkaloids: don\'t brew with it.', 'Cytisus scoparius'],
+  ['Bracken', 'Most hillsides.', 'Fern fiddleheads.', 'Carcinogenic; don\'t eat it or brew with it. Prime tick habitat.', 'Pteridium aquilinum'],
+  ['Deadly webcap & death cap', 'Pine and birch woods (webcap); broadleaf woods (death cap).', 'Ceps, chanterelles, "button mushrooms".', 'Kidney and liver failure, often days later. People have needed transplants after eating deadly webcap picked in the Highlands.', 'Cortinarius rubellus'],
+  ['Ergot', 'Dark purple-black spurs replacing grains on rye and grasses.', 'Normal grain.', 'Never malt or bake with spurred grain: causes ergotism.', 'Claviceps purpurea'],
 ];
 
 /* ---------- Month by month ---------- */
@@ -260,24 +260,121 @@ defCalc({ id: 'forage', title: 'Forage brew planner (Scotland)', icon: 'hop', gr
   };
 }
 
-/* ---------- The hub page ---------- */
-const SCOT_TABS = [['month', '📅 This month'], ['plants', '🌿 Plants'], ['danger', '☠️ Deadly'], ['water', '💧 Water & fire'], ['shelter', '⛺ Shelter & cold'], ['living', '🥔 Food & stores'], ['hazards', '⚠️ Hazards & 999'], ['law', '⚖️ The law'], ['brewing', '🍺 Brewing'], ['survival', '🏕️ Survival brewing'], ['distilling', '⚗️ Distilling'], ['handbook', '🖨️ Handbook']];
+/* ---------- Plant photos (Wikipedia / Wikimedia Commons, loaded in the browser) ---------- */
+const WAPI = 'https://en.wikipedia.org/w/api.php?format=json&origin=*&redirects=1&';
+function wikiLead(title) {
+  const cache = store.get('wimg', {});
+  if (cache[title]) return Promise.resolve(cache[title]);
+  return fetch(WAPI + 'action=query&prop=pageimages|info&inprop=url&piprop=thumbnail&pithumbsize=480&titles=' + encodeURIComponent(title))
+    .then(r => r.json()).then(j => {
+      const pg = Object.values(j.query?.pages || {})[0] || {};
+      const v = { s: pg.thumbnail?.source || '', u: pg.fullurl || `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}` };
+      if (v.s) { const c = store.get('wimg', {}); c[title] = v; store.set('wimg', c); }
+      return v;
+    });
+}
+const photoBox = (title, name, em) => `<button class="ph" data-wiki="${esc(title)}" data-name="${esc(name)}" aria-label="Photos of ${esc(name)}"><span class="ph-em">${em}</span><span class="ph-tag">📷 Photos</span></button>`;
+function hydratePhotos(root) {
+  const boxes = $$('.ph[data-wiki]:not(.pend)', root); boxes.forEach(b => b.classList.add('pend'));
+  const load = b => wikiLead(b.dataset.wiki).then(v => {
+    if (!v.s) { b.classList.add('none'); return; }
+    b.classList.add('ok'); b.insertAdjacentHTML('afterbegin', `<img src="${v.s}" alt="${esc(b.dataset.name)}" loading="lazy" decoding="async">`);
+  }).catch(() => b.classList.add('none'));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { io.unobserve(e.target); load(e.target); } }), { rootMargin: '300px' });
+    boxes.forEach(b => io.observe(b));
+  } else boxes.forEach(load);
+}
+const stripTags = h => String(h || '').replace(/<[^>]+>/g, '').trim();
+function openGallery(title, name) {
+  $('.gal')?.remove();
+  const g = document.createElement('div'); g.className = 'gal'; g.setAttribute('role', 'dialog');
+  g.innerHTML = `<div class="gal-box"><div class="gal-top"><b>${esc(name)}</b><button class="gal-x" aria-label="Close">✕</button></div>
+    <div class="gal-main"><div class="gal-load">Loading photos…</div></div><div class="gal-strip"></div>
+    <p class="gal-cap note"></p>
+    <p class="note gal-warn">⚠️ Never identify a plant from photos alone: check every feature in the plant guide and a proper field guide.</p></div>`;
+  document.body.appendChild(g);
+  const close = () => { g.remove(); document.removeEventListener('keydown', esc_); };
+  const esc_ = e => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', esc_);
+  g.addEventListener('click', e => { if (e.target === g || e.target.closest('.gal-x')) close(); });
+  fetch(WAPI + 'action=query&generator=images&gimlimit=40&prop=imageinfo&iiprop=url|extmetadata|mime&iiurlwidth=900&titles=' + encodeURIComponent(title))
+    .then(r => r.json()).then(j => {
+      const imgs = Object.values(j.query?.pages || {}).map(p => ({ t: p.title, i: (p.imageinfo || [])[0] })).filter(x => x.i && /jpe?g|png/.test(x.i.mime) && !/map|distribution|range|icon|logo|flag|commons-|wiki/i.test(x.t)).slice(0, 12);
+      if (!imgs.length) throw 0;
+      const show = k => {
+        const x = imgs[k], m = x.i.extmetadata || {};
+        $('.gal-main', g).innerHTML = `<img src="${x.i.thumburl || x.i.url}" alt="${esc(name)}">`;
+        $('.gal-cap', g).innerHTML = `${esc(stripTags(m.ImageDescription?.value).slice(0, 160))}<br>Photo: ${esc(stripTags(m.Artist?.value) || 'Wikimedia Commons')} · ${esc(m.LicenseShortName?.value || '')} · <a href="${x.i.descriptionurl}" target="_blank" rel="noopener">source & licence</a>`;
+        $$('.gal-strip img', g).forEach((t, i) => t.classList.toggle('on', i === k));
+      };
+      $('.gal-strip', g).innerHTML = imgs.map((x, k) => `<img src="${x.i.thumburl || x.i.url}" data-k="${k}" alt="" loading="lazy">`).join('');
+      $('.gal-strip', g).addEventListener('click', e => { const t = e.target.closest('[data-k]'); if (t) show(+t.dataset.k); });
+      show(0);
+    }).catch(() => {
+      $('.gal-main', g).innerHTML = `<div class="gal-load">Couldn't load photos (are you offline?).<br><a href="https://en.wikipedia.org/wiki/${encodeURIComponent(title)}" target="_blank" rel="noopener">Open on Wikipedia →</a></div>`;
+    });
+}
+document.addEventListener('click', e => { const b = e.target.closest('.ph[data-wiki]'); if (b) openGallery(b.dataset.wiki, b.dataset.name); });
+window.addEventListener('hashchange', () => $('.gal')?.remove());
+
+/* ---------- The hub: overview + grouped sections ---------- */
+const SCOT_SECTIONS = {
+  month: ['📅', 'This month', 'What to forage, brew and do this month, plus daylight and hazards.'],
+  plants: ['🌿', 'Plant guide', `${SCOT_PLANTS.length} Scottish plants with photos, seasons, uses and lookalikes.`],
+  danger: ['☠️', 'Deadly plants', `${SCOT_DANGER.length} poisonous plants and fungi, with photos.`],
+  water: ['💧', 'Water & fire', 'Safe water from burns; tinder, fuel and the fire rules.'],
+  shelter: ['⛺', 'Shelter & cold', 'Layers, hypothermia, wild camping and bothies.'],
+  living: ['🥔', 'Food & stores', 'Scottish staples, root clamps, salting, fishing rules.'],
+  hazards: ['🆘', 'Hazards & 999', 'Mountain rescue, ticks, midges, rivers, adders.'],
+  brewing: ['🍺', 'Brewing', 'Fermenting in the cold and the Scottish brewing year.'],
+  survival: ['🏕️', 'Survival brewing', 'No shops: wild yeast, home-made kit, vinegar.'],
+  distilling: ['⚗️', 'Distilling', 'Licensed only: Scottish conditions, cuts and safety.'],
+  law: ['⚖️', 'The law', 'What\'s allowed under Scotland\'s access rights.'],
+  handbook: ['🖨️', 'Field handbook', 'Everything on 6 A4 pages to print or save as PDF.'],
+};
+const SCOT_GROUPS = [['Seasons & plants', ['month', 'plants', 'danger']], ['Staying alive', ['water', 'shelter', 'living', 'hazards']], ['Making drink', ['brewing', 'survival', 'distilling']], ['Rules & print', ['law', 'handbook']]];
+const SCOT_ORDER = SCOT_GROUPS.flatMap(g => g[1]);
+const SCOT_TABS = SCOT_ORDER.map(k => [k, SCOT_SECTIONS[k][0] + ' ' + SCOT_SECTIONS[k][1]]);
 
 function pageScotland(el, tab) {
-  tab = SCOT_TABS.some(t => t[0] === tab) ? tab : (location.hash.includes('/scotland/') ? 'month' : store.get('scot.tab', 'month'));
   const q = new URLSearchParams((location.hash.split('?')[1]) || '');
-  el.innerHTML = `<a class="back" href="#/drink/scot">${I.arrowL} Off-grid Scotland drinks</a>
-    <div class="eyebrow" style="color:${DRINK.scot.c}">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Off-grid Scotland</div><h1>Living off the land in Scotland</h1>
-    ${tab === 'month' ? `<p class="lead">A complete off-grid guide built around Scotland: what to forage each month, what will kill you, water, fire, shelter, food, staying safe in the hills, the law, and brewing it all into drink. Works offline once loaded, and prints as a handbook.</p>` : ''}
-    <div class="scot-tabs" role="tablist">${SCOT_TABS.map(([k, l]) => `<a href="#/scotland/${k}" class="${k === tab ? 'on' : ''}" role="tab">${l}</a>`).join('')}</div>
-    <div id="sc" class="fade-in"></div>`;
+  if (!SCOT_SECTIONS[tab]) return scotOverview(el);
+  const [em, title] = SCOT_SECTIONS[tab], gi = SCOT_GROUPS.findIndex(g => g[1].includes(tab)), [gname, gkeys] = SCOT_GROUPS[gi];
+  const i = SCOT_ORDER.indexOf(tab), prev = SCOT_ORDER[i - 1], next = SCOT_ORDER[i + 1];
+  el.innerHTML = `<div class="crumb-row"><nav class="crumbs"><a href="#/scotland">🦌 Off-grid Scotland</a><span>›</span><span>${gname}</span></nav>
+      <label class="jump"><span class="sr">Jump to section</span><select id="sjump"><option value="" selected>☰ Jump to…</option><option value="__all">🦌 All sections</option>${SCOT_GROUPS.map(([g, ks]) => `<optgroup label="${g}">${ks.map(k => `<option value="${k}">${SCOT_SECTIONS[k][0]} ${SCOT_SECTIONS[k][1]}</option>`).join('')}</optgroup>`).join('')}</select></label></div>
+    <h1 class="sec-h1">${em} ${title}</h1>
+    <div class="subnav">${gkeys.map(k => `<a href="#/scotland/${k}" class="${k === tab ? 'on' : ''}">${SCOT_SECTIONS[k][0]} ${SCOT_SECTIONS[k][1]}</a>`).join('')}</div>
+    <div id="sc"></div>
+    <nav class="pager">${prev ? `<a href="#/scotland/${prev}"><small>← Previous</small><b>${SCOT_SECTIONS[prev][0]} ${SCOT_SECTIONS[prev][1]}</b></a>` : '<span></span>'}
+      ${next ? `<a class="nx" href="#/scotland/${next}"><small>Next →</small><b>${SCOT_SECTIONS[next][0]} ${SCOT_SECTIONS[next][1]}</b></a>` : `<a class="nx" href="#/scotland"><small>Done →</small><b>🦌 All sections</b></a>`}</nav>`;
+  $('#sjump', el).onchange = e => { const v = e.target.value; if (v) location.hash = v === '__all' ? '#/scotland' : '#/scotland/' + v; };
   store.set('scot.tab', tab);
   const box = $('#sc', el);
   ({ month: scotMonth, plants: scotPlants, danger: scotDanger, water: scotWater, shelter: scotShelter, living: scotLiving, hazards: scotHazards, law: scotLaw, brewing: scotBrewing, survival: scotSurvival, distilling: scotDistilling, handbook: scotHandbook })[tab](box, q);
-  setTimeout(() => $('.scot-tabs .on', el)?.scrollIntoView({ inline: 'center', block: 'nearest' }), 0);
+  hydratePhotos(el);
+}
+
+function scotOverview(el) {
+  const m = new Date().getMonth() + 1, d = SCOT_MONTHS[m - 1];
+  const now = SCOT_PLANTS.filter(p => p.m.includes(m) && p.m.length < 12);
+  const last = store.get('scot.tab', '');
+  el.innerHTML = `<div class="eyebrow" style="color:${DRINK.scot.c}">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Off-grid Scotland</div><h1>Living off the land in Scotland</h1>
+    <p class="lead">What to forage each month, what will kill you, water, fire, shelter, food, staying safe in the hills, the law, and turning it all into drink. Works offline once loaded, and prints as a handbook.</p>
+    <a class="panel now-card" href="#/scotland/month"><div><div class="eyebrow">Right now · ${MONTH[m - 1]}</div><h2>${now.length} plants in season</h2>
+      <p>${now.slice(0, 6).map(p => p.em + ' ' + p.n).join(' · ')}${now.length > 6 ? ' …' : ''}</p><p class="note">⚠️ ${d.risk.join(' · ')}</p></div><span class="go">Open →</span></a>
+    ${last && SCOT_SECTIONS[last] ? `<div class="btns" style="margin:8px 0 0"><a class="btn sm" href="#/scotland/${last}">↩ Carry on: ${SCOT_SECTIONS[last][1]}</a></div>` : ''}
+    ${SCOT_GROUPS.map(([g, ks]) => `<h2>${g}</h2><div class="grid sec-grid">${ks.map(k => `<a class="card sec-tile" href="#/scotland/${k}"><span class="st-em">${SCOT_SECTIONS[k][0]}</span><div><h3>${SCOT_SECTIONS[k][1]}</h3><p>${SCOT_SECTIONS[k][2]}</p></div></a>`).join('')}</div>`).join('')}
+    <h2>Also</h2><div class="grid sec-grid">
+      <a class="card sec-tile" href="#/drink/scot"><span class="st-em">🪜</span><div><h3>Scottish skill ladder & recipes</h3><p>Nettle beer to field-to-glass ale.</p></div></a>
+      <a class="card sec-tile" href="#/calc/forage"><span class="st-em">🧮</span><div><h3>Forage brew planner</h3><p>How strong will your foraged wine be?</p></div></a>
+      <a class="card sec-tile" href="#/guide/scotland"><span class="st-em">📜</span><div><h3>History & legend</h3><p>Heather ale, bere barley, gruit.</p></div></a>
+      <a class="card sec-tile" href="#/school"><span class="st-em">🎓</span><div><h3>Distilling course</h3><p>5 lessons with quizzes in Brew School.</p></div></a></div>`;
 }
 
 const plantCard = (p, m) => `<div class="panel splant" id="pl-${p.id}" style="--c:${['var(--ok)', 'var(--amber)', 'var(--danger)'][p.risk]}">
+  ${photoBox(p.w, p.n, p.em)}
   <div class="sp-head"><span class="sp-em">${p.em}</span><div><h3>${p.n}</h3>${p.g ? `<span class="note"><i>${p.g}</i></span>` : ''}</div>
   <span class="pill c" style="margin-left:auto">${['Low risk', 'Take care', 'Deadly lookalike'][p.risk]}</span></div>
   <div class="months">${MON.map((x, i) => `<span class="${p.m.includes(i + 1) ? ((p.peak || p.m).includes(i + 1) ? 'in pk' : 'in') : ''} ${m === i + 1 ? 'now' : ''}">${x[0]}</span>`).join('')}</div>
@@ -333,6 +430,7 @@ function scotPlants(box, q) {
   const draw = () => {
     const list = SCOT_PLANTS.filter(p => (f === 'all' || (f === 'now' ? p.m.includes(m) : p.use === f)) && (!s || (p.n + p.g + p.brew + p.where).toLowerCase().includes(s)));
     $('#pl', box).innerHTML = list.map(p => plantCard(p, m)).join('') || '<div class="empty">No plants match.</div>';
+    hydratePhotos(box);
   };
   seg($('#pfs', box), [['all', 'All'], ['now', 'In season'], ['sugar', 'Fruit & sugar'], ['flavour', 'Flavour'], ['bitter', 'Bittering'], ['food', 'Food']], f, v => { f = v; store.set('scot.pf', v); draw(); });
   $('#ps', box).addEventListener('input', e => { s = e.target.value.trim().toLowerCase(); draw(); });
@@ -343,7 +441,7 @@ function scotPlants(box, q) {
 
 function scotDanger(box) {
   box.innerHTML = `<div class="callout warn"><b>Rule one</b><div>If you are not 100% sure, don't pick it, don't taste it, don't brew with it. Most deadly plants in Scotland are in the carrot family (white umbrella-shaped flowers) and grow in <b>wet ground</b>: exactly where you'll be gathering water, meadowsweet and wild garlic.</div></div>
-    <div class="danger-list">${SCOT_DANGER.map(([n, w, m, e]) => `<div class="panel dg"><h3>☠️ ${n}</h3><p><b>Where:</b> ${w}</p><p><b>Mistaken for:</b> ${m}</p><p><b>Effect:</b> ${e}</p></div>`).join('')}</div>
+    <div class="danger-list">${SCOT_DANGER.map(([n, w, m, e, wk]) => `<div class="panel dg">${photoBox(wk, n, '☠️')}<h3>☠️ ${n}</h3><p><b>Where:</b> ${w}</p><p><b>Mistaken for:</b> ${m}</p><p><b>Effect:</b> ${e}</p></div>`).join('')}</div>
     <h2>Five habits that keep foragers alive</h2>
     <ol class="mini-steps"><li><b>Never forage white umbels</b> (flat umbrella flower heads) from the ground, except with an expert. Elderflower is safe only because it grows on a woody bush.</li>
     <li><b>Never use a hollow plant stem as a straw, pipe or siphon.</b> Hemlock and hogweed stems are both hollow. Carry a length of food-grade tube.</li>

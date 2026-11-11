@@ -19,6 +19,7 @@ Home brewing guides, calculators, recipes and a batch log for **beer, wine, cide
 - **Plan & buy:** batch shopping planner (14 drink types; exact amounts → packs to buy → cost → shopping list).
 - **Beyond fruit:** bread & kvass, potato, rice wine, corn & grains, unusual ferments, each with a 5-level skill ladder, 12 recipes and a starch guide (fermentation only, no distilling).
 - **Off-grid Scotland:** a complete living-off-the-land hub for Scotland: month-by-month forage & brew calendar with reminders, 28 plants with lookalike warnings, deadly plants, water, fire, shelter, food & stores, hazards and 999, Scottish law, 7 Scottish recipes, a skill ladder, forage brew planner and a printable field handbook.
+- **Brew School distilling course:** 5 lessons with quizzes (law, the pot still, the wash, the cuts, safety & dilution). Plant photos from Wikimedia Commons load in the browser with credits.
 - **Survival:** off-grid brewing guide + ladder, and a safety-first survival distilling guide with still run planner (for licensed UK / NZ use only).
 - **Help:** first-time tour, feature guide, What's new, link back to all my tools on every page.
 - **Learn:** Brew School (10 lessons, 32 quiz questions, printable certificate), flashcards with spaced repetition, fermentation simulator, Problem Doctor troubleshooter, flavour finder, 6 more beginner guides (first 6 weeks, tasting, sweetness methods, flavour additions, ageing, scaling/units).

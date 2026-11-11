@@ -80,7 +80,7 @@ function homeExtras(view) {
   if (favs.length) html += `<div class="section-h"><h2>♥ Your favourites</h2></div>${chipList(favs.slice(0, 10))}`;
   if (rec.length) html += `<div class="section-h"><h2>Jump back in</h2></div>${chipList(rec.slice(0, 6))}`;
   const wrap = document.createElement('div'); wrap.id = 'home-extra'; wrap.innerHTML = html;
-  hero.after(wrap);
+  ($('.quick', view) || hero).after(wrap);
   $('#wclose', wrap)?.addEventListener('click', () => { store.set('welcomed', true); $('.welcome', wrap).remove(); });
 }
 window.addEventListener('hashchange', () => setTimeout(afterRender, 0));

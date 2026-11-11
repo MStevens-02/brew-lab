@@ -1,14 +1,21 @@
 // Brew Lab service worker: network first, cache fallback so it works offline (e.g. in the garage on brew day).
-const CACHE = 'brew-lab-v16';
+const CACHE = 'brew-lab-v18';
 const FILES = ['./', 'index.html', 'css/style.css', 'icon.svg', 'manifest.webmanifest',
-  'js/calc.js', 'js/data.js', 'js/guides.js', 'js/recipes.js', 'js/core.js', 'js/calcs.js', 'js/tools.js', 'js/juice.js', 'js/paths.js', 'js/beginner.js', 'js/extras.js', 'js/more.js', 'js/coach.js', 'js/school.js', 'js/starch.js', 'js/history.js', 'js/distilhist.js', 'js/survival.js', 'js/still.js', 'js/scotland.js', 'js/planner.js', 'js/app.js', 'icon-192.png', 'icon-512.png'];
+  'js/calc.js', 'js/data.js', 'js/guides.js', 'js/recipes.js', 'js/core.js', 'js/calcs.js', 'js/tools.js', 'js/juice.js', 'js/paths.js', 'js/beginner.js', 'js/extras.js', 'js/more.js', 'js/coach.js', 'js/school.js', 'js/starch.js', 'js/history.js', 'js/distilhist.js', 'js/survival.js', 'js/still.js', 'js/distilschool.js', 'js/scotland.js', 'js/planner.js', 'js/app.js', 'icon-192.png', 'icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE && k !== 'brewlab-data').map(k => caches.delete(k)))));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE && k !== 'brewlab-data' && k !== 'brewlab-img').map(k => caches.delete(k)))));
   self.clients.claim();
 });
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  if (url.origin !== self.location.origin) {
+    // Plant photos & Wikipedia lookups: network first, keep a copy so they show offline later
+    if (!/wikimedia\.org$|wikipedia\.org$/.test(url.hostname)) return;
+    e.respondWith(fetch(e.request).then(r => { const copy = r.clone(); caches.open('brewlab-img').then(c => c.put(e.request, copy)); return r; }).catch(() => caches.match(e.request)));
+    return;
+  }
   e.respondWith(fetch(e.request).then(r => {
     const copy = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); return r;
   }).catch(() => caches.match(e.request)));

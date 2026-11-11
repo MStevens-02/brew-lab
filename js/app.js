@@ -12,20 +12,23 @@ const NAV = [
   ['shop', '#/shop', 'Shopping list', I.cart],
   ['paths', '#/paths', 'Skill ladders', I.ladder],
   ['scotland', '#/scotland', 'Off-grid Scotland', I.hop],
+  ['wild', '#/drink/wild', 'Survival brewing', I.pot],
+  ['distil', '#/guide/survival-still', 'Distilling', I.therm],
   ['ref', '#/ref', 'Reference', I.library],
   ['search', '#/search', 'Search', I.ref],
   ['features', '#/features', 'Feature guide', I.help],
   ['whatsnew', '#/whatsnew', 'What\'s new', I.spark],
   ['app', '#/app', 'App & settings', I.gear],
 ];
+const NAV_GROUPS = [['', ['home']], ['Make', ['recipes', 'calcs', 'paths', 'log']], ['Learn', ['guides', 'ref', 'search']], ['My brewery', ['calendar', 'inbox', 'cellar', 'shop', 'stats']], ['Off-grid', ['scotland', 'wild', 'distil']], ['App', ['features', 'whatsnew', 'app']]];
 const HUB = 'https://mstevens-02.github.io/tools/';
 
 function shell() {
   document.body.innerHTML = `
-  <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><span class="tb-icons"><a href="#/search" aria-label="Search">${I.ref}</a><a href="#/inbox" aria-label="Notifications" data-nav="inbox">${I.bell}</a><a href="#/calendar" aria-label="Calendar" data-nav="calendar">${I.cal}</a><a href="#/more" aria-label="More">${I.menu}</a></span></header>
+  <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><span class="tb-icons"><a href="#/search" aria-label="Search">${I.ref}</a><a href="#/inbox" aria-label="Notifications" data-nav="inbox">${I.bell}</a><a href="#/calendar" aria-label="Calendar" data-nav="calendar">${I.cal}</a><a href="#/more" aria-label="Menu" data-nav="more">${I.menu}</a></span></header>
   <div class="app">
     <aside class="side"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b><span>Ferment anything</span></div></a>
-      ${NAV.map(([k, h, l, ic]) => `<a class="navlink" data-nav="${k}" href="${h}" title="${l}">${ic}<span>${l}</span></a>`).join('')}
+      ${NAV_GROUPS.map(([g, ks]) => (g ? `<div class="navh">${g}</div>` : '') + ks.map(k => NAV.find(n => n[0] === k)).filter(Boolean).map(([k, h, l, ic]) => `<a class="navlink" data-nav="${k}" href="${h}" title="${l}">${ic}<span>${l}</span></a>`).join('')).join('')}
       <div class="foot">Made by Michael Stevens<br><a href="${HUB}">← All my tools</a></div></aside>
     <main id="view"></main>
   </div>
@@ -77,6 +80,7 @@ function pageHome(el) {
       <div class="btns"><a class="btn pri" href="#/start">🌱 Complete beginner? Find your first brew</a><a class="btn" href="#/calcs">Open calculators</a></div></div>
     <div class="glass">${heroGlass()}</div>
   </section>
+  <nav class="quick">${[['#/learn', '🎓', 'Learn'], ['#/recipes', '📖', 'Recipes'], ['#/calcs', '🧮', 'Calculators'], ['#/log', '📒', 'My batches'], ['#/scotland', '🦌', 'Off-grid'], ['#/more', '☰', 'Everything']].map(([h, e, t]) => `<a href="${h}"><span>${e}</span><b>${t}</b></a>`).join('')}</nav>
   <h2>What are you making?</h2>
   <div class="drinks">
     ${['juice', 'beer', 'wine', 'cider', 'mead', 'other'].map(k => `<a class="drink ${k === 'juice' ? 'feat' : ''}" href="${k === 'juice' ? '#/juice' : '#/drink/' + k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ juice: 'Easiest start: apple, grape, pear… from the supermarket', beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style', other: 'Ginger beer, hard lemonade, seltzer, sake' }[k]}</span></a>`).join('')}
@@ -329,6 +333,8 @@ function route() {
   let nav = 'home';
   const hit = ROUTES.find(([re]) => re.test(path));
   if (hit) { nav = hit[2]; hit[1](page, ...(path.match(hit[0]).slice(1))); } else notFound(page);
+  const over = [[/^\/drink\/wild$/, 'wild'], [/^\/(guide\/survival-still|calc\/still)$/, 'distil'], [/^\/(scotland|drink\/scot$|calc\/forage$|guide\/scotland$)/, 'scotland'], [/^\/(school|lesson|certificate|flashcards)/, 'guides']].find(([re]) => re.test(path));
+  if (over) nav = over[1];
   $$('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === nav));
   const h1 = $('h1', page);
   document.title = (h1 && nav !== 'home' ? h1.textContent + ' · ' : '') + 'Brew Lab';

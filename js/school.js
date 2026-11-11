@@ -128,19 +128,27 @@ function pageSchool(el) {
   const st = schoolState(); const done = LESSONS.filter(l => lessonDone(l.id)).length;
   el.innerHTML = `<a class="back" href="#/learn">${I.arrowL} Learn</a><div class="eyebrow">🎓 Brew School</div><h1>Learn to brew in 10 short lessons</h1>
     <p class="lead">Bite-size lessons (3–6 min) with a quick quiz after each one. Pass all 10 to earn your Brew Lab certificate.</p>
+    <div class="subnav"><a class="on" href="#/school">🌱 Beginner course · ${done}/${LESSONS.length}</a>${typeof DLESSONS !== 'undefined' ? `<a href="#/school" onclick="setTimeout(()=>document.getElementById('dcourse')?.scrollIntoView({behavior:'smooth'}),0);return false">⚗️ Distilling course · ${DLESSONS.filter(l => lessonDone(l.id)).length}/${DLESSONS.length}</a>` : ''}<a href="#/flashcards">🃏 Flashcards</a></div>
     <div class="ladder-top"><div class="ladder-prog"><div style="width:${done / LESSONS.length * 100}%"></div></div><span class="note">${done}/${LESSONS.length}</span></div>
     <div class="lessons">${LESSONS.map((l, i) => { const s = st[l.id]; const ok = lessonDone(l.id); const next = !ok && LESSONS.slice(0, i).every(x => lessonDone(x.id));
       return `<a class="lesson ${ok ? 'done' : ''} ${next ? 'next' : ''}" href="#/lesson/${l.id}"><span class="ln">${ok ? '✓' : i + 1}</span><span class="le">${l.em}</span><span class="lt"><b>${l.t}</b><small>${l.mins} min · ${l.quiz.length} questions${s ? ` · best ${s.score}/${s.of}` : ''}</small></span>${next ? '<span class="pill c" style="--c:var(--amber)">Next</span>' : ''}</a>`; }).join('')}</div>
     ${done === LESSONS.length ? `<div class="btns" style="margin-top:18px"><a class="btn pri" href="#/certificate">🎓 View your certificate</a></div>` : ''}
+    ${typeof DLESSONS !== 'undefined' ? (() => { const dd = DLESSONS.filter(l => lessonDone(l.id)).length; return `<h2 id="dcourse" style="margin-top:30px">⚗️ Advanced module: Distilling</h2>
+    <p class="note">For licensed distillers only (UK: HMRC licence; New Zealand: personal use). Separate from the beginner certificate.</p>
+    <div class="ladder-top"><div class="ladder-prog"><div style="width:${dd / DLESSONS.length * 100}%"></div></div><span class="note">${dd}/${DLESSONS.length}</span></div>
+    <div class="lessons">${DLESSONS.map((l, i) => { const s2 = st[l.id], ok = lessonDone(l.id), nx = !ok && DLESSONS.slice(0, i).every(x => lessonDone(x.id));
+      return `<a class="lesson ${ok ? 'done' : ''} ${nx ? 'next' : ''}" href="#/lesson/${l.id}"><span class="ln">${ok ? '✓' : i + 1}</span><span class="le">${l.em}</span><span class="lt"><b>${l.t}</b><small>${l.mins} min · ${l.quiz.length} questions${s2 ? ` · best ${s2.score}/${s2.of}` : ''}</small></span>${nx ? '<span class="pill c" style="--c:var(--amber)">Next</span>' : ''}</a>`; }).join('')}</div>
+    ${dd === DLESSONS.length ? '<div class="callout tip"><b>Done</b><div>Distilling course complete. 🎉</div></div>' : ''}`; })() : ''}
     <div class="grid" style="margin-top:22px">
       <a class="card" href="#/flashcards"><div class="ic">🃏</div><h3>Flashcards</h3><p>Learn the jargon. Cards you miss come back more often.</p></a>
       <a class="card" href="#/calc/sim"><div class="ic">📈</div><h3>Fermentation simulator</h3><p>See what temperature, sugar and yeast actually do.</p></a></div>`;
 }
 function pageLesson(el, id) {
-  const i = LESSONS.findIndex(l => l.id === id); const l = LESSONS[i]; if (!l) return notFound(el);
+  const MOD = typeof DLESSONS !== 'undefined' && DLESSONS.some(l => l.id === id) ? DLESSONS : LESSONS, isD = MOD !== LESSONS;
+  const i = MOD.findIndex(l => l.id === id); const l = MOD[i]; if (!l) return notFound(el);
   let ans = {};
   el.innerHTML = `<a class="back" href="#/school">${I.arrowL} Brew School</a>
-    <div class="eyebrow">Lesson ${i + 1} of ${LESSONS.length} · ${l.mins} min</div><h1>${l.em} ${l.t}</h1>
+    <div class="eyebrow">${isD ? '⚗️ Distilling course · ' : ''}Lesson ${i + 1} of ${MOD.length} · ${l.mins} min</div><h1>${l.em} ${l.t}</h1>
     <article class="prose lesson-body">${l.body}</article>
     <div class="panel keypts"><div class="eyebrow">Remember</div><ul class="ticks">${l.keys.map(k => `<li>${k}</li>`).join('')}</ul>
       <div class="btns">${l.links.map(([h, t]) => `<a class="btn sm" href="${h}">${t}</a>`).join('')}</div></div>
@@ -153,7 +161,7 @@ function pageLesson(el, id) {
       return `<button class="qopt ${cls}" data-k="${k}" data-j="${j}" ${show ? 'disabled' : ''}>${o}</button>`; }).join('')}</div>
       ${ans[k] != null ? `<p class="note" style="margin-top:8px">${ans[k] === q.a ? '✅ ' : '❌ '}${q.why}</p>` : ''}</div>`).join('')
       + (answered === l.quiz.length ? `<div class="panel result ${score / l.quiz.length >= 0.66 ? 'pass' : ''}"><h3 style="margin:0">${score / l.quiz.length >= 0.66 ? '🎉 Passed!' : '📚 Nearly'} ${score}/${l.quiz.length}</h3>
-        <div class="btns">${score < l.quiz.length ? '<button class="btn" id="retry">↺ Try again</button>' : ''}${LESSONS[i + 1] ? `<a class="btn pri" href="#/lesson/${LESSONS[i + 1].id}">Next lesson: ${LESSONS[i + 1].t} →</a>` : `<a class="btn pri" href="#/certificate">🎓 Get your certificate</a>`}<a class="btn ghost" href="#/school">All lessons</a></div></div>` : '');
+        <div class="btns">${score < l.quiz.length ? '<button class="btn" id="retry">↺ Try again</button>' : ''}${MOD[i + 1] ? `<a class="btn pri" href="#/lesson/${MOD[i + 1].id}">Next lesson: ${MOD[i + 1].t} →</a>` : isD ? `<a class="btn pri" href="#/school">⚗️ Back to Brew School</a>` : `<a class="btn pri" href="#/certificate">🎓 Get your certificate</a>`}<a class="btn ghost" href="#/school">All lessons</a></div></div>` : '');
   };
   el.addEventListener('click', e => {
     const b = e.target.closest('.qopt'); if (b && !b.disabled) {
@@ -161,7 +169,8 @@ function pageLesson(el, id) {
       if (Object.keys(ans).length === l.quiz.length) {
         const score = l.quiz.filter((q, k) => ans[k] === q.a).length; const s = schoolState();
         if (!s[l.id] || score >= s[l.id].score) { s[l.id] = { score, of: l.quiz.length, at: today() }; store.set('school', s); }
-        if (LESSONS.every(x => lessonDone(x.id)) && !store.get('schoolDoneNote')) { store.set('schoolDoneNote', true); typeof pushInbox === 'function' && pushInbox({ t: '🎓 Brew School complete!', body: 'Your certificate is ready.', href: '#/certificate', kind: 'badge' }); }
+        if (isD && DLESSONS.every(x => lessonDone(x.id)) && !store.get('distilDoneNote')) { store.set('distilDoneNote', true); typeof pushInbox === 'function' && pushInbox({ t: '⚗️ Distilling course complete!', body: 'All 5 lessons passed. Remember: licence first, foreshots out.', href: '#/school', kind: 'badge' }); }
+        if (!isD && LESSONS.every(x => lessonDone(x.id)) && !store.get('schoolDoneNote')) { store.set('schoolDoneNote', true); typeof pushInbox === 'function' && pushInbox({ t: '🎓 Brew School complete!', body: 'Your certificate is ready.', href: '#/certificate', kind: 'badge' }); }
       }
     }
     if (e.target.closest('#retry')) { ans = {}; draw(); $('#qz', el).scrollIntoView({ behavior: 'smooth' }); }
@@ -469,23 +478,31 @@ function pageLearn(el) {
       <h2 style="margin:8px 0 6px">${next ? (done ? 'Continue: ' : 'Start: ') + next.t : 'Course complete! View your certificate'}</h2><p>10 bite-size lessons with quizzes. About 45 minutes in total.</p>
       <div class="ladder-prog" style="margin-top:12px"><div style="width:${done / LESSONS.length * 100}%"></div></div></div><span class="sh-em">${next ? next.em : '🎓'}</span></a>
     <div class="btns" style="margin:10px 0 0"><a class="btn" href="#/school">All lessons</a></div>
-    <h2>Interactive learning</h2><div class="grid">
+    ${typeof DLESSONS !== 'undefined' ? `<a class="card" href="${DLESSONS.find(l => !lessonDone(l.id)) ? '#/lesson/' + DLESSONS.find(l => !lessonDone(l.id)).id : '#/school'}" style="margin-top:12px;display:flex;gap:14px;align-items:center"><span style="font-size:30px">⚗️</span><div><h3>Distilling course (licensed)</h3><p>5 lessons with quizzes: the law, the pot still, the wash, the cuts, safety. ${DLESSONS.filter(l => lessonDone(l.id)).length}/${DLESSONS.length} done.</p></div></a>` : ''}
+    <h2>Interactive tools</h2><div class="grid">
       ${tool('#/calc/sim', '📈', 'Fermentation simulator', 'Change temperature, sugar and yeast and see what happens over 4 weeks.')}
       ${tool('#/flashcards', '🃏', 'Flashcards', 'Learn the jargon. Missed cards come back more often.')}
       ${tool('#/calc/trainer', '🎯', 'Hydrometer trainer', 'Practise reading the scale.')}
-      ${tool('#/calc/doctor', '🩺', 'Problem Doctor', 'Answer a few questions, get a diagnosis.')}
-      ${tool('#/calc/flavours', '👃', 'Flavour finder', 'What causes that taste?')}
-      ${tool('#/calc/normal', '🤔', 'Is this normal?', '23 common worries answered.')}
-      ${tool('#/kit', '🧰', 'Kit explained', 'Every bit of equipment, illustrated.')}
       ${tool('#/start', '🧭', 'Find your first brew', 'A 5-question quiz.')}
-      ${tool('#/paths', '🪜', 'Skill ladders', 'Super easy → expert for every drink.')}
-      ${tool('#/guide/history', '📜', 'History of booze', 'Ancient brews, whisky smugglers, Prohibition and moonshine.')}
-      ${tool('#/scotland', '🦌', 'Off-grid Scotland', 'Month-by-month foraging, deadly lookalikes, water, shelter, hazards and the law.')}
-      ${tool('#/guide/survival', '🏕️', 'Off-grid & survival brewing', 'No shops, no internet: wild yeast, foraging, maximum strength.')}
-      ${tool('#/guide/survival-still', '⚗️', 'Survival distilling (licensed / NZ)', 'Pot still basics, safe materials, cuts and safety.')}
-      ${tool('#/guide/distilling-history', '⚗️', 'History of distilling', 'Alchemists to Highland stills, gin, rum, and NZ\'s Hokonui moonshine.')}
     </div>
-    <h2>Guides</h2><div id="lg"></div>`;
+    <h2>Fix a problem</h2><div class="grid">
+      ${tool('#/calc/doctor', '🩺', 'Problem Doctor', 'Answer a few questions, get a diagnosis.')}
+      ${tool('#/calc/normal', '🤔', 'Is this normal?', '23 common worries answered.')}
+      ${tool('#/calc/flavours', '👃', 'Flavour finder', 'What causes that taste?')}
+      ${tool('#/kit', '🧰', 'Kit explained', 'Every bit of equipment, illustrated.')}
+    </div>
+    <h2>Off-grid, survival & distilling</h2><div class="grid">
+      ${tool('#/scotland', '🦌', 'Off-grid Scotland', 'Month-by-month foraging with plant photos, deadly lookalikes, water, shelter, hazards and the law.')}
+      ${tool('#/guide/survival', '🏕️', 'Off-grid & survival brewing', 'No shops, no internet: wild yeast, foraging, maximum strength.')}
+      ${tool('#/guide/survival-still', '⚗️', 'Survival distilling (licensed)', 'Pot still basics, safe materials, cuts and safety.')}
+      ${tool('#/paths', '🪜', 'Skill ladders', 'Super easy → expert for every drink.')}
+    </div>
+    <h2>History</h2><div class="grid">
+      ${tool('#/guide/history', '📜', 'History of booze', 'Ancient brews, whisky smugglers, Prohibition and moonshine.')}
+      ${tool('#/guide/distilling-history', '⚗️', 'History of distilling', 'Alchemists to Highland stills, gin, rum, and NZ\'s Hokonui moonshine.')}
+      ${tool('#/guide/scotland', '🦌', 'Scotland\'s wild drinks', 'Heather ale legend, bere barley, gruit, Atholl brose.')}
+    </div>
+    <h2>All guides</h2><div id="lg"></div>`;
   const g = document.createElement('div'); pageGuides(g); g.querySelector('.eyebrow')?.remove(); g.querySelector('h1')?.remove(); g.querySelector('.lead')?.remove();
   $('#lg', el).appendChild(g);
 }
