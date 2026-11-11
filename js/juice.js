@@ -175,7 +175,7 @@ function renderWizard(el) {
     <div class="btns"><a class="btn pri" href="#/log/new?name=${encodeURIComponent(rs.map(r => juice(r.id).name.split(' ')[0]).join(' & ') + ' brew')}&drink=juice&og=${og.toFixed(3)}&L=${fmt(finalL, 1)}">${I.log} Start this batch</a><a class="btn" href="#/calc/label">Check a label</a></div>`;
 
     $('#wplan', el).innerHTML = `
-      <h2>Shopping list</h2>
+      <div class="section-h"><h2>Shopping list</h2><button class="btn sm" data-addlist="${esc(JSON.stringify(shop.map(s => s[0] + ': ' + s[1])))}" data-from="Juice wizard">${I.cart} Add all to my shopping list</button></div>
       <div class="tbl-wrap"><table class="tbl"><tr><th>Item</th><th>Amount</th><th>≈£</th><th>Why</th></tr>
       ${shop.map(s => `<tr><td><b>${s[0]}</b></td><td>${s[1]}</td><td class="num">${s[2] ? fmt(s[2], 2) : ''}</td><td class="muted">${s[3]}</td></tr>`).join('')}</table></div>
       <h2>Equipment</h2><p class="note">Tick off what you have. Saved on this device.</p>

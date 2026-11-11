@@ -431,7 +431,9 @@ function renderLogDetail(el, id) {
     <p class="note">A rough guide. Always go by gravity readings and taste, not the calendar.</p>
     <h2>Notes</h2>
     <textarea id="notes" placeholder="Recipe tweaks, tasting notes, what you'd change next time…">${esc(b.notes || '')}</textarea>
+    <div id="bx"></div>
     <div class="btns" style="margin-top:24px"><button class="btn danger" id="del">${I.trash} Delete batch</button></div>`;
+    if (window.batchExtras) batchExtras($('#bx', el), b, draw);
   };
   draw();
   el.addEventListener('click', e => {

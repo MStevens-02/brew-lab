@@ -328,3 +328,48 @@ ol.mini-steps li { margin: 6px 0; font-size: 14.5px; color: #e7dcd0; }
 details.nq summary { list-style: none; cursor: pointer; }
 details.nq summary::-webkit-details-marker { display: none; }
 details.nq[open] { border-color: var(--c); }
+
+/* ---------- Extras ---------- */
+.tb-icons { display: flex; gap: 6px; }
+.tb-icons a { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); position: relative; }
+.tb-icons svg { width: 20px; height: 20px; }
+[data-nav="calendar"][data-badge]:not([data-badge=""])::after { content: attr(data-badge); position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--danger); color: #fff; font: 700 11px/18px var(--sans); text-align: center; }
+.navlink[data-nav="calendar"] { position: relative; }
+.navlink[data-nav="calendar"][data-badge]:not([data-badge=""])::after { top: 8px; right: 10px; }
+.due-bar { display: flex; gap: 10px; align-items: center; padding: 12px 14px; margin-bottom: 18px; border-radius: 12px; text-decoration: none; color: var(--text);
+  background: linear-gradient(90deg, rgba(245,165,36,.18), rgba(245,165,36,.05)); border: 1px solid rgba(245,165,36,.45); font-size: 14.5px; }
+.due-bar span:nth-child(2) { flex: 1; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.calwrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; align-items: start; }
+@media (max-width: 860px) { .calwrap { grid-template-columns: 1fr; } }
+.cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: var(--serif); font-size: 19px; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-dow { text-align: center; font: 600 11px var(--mono); color: var(--dim); text-transform: uppercase; padding: 4px 0; }
+.cal-day { appearance: none; border: 1px solid var(--line); background: var(--bg2); color: var(--text); border-radius: 9px; aspect-ratio: 1; min-height: 42px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font: 600 14px var(--mono); padding: 2px; }
+.cal-day.today { border-color: var(--amber); color: var(--amber2); }
+.cal-day.sel { background: rgba(245,165,36,.18); border-color: var(--amber); }
+.cal-day .dots { display: flex; gap: 2px; height: 6px; }
+.cal-day .dots i { width: 6px; height: 6px; border-radius: 50%; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.stars { display: flex; gap: 4px; }
+.star { appearance: none; border: 0; background: none; font-size: 30px; color: var(--line2); cursor: pointer; padding: 0 2px; line-height: 1; }
+.star.on { color: var(--amber2); }
+.cellar-count { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.cellar-count b { font: 700 28px var(--mono); color: var(--amber2); }
+.blabel { width: 90mm; height: 50mm; max-width: 100%; display: flex; gap: 10px; align-items: center; padding: 10px 14px; border-radius: 10px; background: var(--lbg); color: var(--lfg);
+  border: 3px solid var(--lbg); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lfg) 35%, transparent); font-family: var(--serif); overflow: hidden; }
+.bl-em { font-size: 40px; }
+.bl-main { flex: 1; min-width: 0; }
+.bl-name { font-size: 22px; font-weight: 700; line-height: 1.1; }
+.bl-type { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; opacity: .8; margin-top: 3px; }
+.bl-row { display: flex; justify-content: space-between; font: 700 13px var(--mono); margin-top: 8px; border-top: 1px solid color-mix(in srgb, var(--lfg) 30%, transparent); padding-top: 5px; }
+.bl-tag { font-size: 11.5px; font-style: italic; opacity: .85; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.blabel { background: var(--lbg); }
+#print-sheet { display: none; }
+@media print {
+  body.printing * { visibility: hidden; }
+  body.printing #print-sheet, body.printing #print-sheet * { visibility: visible; }
+  body.printing #print-sheet { display: grid; position: absolute; left: 0; top: 0; grid-template-columns: 90mm 90mm; gap: 4mm; padding: 8mm; }
+  body.printing .blabel { -webkit-print-color-adjust: exact; print-color-adjust: exact; break-inside: avoid; }
+  body.printing { background: #fff; }
+}

@@ -5,21 +5,26 @@ const NAV = [
   ['calcs', '#/calcs', 'Calculators', I.calc],
   ['recipes', '#/recipes', 'Recipes', I.flask],
   ['log', '#/log', 'Batch log', I.log],
+  ['calendar', '#/calendar', 'Calendar', I.cal],
+  ['cellar', '#/cellar', 'Cellar', I.bottle],
+  ['shop', '#/shop', 'Shopping list', I.cart],
   ['paths', '#/paths', 'Skill ladders', I.ladder],
   ['ref', '#/ref', 'Reference', I.ref],
+  ['search', '#/search', 'Search', I.ref],
+  ['app', '#/app', 'App & settings', I.gear],
 ];
 const HUB = 'https://mstevens-02.github.io/tools/';
 
 function shell() {
   document.body.innerHTML = `
-  <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><span style="display:flex;gap:8px"><a class="ref" href="#/paths">Levels</a><a class="ref" href="#/ref">Reference</a></span></header>
+  <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><span class="tb-icons"><a href="#/search" aria-label="Search">${I.ref}</a><a href="#/calendar" aria-label="Calendar" data-nav="calendar">${I.cal}</a><a href="#/more" aria-label="More">${I.menu}</a></span></header>
   <div class="app">
     <aside class="side"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b><span>Ferment anything</span></div></a>
       ${NAV.map(([k, h, l, ic]) => `<a class="navlink" data-nav="${k}" href="${h}">${ic}${l}</a>`).join('')}
       <div class="foot">Made by Michael Stevens<br><a href="${HUB}">← All my tools</a></div></aside>
     <main id="view"></main>
   </div>
-  <nav class="bottom">${NAV.filter(n => !['ref', 'paths'].includes(n[0])).map(([k, h, l, ic]) => `<a data-nav="${k}" href="${h}">${ic}<span>${l === 'Calculators' ? 'Calcs' : l === 'Batch log' ? 'Log' : l}</span></a>`).join('')}</nav>`;
+  <nav class="bottom">${NAV.filter(n => ['home', 'guides', 'calcs', 'recipes', 'log'].includes(n[0])).map(([k, h, l, ic]) => `<a data-nav="${k}" href="${h}">${ic}<span>${l === 'Calculators' ? 'Calcs' : l === 'Batch log' ? 'Log' : l}</span></a>`).join('')}</nav>`;
 }
 
 /* ---------- Pages ---------- */
@@ -72,6 +77,13 @@ function pageHome(el) {
     ${['juice', 'beer', 'wine', 'cider', 'mead', 'other'].map(k => `<a class="drink ${k === 'juice' ? 'feat' : ''}" href="${k === 'juice' ? '#/juice' : '#/drink/' + k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ juice: 'Easiest start: apple, grape, pear… from the supermarket', beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style', other: 'Ginger beer, hard lemonade, seltzer, sake' }[k]}</span></a>`).join('')}
   </div>
   <a class="card" href="#/paths" style="margin-top:12px;display:flex;gap:14px;align-items:center;--c:#7fd18b"><div class="ic" style="margin:0">${I.ladder}</div><div><h3>Skill ladders</h3><p>Every drink, five ways: super easy → easy → medium → hard → expert. Tick them off as you level up.</p></div></a>
+  <div class="section-h"><h2>Your brewery</h2><a href="#/more">Everything →</a></div>
+  <div class="grid">
+    <a class="card" href="#/calendar"><div class="ic">${I.cal}</div><h3>Calendar & reminders</h3><p>Every batch step on a calendar, plus your own reminders. Export to your phone for real alarms.</p></a>
+    <a class="card" href="#/cellar"><div class="ic">${I.bottle}</div><h3>Cellar</h3><p>Bottles ready to drink, what's still conditioning, and a "drank one" counter.</p></a>
+    <a class="card" href="#/shop"><div class="ic">${I.cart}</div><h3>Shopping list</h3><p>Add any recipe's ingredients in one tap. Tick off in the shop, share with someone.</p></a>
+    <a class="card" href="#/calc/labels"><div class="ic">${I.log}</div><h3>Bottle labels</h3><p>Design and print a sheet of labels for your bottles.</p></a>
+  </div>
   <div class="section-h"><h2>Beginner toolkit</h2><a href="#/guide/beginner">Beginner FAQ →</a></div>
   <div class="grid">
     <a class="card" href="#/start" style="--c:#7fd18b"><div class="ic">${I.flask}</div><h3>Find your first brew</h3><p>A 5-question quiz that picks a recipe for your taste, budget and patience, and tells you exactly what to buy.</p></a>
@@ -208,6 +220,7 @@ function pageRecipe(el, id) {
       ${s.srm != null ? `<div style="display:flex;justify-content:center;margin-top:10px">${glassSVG(s.srm, 70)}</div>` : ''}`;
     const ogStr = typeof s.og === 'number' ? s.og.toFixed(3) : s.og;
     $('#ract', el).innerHTML = `<a class="btn pri" href="#/brew/${r.id}">${I.timer} Brew along step by step</a><a class="btn" href="#/log/new?name=${encodeURIComponent(r.name)}&drink=${r.drink}&og=${ogStr}&L=${L}">${I.log} Start this batch</a>
+      <button class="btn" data-addshop="${r.id}">${I.cart} Add to shopping list</button><button class="btn" data-share="${location.origin + location.pathname}#/recipe/${r.id}" data-title="${esc(r.name)}">📤 Share</button>
       ${r.beer ? `<a class="btn" href="#/calc/recipe?r=${r.id}">${I.flask} Open in designer</a>` : ''}
       ${r.drink === 'mead' ? `<a class="btn" href="#/calc/mead?L=${L}">${I.honey} Nutrient schedule</a>` : ''}
       ${!r.beer ? `<a class="btn" href="#/calc/priming?L=${L}">${I.bubbles} Priming</a>` : ''}`;
@@ -270,6 +283,12 @@ const ROUTES = [
   [/^\/juice$/, pageJuice, 'home'],
   [/^\/paths$/, pagePaths, 'paths'],
   [/^\/start$/, pageStart, 'home'],
+  [/^\/calendar$/, pageCalendar, 'calendar'],
+  [/^\/cellar$/, pageCellar, 'cellar'],
+  [/^\/shop$/, pageShop, 'shop'],
+  [/^\/search$/, pageSearch, 'search'],
+  [/^\/app$/, pageApp, 'app'],
+  [/^\/more$/, pageMore, 'more'],
   [/^\/brew\/([\w-]+)$/, pageBrew, 'recipes'],
 ];
 const TITLES = { home: 'Brew Lab', guides: 'Guides', calcs: 'Calculators', recipes: 'Recipes', log: 'Batch log', ref: 'Reference' };

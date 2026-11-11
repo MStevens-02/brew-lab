@@ -15,6 +15,7 @@ const addDays = (iso, d) => { const t = new Date(iso + 'T12:00:00'); t.setDate(t
 const nice = iso => { try { return new Date(iso + 'T12:00:00').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }); } catch (e) { return iso; } };
 const daysBetween = (a, b) => Math.round((new Date(b + 'T12:00:00') - new Date(a + 'T12:00:00')) / 86400000);
 function toast(msg) {
+  $$('.toast').forEach(x => x.remove());
   const t = document.createElement('div'); t.className = 'toast fade-in'; t.textContent = msg;
   document.body.appendChild(t); setTimeout(() => t.remove(), 2400);
 }
@@ -54,6 +55,11 @@ Object.assign(I, {
   pint: ico('<path d="M6 3h12l-1.5 17a1.5 1.5 0 0 1-1.5 1.5H9a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M6.4 8h11.2"/>'),
   timer: ico('<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>'),
   ladder: ico('<path d="M7 2v20M17 2v20M7 6h10M7 11h10M7 16h10"/>'),
+  cal: ico('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
+  cart: ico('<circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11L21 7H6.2"/>'),
+  bottle: ico('<path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3z"/><path d="M8 13h8"/>'),
+  gear: ico('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>'),
+  menu: ico('<path d="M4 6h16M4 12h16M4 18h16"/>'),
   plus: ico('<path d="M12 5v14M5 12h14"/>'),
   trash: ico('<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/>'),
   arrowL: ico('<path d="M15 18l-6-6 6-6"/>'),

@@ -14,6 +14,9 @@ Home brewing guides, calculators, recipes and a batch log for **beer, wine, cide
 - **Beer recipe designer:** grain bill and hops with live OG/FG/ABV/IBU (Tinseth)/colour (Morey) and a style match.
 - **Brew-day timer:** mash and boil countdown with beeping, vibrating hop-addition alarms.
 - **Recipes:** 33 recipes with search & filters, all scalable, each with a step-by-step brew-along mode (timers + calendar reminders).
+- **Calendar & reminders:** month view of every batch milestone + custom reminders, due banner, app badge, notifications, one-tap export to phone calendar (.ics with alarms).
+- **Your brewery:** cellar with bottle counts & ready dates, tasting notes & star ratings, shopping list (one-tap from recipes), printable bottle labels, global search.
+- **App:** installable PWA with PNG icons & shortcuts, offline support, backup/restore of all data.
 - **Beginner toolkit:** "find your first brew" quiz, "Is this normal?" checker, hydrometer reading trainer, beginner FAQ & 10 classic mistakes.
 - **Batch log:** gravity readings, fermentation curve, live ABV, timeline, JSON export/import (stored in localStorage).
 - **Reference:** beer styles, malts, hops, yeasts, glossary.
