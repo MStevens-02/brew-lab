@@ -1,0 +1,13 @@
+{
+  "name": "Brew Lab",
+  "short_name": "Brew Lab",
+  "description": "Home brewing guides, calculators, recipes and batch log for beer, wine, cider and mead.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#110d0a",
+  "theme_color": "#110d0a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
