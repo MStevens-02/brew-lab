@@ -63,6 +63,8 @@ Object.assign(I, {
   chart: ico('<path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/>'),
   library: ico('<path d="M4 4h4v16H4zM10 4h4v16h-4z"/><path d="M16.5 4.5l3.8 1-4 15-3.8-1z"/>'),
   bell: ico('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>'),
+  spark: ico('<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>'),
+  help: ico('<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4.5M12 17.5h.01"/>'),
   plus: ico('<path d="M12 5v14M5 12h14"/>'),
   trash: ico('<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/>'),
   arrowL: ico('<path d="M15 18l-6-6 6-6"/>'),

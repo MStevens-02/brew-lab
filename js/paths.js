@@ -180,7 +180,7 @@ function ladder(el, drink) {
 }
 
 function pagePaths(el) {
-  const order = ['juice', 'cider', 'beer', 'wine', 'mead', 'other'];
+  const order = ['juice', 'cider', 'beer', 'wine', 'mead', 'other', 'bread', 'potato', 'rice', 'grain', 'misc'];
   el.innerHTML = `<div class="eyebrow">Level up</div><h1>Skill ladders</h1>
     <p class="lead">Every drink has several ways to make it, from super easy to expert. Start at the bottom, tick off each rung and work your way up. Progress is saved on this device.</p>
     <div class="tier-key">${TIERS.map(t => `<span class="pill c" style="--c:${t.c}">${t.name}</span>`).join('')}</div>

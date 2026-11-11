@@ -13,6 +13,8 @@ const NAV = [
   ['paths', '#/paths', 'Skill ladders', I.ladder],
   ['ref', '#/ref', 'Reference', I.library],
   ['search', '#/search', 'Search', I.ref],
+  ['features', '#/features', 'Feature guide', I.help],
+  ['whatsnew', '#/whatsnew', 'What\'s new', I.spark],
   ['app', '#/app', 'App & settings', I.gear],
 ];
 const HUB = 'https://mstevens-02.github.io/tools/';
@@ -78,6 +80,8 @@ function pageHome(el) {
   <div class="drinks">
     ${['juice', 'beer', 'wine', 'cider', 'mead', 'other'].map(k => `<a class="drink ${k === 'juice' ? 'feat' : ''}" href="${k === 'juice' ? '#/juice' : '#/drink/' + k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ juice: 'Easiest start: apple, grape, pear… from the supermarket', beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style', other: 'Ginger beer, hard lemonade, seltzer, sake' }[k]}</span></a>`).join('')}
   </div>
+  <h3 style="margin:22px 0 10px;color:var(--text)">…or from bread, potatoes, rice & more</h3>
+  <div class="drinks drinks5">${['bread', 'potato', 'rice', 'grain', 'misc'].map(k => `<a class="drink" href="#/drink/${k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ bread: 'Kvass to bread beer', potato: 'Potato wine to potato ale', rice: 'Jiuniang, makgeolli, sake', grain: 'Gluten-free, corn beer, chicha', misc: 'Tepache, tea wine, kombucha, birch sap' }[k]}</span></a>`).join('')}</div>
   <a class="card" href="#/paths" style="margin-top:12px;display:flex;gap:14px;align-items:center;--c:#7fd18b"><div class="ic" style="margin:0">${I.ladder}</div><div><h3>Skill ladders</h3><p>Every drink, five ways: super easy → easy → medium → hard → expert. Tick them off as you level up.</p></div></a>
   <div class="section-h"><h2>Your brewery</h2><a href="#/more">Everything →</a></div>
   <div class="grid">
@@ -126,12 +130,17 @@ function pageDrink(el, k) {
     cider: 'The easiest place to start. Good supermarket juice and a packet of yeast makes a crisp, dry cider in a few weeks.',
     mead: 'Honey, water and yeast. Modern staggered-nutrient methods mean great mead in months, not years. Endlessly customisable with fruit and spice.',
     other: 'Ginger beer, hard lemonade, hard seltzer, wild ginger-bug ferments and even sake-style rice wine. Same yeast science, different ingredients.',
+    bread: 'Stale bread makes kvass, a tangy, barely alcoholic Eastern European classic, and it can even go into beer. Bread is starch, so it needs a little help: see the starch guide.',
+    potato: 'Potato wine is a traditional British country wine, and potatoes can be mashed with malt into a light ale. Never use green or sprouting potatoes.',
+    rice: 'From sweet Chinese jiuniang in 2 days to milky Korean makgeolli and Japanese sake. Rice needs moulds (yeast balls, nuruk or koji) to turn its starch into sugar.',
+    grain: 'Gluten-free sorghum beer, oat ales, corn beer and Andean chicha, right up to malting your own grain.',
+    misc: 'Tepache from pineapple peel, thrifty tea wine, hard kombucha, rich banana wine and springtime birch sap wine.',
   }[k];
-  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'], other: ['yeastpick', 'sugar', 'sweeten', 'priming', 'keg', 'abv'] }[k];
+  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'], other: ['yeastpick', 'sugar', 'sweeten', 'priming', 'keg', 'abv'], bread: ['planner', 'priming', 'abv', 'normal'], potato: ['planner', 'sugar', 'sweeten', 'abv'], rice: ['planner', 'abv', 'normal', 'doctor'], grain: ['recipe', 'planner', 'water', 'priming'], misc: ['planner', 'sugar', 'sweeten', 'priming'] }[k];
   el.innerHTML = `<a class="back" href="#/">${I.arrowL} Home</a>
     <div class="eyebrow" style="color:${d.c}">${d.em} ${d.name}</div><h1>${d.name}</h1><p class="lead">${intro}</p>
     <h2>Ways to make it: super easy to expert</h2><div id="dl"></div>
-    <h2>Guides</h2><div class="grid two">${Guides.filter(g => g.drink === k || g.drink === 'all' || (k === 'other' && g.id === 'yeast')).sort((a, b) => (b.drink === k) - (a.drink === k)).map(guideCard).join('')}</div>
+    <h2>Guides</h2><div class="grid two">${Guides.filter(g => g.drink === k || g.drink === 'all' || (k === 'other' && g.id === 'yeast')).sort((a, b) => (b.id === 'starch') - (a.id === 'starch')).sort((a, b) => (b.drink === k) - (a.drink === k)).map(guideCard).join('')}</div>
     <h2>Recipes</h2><div class="grid">${Recipes.filter(r => r.drink === k).map(recipeCard).join('') || '<p class="muted">Use the calculators to design your own.</p>'}</div>
     <h2>Calculators</h2><div class="grid">${calcs.map(id => calcCard(Calcs.find(c => c.id === id))).join('')}</div>`;
   ladder($('#dl', el), k);
@@ -182,12 +191,12 @@ function pageRecipes(el) {
   const draw = () => {
     store.set('rfilter', f);
     const q = f.q.toLowerCase();
-    const list = Recipes.filter(r => (f.d === 'all' || (f.d === 'juice' ? r.juice : r.drink === f.d)) && (!f.lvl || r.level === f.lvl) && (!f.quick || recipeWeeks(r) <= 6)
+    const list = Recipes.filter(r => (f.d === 'all' || (f.d === 'juice' ? r.juice : f.d === 'starch' ? ['bread', 'potato', 'rice', 'grain', 'misc'].includes(r.drink) : r.drink === f.d)) && (!f.lvl || r.level === f.lvl) && (!f.quick || recipeWeeks(r) <= 6)
       && (r.name + r.desc + r.ingredients.map(i => i.n).join(' ')).toLowerCase().includes(q))
       .sort((a, b) => a.level - b.level || recipeWeeks(a) - recipeWeeks(b));
     $('#rlist', el).innerHTML = `<p class="note">${list.length} recipe${list.length === 1 ? '' : 's'}</p><div class="grid">${list.map(recipeCard).join('')}</div>` + (list.length ? '' : '<div class="empty">No matches. Try clearing a filter.</div>');
   };
-  seg($('#fd', el), [['all', 'All'], ['juice', '🧃 Juice'], ['cider', '🍏 Cider'], ['wine', '🍷 Wine'], ['mead', '🍯 Mead'], ['beer', '🍺 Beer'], ['other', '🫚 Other']], f.d, v => { f.d = v; draw(); });
+  seg($('#fd', el), [['all', 'All'], ['juice', '🧃 Juice'], ['cider', '🍏 Cider'], ['wine', '🍷 Wine'], ['mead', '🍯 Mead'], ['beer', '🍺 Beer'], ['other', '🫚 Other'], ['starch', '🍞 Bread, rice & more']], f.d, v => { f.d = v; draw(); });
   seg($('#fl', el), [['0', 'Any level'], ['1', '★ Beginner'], ['2', '★★'], ['3', '★★★']], String(f.lvl), v => { f.lvl = +v; draw(); });
   $('#rq', el).addEventListener('input', e => { f.q = e.target.value; draw(); });
   $('#fq', el).addEventListener('change', e => { f.quick = e.target.checked; draw(); });
@@ -295,6 +304,8 @@ const ROUTES = [
   [/^\/app$/, pageApp, 'app'],
   [/^\/more$/, pageMore, 'more'],
   [/^\/stats$/, pageStats, 'stats'],
+  [/^\/whatsnew$/, pageWhatsNew, 'whatsnew'],
+  [/^\/features$/, pageFeatures, 'features'],
   [/^\/inbox$/, pageInbox, 'inbox'],
   [/^\/learn$/, pageLearn, 'guides'],
   [/^\/school$/, pageSchool, 'guides'],

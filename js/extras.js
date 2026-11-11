@@ -225,6 +225,7 @@ function pageShop(el) {
     const s = getShop(), open = s.filter(x => !x.done), done = s.filter(x => x.done);
     const groups = [...new Set(open.map(x => x.from || 'Other'))];
     el.innerHTML = `<div class="eyebrow">Buy</div><h1>Shopping list</h1><p class="lead">Add ingredients from any recipe or the juice wizard with one tap, then tick them off in the shop.</p>
+      <div class="btns" style="margin:0 0 14px"><a class="btn pri" href="#/calc/planner">${I.cart} Plan a batch: work out what to buy</a></div>
       <div class="fields" style="grid-template-columns:1fr auto;max-width:640px"><div class="field"><div class="inp"><input id="si" type="text" placeholder="Add an item, e.g. Campden tablets"></div></div><button class="btn pri" id="sa">${I.plus}</button></div>
       <div class="btns">${['No-rinse sanitiser', 'Yeast nutrient', 'Campden tablets', 'Pectolase', 'Priming sugar', 'Bottle caps', 'Wine yeast sachet'].map(t => `<button class="btn sm ghost" data-q="${t}">+ ${t}</button>`).join('')}</div>
       ${groups.map(g => `<h3>${esc(g)}</h3><div class="adds">${open.filter(x => (x.from || 'Other') === g).map(x => `<label class="add shopi" style="grid-template-columns:30px 1fr auto"><input type="checkbox" data-sd="${x.id}"><span>${esc(x.t)}</span><button class="x" data-sx="${x.id}" style="width:32px;height:32px">×</button></label>`).join('')}</div>`).join('') || '<div class="empty" style="margin-top:16px"><div class="big">🛒</div><p>Your list is empty. Open a recipe and tap "Add to shopping list".</p><a class="btn" href="#/recipes">Browse recipes</a></div>'}
@@ -378,6 +379,9 @@ function pageApp(el) {
 /* ---------- "More" page (everything, for phones) ---------- */
 function pageMore(el) {
   const items = [
+    ['#/calc/planner', '🛒', 'Batch shopping planner', 'Amounts, packs to buy & cost'],
+    ['#/features', '📖', 'Feature guide', 'Everything Brew Lab can do + tour'],
+    ['#/whatsnew', '🆕', 'What\'s new', 'Latest updates'],
     ['#/learn', '🎓', 'Learn & Brew School', 'Lessons, quizzes, flashcards, simulator'],
     ['#/calc/doctor', '🩺', 'Problem Doctor', 'Step-by-step troubleshooting'],
     ['#/inbox', '🔔', 'Notifications', 'Inbox of batch nudges, reminders, tips'],
@@ -397,7 +401,7 @@ function pageMore(el) {
     ['#/ref', '📚', 'Reference', 'Styles, malts, hops, yeasts, glossary'],
     ['#/app', '⚙️', 'App & settings', 'Install, notifications, backup'],
   ];
-  el.innerHTML = `<div class="eyebrow">Everything</div><h1>More</h1><div class="grid">${items.map(([h, em, t, d]) => `<a class="card" href="${h}"><div style="font-size:28px;margin-bottom:8px">${em}</div><h3>${t}</h3><p>${d}</p></a>`).join('')}</div>`;
+  el.innerHTML = `<div class="eyebrow">Everything</div><h1>More</h1><a class="card back-tools" href="${HUB}"><span style="font-size:30px">🧰</span><div><h3>← Back to all my tools</h3><p>Revision Hub, Maths for Data Science, Rep Log, SQL Workbench and more.</p></div></a><div class="grid" style="margin-top:14px">${items.map(([h, em, t, d]) => `<a class="card" href="${h}"><div style="font-size:28px;margin-bottom:8px">${em}</div><h3>${t}</h3><p>${d}</p></a>`).join('')}</div>`;
 }
 
 /* ---------- Global handlers ---------- */
