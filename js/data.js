@@ -25,6 +25,7 @@ window.Data = {
     { id: 'fbarley', name: 'Flaked barley', ppg: 32, lov: 2, mash: true, type: 'Adjunct' },
     { id: 'fwheat', name: 'Flaked wheat', ppg: 35, lov: 2, mash: true, type: 'Adjunct' },
     { id: 'dme', name: 'Light dried malt extract (spraymalt)', ppg: 44, lov: 4, mash: false, type: 'Extract' },
+    { id: 'dmew', name: 'Wheat dried malt extract', ppg: 44, lov: 3, mash: false, type: 'Extract' },
     { id: 'dmed', name: 'Dark dried malt extract', ppg: 44, lov: 18, mash: false, type: 'Extract' },
     { id: 'lme', name: 'Light liquid malt extract', ppg: 36, lov: 4, mash: false, type: 'Extract' },
     { id: 'sugar', name: 'Table sugar', ppg: 46, lov: 0, mash: false, type: 'Sugar' },

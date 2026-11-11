@@ -13,7 +13,8 @@ Home brewing guides, calculators, recipes and a batch log for **beer, wine, cide
 - **Calculators:** ABV & attenuation, sugar for target ABV, priming sugar, keg PSI, hydrometer temperature correction, refractometer (Terrill), mash water & strike temp, yeast pitch rate, dilution & blending, mead designer with TOSNA schedule, stabilise & back-sweeten, units/calories/cost, unit converter.
 - **Beer recipe designer:** grain bill and hops with live OG/FG/ABV/IBU (Tinseth)/colour (Morey) and a style match.
 - **Brew-day timer:** mash and boil countdown with beeping, vibrating hop-addition alarms.
-- **Recipes:** 15 recipes that scale to any batch size.
+- **Recipes:** 34 recipes with search & filters, all scalable, each with a step-by-step brew-along mode (timers + calendar reminders).
+- **Beginner toolkit:** "find your first brew" quiz, "Is this normal?" checker, hydrometer reading trainer, beginner FAQ & 10 classic mistakes.
 - **Batch log:** gravity readings, fermentation curve, live ABV, timeline, JSON export/import (stored in localStorage).
 - **Reference:** beer styles, malts, hops, yeasts, glossary.
 

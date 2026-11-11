@@ -64,7 +64,7 @@ function pageHome(el) {
     <div><div class="eyebrow">Home brewing, worked out</div>
       <h1>Make <em>beer, wine, cider & mead</em> that you're proud of.</h1>
       <p class="lead">In-depth guides, ${Calcs.length} calculators, tested recipes and a batch log that tracks every gravity reading, all in your browser.</p>
-      <div class="btns"><a class="btn pri" href="#/guide/basics">New? Start here</a><a class="btn" href="#/calcs">Open calculators</a></div></div>
+      <div class="btns"><a class="btn pri" href="#/start">🌱 Complete beginner? Find your first brew</a><a class="btn" href="#/calcs">Open calculators</a></div></div>
     <div class="glass">${heroGlass()}</div>
   </section>
   <h2>What are you making?</h2>
@@ -72,6 +72,13 @@ function pageHome(el) {
     ${['juice', 'beer', 'wine', 'cider', 'mead', 'other'].map(k => `<a class="drink ${k === 'juice' ? 'feat' : ''}" href="${k === 'juice' ? '#/juice' : '#/drink/' + k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ juice: 'Easiest start: apple, grape, pear… from the supermarket', beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style', other: 'Ginger beer, hard lemonade, seltzer, sake' }[k]}</span></a>`).join('')}
   </div>
   <a class="card" href="#/paths" style="margin-top:12px;display:flex;gap:14px;align-items:center;--c:#7fd18b"><div class="ic" style="margin:0">${I.ladder}</div><div><h3>Skill ladders</h3><p>Every drink, five ways: super easy → easy → medium → hard → expert. Tick them off as you level up.</p></div></a>
+  <div class="section-h"><h2>Beginner toolkit</h2><a href="#/guide/beginner">Beginner FAQ →</a></div>
+  <div class="grid">
+    <a class="card" href="#/start" style="--c:#7fd18b"><div class="ic">${I.flask}</div><h3>Find your first brew</h3><p>A 5-question quiz that picks a recipe for your taste, budget and patience, and tells you exactly what to buy.</p></a>
+    <a class="card" href="#/calc/normal" style="--c:#7fd18b"><div class="ic">${I.ref}</div><h3>Is this normal?</h3><p>Foam, smells, film, no bubbles: relax, keep an eye on it, or act.</p></a>
+    <a class="card" href="#/calc/trainer" style="--c:#7fd18b"><div class="ic">${I.therm}</div><h3>Hydrometer trainer</h3><p>Practise reading the scale before brew day. 10 rounds.</p></a>
+    <a class="card" href="#/recipes?f=easy" style="--c:#7fd18b"><div class="ic">${I.timer}</div><h3>Brew along, step by step</h3><p>Every recipe has a guided mode: one step at a time, with ticks, timers and calendar reminders.</p></a>
+  </div>
   <div class="section-h"><h2>Quick ABV</h2><a href="#/calc/abv">Full calculator →</a></div>
   <div class="panel"><div class="quick">
     <div class="field"><label>OG</label><div class="inp"><input id="qog" type="number" step="0.001" inputmode="decimal" value="1.050"></div></div>
@@ -133,7 +140,7 @@ function pageGuide(el, id) {
 }
 
 function pageCalcs(el) {
-  const groups = ['Shop juice', 'Essentials', 'Beer', 'Wine, cider & mead', 'Packaging'];
+  const groups = ['Beginner', 'Shop juice', 'Essentials', 'Beer', 'Wine, cider & mead', 'Packaging'];
   el.innerHTML = `<div class="eyebrow">Tools</div><h1>Calculators</h1><p class="lead">Every number you need, from first gravity reading to the last bottle. Your inputs are remembered.</p>
     ${groups.map(g => `<h2>${g}</h2><div class="grid">${Calcs.filter(c => c.group === g).map(calcCard).join('')}</div>`).join('')}`;
 }
@@ -149,9 +156,25 @@ function pageCalc(el, id) {
 }
 
 function pageRecipes(el) {
-  el.innerHTML = `<div class="eyebrow">Brew</div><h1>Recipes</h1><p class="lead">Tested starting points, scaled to any batch size. Beer recipes open straight into the designer so you can make them your own.</p>
-    <h2>🧃 From shop-bought juice</h2><div class="grid">${Recipes.filter(r => r.juice).map(recipeCard).join('')}</div>
-    ${['cider', 'other', 'mead', 'wine', 'beer'].map(k => { const rs = Recipes.filter(r => r.drink === k && !r.juice); return rs.length ? `<h2>${DRINK[k].em} ${k === 'other' ? 'Other brews' : DRINK[k].name}</h2><div class="grid">${rs.map(recipeCard).join('')}</div>` : ''; }).join('')}`;
+  const f = store.get('rfilter', { d: 'all', lvl: 0, quick: false, q: '' });
+  if (qparams().f === 'easy') { f.lvl = 1; f.d = 'all'; f.q = ''; f.quick = false; }
+  el.innerHTML = `<div class="eyebrow">Brew</div><h1>Recipes</h1><p class="lead">${Recipes.length} tested recipes that scale to any batch size. Every one has a step-by-step brew-along mode. Not sure? <a href="#/start">Take the quiz</a>.</p>
+    <div class="inp search"><input id="rq" type="text" placeholder="Search recipes: cherry, stout, honey…" value="${esc(f.q)}"></div>
+    <div class="filters"><div id="fd"></div><div id="fl"></div><label class="pill" style="cursor:pointer;padding:9px 12px"><input type="checkbox" id="fq" ${f.quick ? 'checked' : ''} style="accent-color:#f5a524"> Ready in ≤ 6 weeks</label></div>
+    <div id="rlist"></div>`;
+  const draw = () => {
+    store.set('rfilter', f);
+    const q = f.q.toLowerCase();
+    const list = Recipes.filter(r => (f.d === 'all' || (f.d === 'juice' ? r.juice : r.drink === f.d)) && (!f.lvl || r.level === f.lvl) && (!f.quick || recipeWeeks(r) <= 6)
+      && (r.name + r.desc + r.ingredients.map(i => i.n).join(' ')).toLowerCase().includes(q))
+      .sort((a, b) => a.level - b.level || recipeWeeks(a) - recipeWeeks(b));
+    $('#rlist', el).innerHTML = `<p class="note">${list.length} recipe${list.length === 1 ? '' : 's'}</p><div class="grid">${list.map(recipeCard).join('')}</div>` + (list.length ? '' : '<div class="empty">No matches. Try clearing a filter.</div>');
+  };
+  seg($('#fd', el), [['all', 'All'], ['juice', '🧃 Juice'], ['cider', '🍏 Cider'], ['wine', '🍷 Wine'], ['mead', '🍯 Mead'], ['beer', '🍺 Beer'], ['other', '🫚 Other']], f.d, v => { f.d = v; draw(); });
+  seg($('#fl', el), [['0', 'Any level'], ['1', '★ Beginner'], ['2', '★★'], ['3', '★★★']], String(f.lvl), v => { f.lvl = +v; draw(); });
+  $('#rq', el).addEventListener('input', e => { f.q = e.target.value; draw(); });
+  $('#fq', el).addEventListener('change', e => { f.quick = e.target.checked; draw(); });
+  draw();
 }
 
 function pageRecipe(el, id) {
@@ -184,7 +207,7 @@ function pageRecipe(el, id) {
     $('#rstats', el).innerHTML = `<div class="stats">${stat('ABV', s.abv, '', '', 'big')}${stat('OG', sgf(s.og))}${stat('FG', sgf(s.fg))}${s.ibu != null ? stat('IBU', s.ibu) : ''}${s.srm != null ? stat('Colour', fmt(s.srm * 1.97, 0), 'EBC') : ''}</div>
       ${s.srm != null ? `<div style="display:flex;justify-content:center;margin-top:10px">${glassSVG(s.srm, 70)}</div>` : ''}`;
     const ogStr = typeof s.og === 'number' ? s.og.toFixed(3) : s.og;
-    $('#ract', el).innerHTML = `<a class="btn pri" href="#/log/new?name=${encodeURIComponent(r.name)}&drink=${r.drink}&og=${ogStr}&L=${L}">${I.log} Start this batch</a>
+    $('#ract', el).innerHTML = `<a class="btn pri" href="#/brew/${r.id}">${I.timer} Brew along step by step</a><a class="btn" href="#/log/new?name=${encodeURIComponent(r.name)}&drink=${r.drink}&og=${ogStr}&L=${L}">${I.log} Start this batch</a>
       ${r.beer ? `<a class="btn" href="#/calc/recipe?r=${r.id}">${I.flask} Open in designer</a>` : ''}
       ${r.drink === 'mead' ? `<a class="btn" href="#/calc/mead?L=${L}">${I.honey} Nutrient schedule</a>` : ''}
       ${!r.beer ? `<a class="btn" href="#/calc/priming?L=${L}">${I.bubbles} Priming</a>` : ''}`;
@@ -246,6 +269,8 @@ const ROUTES = [
   [/^\/ref$/, pageRef, 'ref'],
   [/^\/juice$/, pageJuice, 'home'],
   [/^\/paths$/, pagePaths, 'paths'],
+  [/^\/start$/, pageStart, 'home'],
+  [/^\/brew\/([\w-]+)$/, pageBrew, 'recipes'],
 ];
 const TITLES = { home: 'Brew Lab', guides: 'Guides', calcs: 'Calculators', recipes: 'Recipes', log: 'Batch log', ref: 'Reference' };
 function route() {
