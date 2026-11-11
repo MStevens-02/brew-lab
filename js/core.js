@@ -72,7 +72,7 @@ Object.assign(I, {
 let _uid = 0; const uid = () => 'u' + (++_uid);
 const LOGO = () => { const g = uid(); return `<svg viewBox="0 0 40 40"><defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#e08a10"/></linearGradient></defs>
 <path d="M11 7h18l-2.4 26.5A3 3 0 0 1 23.6 36h-7.2a3 3 0 0 1-3-2.5z" fill="url(#${g})"/><path d="M10 6.5c1-3 4-4 6-3 1.5-2.5 6-2.5 7.5 0 2-1 5.5 0 6 3 .3 1.6-.7 3-2.3 3H12.3c-1.6 0-2.7-1.4-2.3-3z" fill="#fff6e6"/>
-<circle cx="18" cy="22" r="1.4" fill="#fff6e6" opacity=".8"/><circle cx="22.5" cy="27" r="1" fill="#fff6e6" opacity=".7"/><circle cx="20" cy="16" r=".9" fill="#fff6e6" opacity=".7"/></svg>`; };
+<circle class="lb" cx="18" cy="31" r="1.4" fill="#fff6e6"/><circle class="lb" cx="22.5" cy="32" r="1" fill="#fff6e6" style="animation-delay:-1s"/><circle class="lb" cx="20" cy="30" r=".9" fill="#fff6e6" style="animation-delay:-2s"/></svg>`; };
 
 /* ---------- Calculator registry & form engine ----------
    Field spec: { k, l, t:'num'|'sel'|'date'|'text', v, step, min, u, o:[[value,label,setObj?]], show:(vals)=>bool, hint, wide } */
