@@ -18,6 +18,7 @@ Home brewing guides, calculators, recipes and a batch log for **beer, wine, cide
 - **Your brewery:** cellar with bottle counts & ready dates, tasting notes & star ratings, shopping list (one-tap from recipes), printable bottle labels, global search.
 - **Plan & buy:** batch shopping planner (14 drink types; exact amounts → packs to buy → cost → shopping list).
 - **Beyond fruit:** bread & kvass, potato, rice wine, corn & grains, unusual ferments, each with a 5-level skill ladder, 12 recipes and a starch guide (fermentation only, no distilling).
+- **Survival:** off-grid brewing guide + ladder, and a safety-first survival distilling guide with still run planner (for licensed UK / NZ use only).
 - **Help:** first-time tour, feature guide, What's new, link back to all my tools on every page.
 - **Learn:** Brew School (10 lessons, 32 quiz questions, printable certificate), flashcards with spaced repetition, fermentation simulator, Problem Doctor troubleshooter, flavour finder, 6 more beginner guides (first 6 weeks, tasting, sweetness methods, flavour additions, ageing, scaling/units).
 - **Notifications:** inbox with unread badge, per-type preferences and quiet-morning hour, background checks on installed Android app (periodic sync), tappable notifications that open the right page, tip of the day.

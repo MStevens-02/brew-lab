@@ -170,8 +170,9 @@ defCalc({ id: 'planner', title: 'Batch shopping planner', icon: 'cart', group: '
   } });
 
 /* =================== What's new =================== */
-const APP_VERSION = '2.9';
+const APP_VERSION = '3.0';
 const CHANGELOG = [
+  ['3.0', '2026-11-11', '⚗️ Survival distilling (licensed / NZ)', ['New guide: how a pot still works, safe vs unsafe materials, three improvised builds, preparing the wash, safe setup, running the cuts, troubleshooting and the non-negotiable safety rules', 'New calculator: still run planner (foreshots to discard, expected yield, pot fill, dilution to drinking strength)']],
   ['2.9', '2026-11-11', '🏕️ Off-grid & survival brewing', ['New guide: brewing with no shops or internet: foraged sugar by season, catching and drying your own yeast, home-made vessels and airlocks, measuring without a hydrometer, maximum strength without a still, vinegar, safety', 'New skill ladder: wild-fruit wine → wild mead & sap wine → keep your own yeast → grow & malt grain → maximum strength', 'Recipes: wild-yeast hedgerow wine and a wild yeast starter']],
   ['2.8', '2026-11-11', '⚗️ History of distilling & New Zealand\'s Hokonui moonshine', ['New guide: alchemists and the alembic, aqua vitae, Friar John Cor (1494), how old pot stills and smugglers\' stills worked, the column still, gin, rum, brandy, vodka, tequila and more', 'New Zealand chapter: Mary McRae, Hokonui moonshine, the 1996 law change and the museum in Gore', 'History guide updated with the 2026 US court rulings']],
   ['2.7', '2026-11-11', '📜 History of booze, bans & bootleggers', ['New guide: from 9,000-year-old rice wine to Scottish whisky smugglers, US Prohibition, moonshine runners and NASCAR', 'Timeline of brewing in Britain, including the 1963 end of home-brew licences', 'Myth vs fact, and Prohibition around the world']],

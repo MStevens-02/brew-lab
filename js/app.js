@@ -137,11 +137,11 @@ function pageDrink(el, k) {
     misc: 'Tepache from pineapple peel, thrifty tea wine, hard kombucha, rich banana wine and springtime birch sap wine.',
     wild: 'No shops, no internet: how to brew with foraged sugar, wild yeast you catch and keep yourself, home-made vessels and airlocks, and how strong you can really get without a still.',
   }[k];
-  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'], other: ['yeastpick', 'sugar', 'sweeten', 'priming', 'keg', 'abv'], bread: ['planner', 'priming', 'abv', 'normal'], potato: ['planner', 'sugar', 'sweeten', 'abv'], rice: ['planner', 'abv', 'normal', 'doctor'], grain: ['recipe', 'planner', 'water', 'priming'], misc: ['planner', 'sugar', 'sweeten', 'priming'], wild: ['normal', 'doctor', 'flavours', 'abv'] }[k];
+  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'], other: ['yeastpick', 'sugar', 'sweeten', 'priming', 'keg', 'abv'], bread: ['planner', 'priming', 'abv', 'normal'], potato: ['planner', 'sugar', 'sweeten', 'abv'], rice: ['planner', 'abv', 'normal', 'doctor'], grain: ['recipe', 'planner', 'water', 'priming'], misc: ['planner', 'sugar', 'sweeten', 'priming'], wild: ['normal', 'doctor', 'flavours', 'abv', 'still'] }[k];
   el.innerHTML = `<a class="back" href="#/">${I.arrowL} Home</a>
     <div class="eyebrow" style="color:${d.c}">${d.em} ${d.name}</div><h1>${d.name}</h1><p class="lead">${intro}</p>
     <h2>Ways to make it: super easy to expert</h2><div id="dl"></div>
-    <h2>Guides</h2><div class="grid two">${Guides.filter(g => g.drink === k || g.drink === 'all' || (k === 'other' && g.id === 'yeast')).sort((a, b) => (b.id === 'starch' || b.id === 'survival') - (a.id === 'starch' || a.id === 'survival')).sort((a, b) => (b.drink === k) - (a.drink === k)).map(guideCard).join('')}</div>
+    <h2>Guides</h2><div class="grid two">${Guides.filter(g => g.drink === k || g.drink === 'all' || (k === 'other' && g.id === 'yeast')).sort((a, b) => (['starch', 'survival', 'survival-still'].includes(b.id)) - (['starch', 'survival', 'survival-still'].includes(a.id))).sort((a, b) => (b.drink === k) - (a.drink === k)).map(guideCard).join('')}</div>
     <h2>Recipes</h2><div class="grid">${Recipes.filter(r => r.drink === k).map(recipeCard).join('') || '<p class="muted">Use the calculators to design your own.</p>'}</div>
     <h2>Calculators</h2><div class="grid">${calcs.map(id => calcCard(Calcs.find(c => c.id === id))).join('')}</div>`;
   ladder($('#dl', el), k);
@@ -167,7 +167,7 @@ function pageGuide(el, id) {
 }
 
 function pageCalcs(el) {
-  const groups = ['Beginner', 'Shop juice', 'Essentials', 'Beer', 'Wine, cider & mead', 'Packaging'];
+  const groups = ['Beginner', 'Shop juice', 'Essentials', 'Beer', 'Wine, cider & mead', 'Packaging', 'Distilling (licensed / NZ)'];
   el.innerHTML = `<div class="eyebrow">Tools</div><h1>Calculators</h1><p class="lead">Every number you need, from first gravity reading to the last bottle. Your inputs are remembered.</p>
     ${groups.map(g => `<h2>${g}</h2><div class="grid">${Calcs.filter(c => c.group === g).map(calcCard).join('')}</div>`).join('')}`;
 }

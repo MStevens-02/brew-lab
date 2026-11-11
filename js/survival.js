@@ -27,7 +27,7 @@ Paths.wild = [
     what: 'The strongest you can get by fermentation alone. Feed sugar in stages to a vigorous, well-fed yeast you\'ve selected over many batches, then age it. Old "sack" meads and fortified-style country wines reached this, and it keeps for years.',
     need: ['A strong, proven yeast saved from your best high-strength batch', 'Plenty of honey, dried fruit or sap syrup', 'Nutrient: raisins, pollen, boiled dead yeast', 'A vessel you can top up and seal'],
     steps: ['Start a normal-strength honey or fruit ferment with an active starter.', 'When it slows, add more honey (a little at a time) so the yeast never sees too much sugar at once ("step-feeding").', 'Keep feeding every few days until it stops eating. That\'s the yeast\'s alcohol limit.', 'Let it settle, rack it, top up to exclude air, and age it cool for months.', 'Save the sediment: that yeast is now your strongest strain.'],
-    learn: 'Pushing yeast to its limits, long storage.', links: [['#/guide/survival', 'Why not distil? (survival guide)'], ['#/calc/mead', 'Mead designer']] },
+    learn: 'Pushing yeast to its limits, long storage.', links: [['#/guide/survival', 'Survival guide'], ['#/guide/survival-still', 'Distilling safely (licensed / NZ)'], ['#/calc/mead', 'Mead designer']] },
 ];
 
 Recipes.push(
@@ -114,7 +114,7 @@ ${warn('<b>Only use plants you can identify with 100% certainty.</b> Deadly look
 <li><b>It shrinks your drink</b>: 20 L of wine yields only a few litres of spirit, and you lose all the calories in the leftovers.</li>
 <li><b>Improvised stills are genuinely dangerous</b>: blocked pipes cause explosions, alcohol vapour catches fire, and improvised metal parts (old radiators, solder, galvanised pipe) poison the spirit with lead and zinc. Without skill, the result can contain harmful fractions.</li>
 <li><b>Legally</b> it needs an HMRC licence in the UK; in New Zealand hobby distilling for your own use is legal.</li></ul>
-<p>If you're licensed or in New Zealand and want to learn properly, use a dedicated distilling course or book written for legal hobby distillers, with purpose-built equipment. Brew Lab doesn't teach still-building or running. Read the <a href="#/guide/distilling-history">history of distilling</a> for how the old pot stills worked.</p>
+<p>If you're licensed (UK) or in New Zealand, read <a href="#/guide/survival-still"><b>Survival distilling: building & running a simple pot still safely</b></a>: safe and unsafe materials, improvised builds, the cuts, troubleshooting and the non-negotiable safety rules. For the backstory, see the <a href="#/guide/distilling-history">history of distilling</a>.</p>
 
 <h3>9. Turn it into vinegar (a survival superpower)</h3>
 <p>Leave wine or cider open to the air under a cloth, add a splash of unpasteurised vinegar or the "mother" (a jelly-like skin) if you have it, and keep it warm (20–30 °C). In 3–6 weeks acetic bacteria turn the alcohol into <b>vinegar</b>. It pickles vegetables, preserves food through winter, cleans surfaces and makes food safer. Keep vinegar <b>well away</b> from your brewing gear and yeast, or everything will turn sour.</p>
