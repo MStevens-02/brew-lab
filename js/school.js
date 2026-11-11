@@ -480,6 +480,7 @@ function pageLearn(el) {
       ${tool('#/start', '🧭', 'Find your first brew', 'A 5-question quiz.')}
       ${tool('#/paths', '🪜', 'Skill ladders', 'Super easy → expert for every drink.')}
       ${tool('#/guide/history', '📜', 'History of booze', 'Ancient brews, whisky smugglers, Prohibition and moonshine.')}
+      ${tool('#/guide/distilling-history', '⚗️', 'History of distilling', 'Alchemists to Highland stills, gin, rum, and NZ\'s Hokonui moonshine.')}
     </div>
     <h2>Guides</h2><div id="lg"></div>`;
   const g = document.createElement('div'); pageGuides(g); g.querySelector('.eyebrow')?.remove(); g.querySelector('h1')?.remove(); g.querySelector('.lead')?.remove();

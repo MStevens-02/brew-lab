@@ -74,6 +74,7 @@ ${warn('Home distilling is still illegal in the UK without an HMRC licence, even
 <tr><td>"Prohibition stopped people drinking."</td><td>It reduced drinking somewhat at first, but created huge illegal markets, organised crime and dangerous liquor.</td></tr></table>
 
 <h3>🍻 Where that leaves you</h3>
+<p>Want the full story of stills, from alchemists to Scotland's smugglers and New Zealand's Hokonui moonshiners? Read <a href="#/guide/distilling-history">A history of distilling</a>.</p>
 <p>Your demijohn of cider is part of a 9,000-year-old tradition, and thanks to 1963 it's completely legal. Brew for yourself, share with friends, but don't sell it and don't distil. Cheers to the alewives, the Highland farmers and everyone in between.</p>
 <p class="note">Further reading: UK Parliament Hansard (Budget, 3 April 1963), the American Homebrewers Association\'s history of H.R. 1337, BBC "Why Iceland banned beer", the National Trust for Scotland and Glenlivet\'s "Pioneering Spirit" illicit-stills project, and Deborah Blum\'s writing on Prohibition-era poisoned alcohol.</p>`,
 });
