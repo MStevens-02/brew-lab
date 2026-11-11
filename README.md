@@ -7,10 +7,12 @@ Home brewing guides, calculators, recipes and a batch log for **beer, wine, cide
 ## What's in it
 
 - **Guides:** fermentation basics, equipment, sanitising, hydrometers & refractometers, kit/extract beer, all-grain BIAB, wine (kits, juice, country wines), cider, mead, bottling & kegging, troubleshooting/off-flavours, and safety & UK law.
+- **Shop-juice section:** easy→hard levels (bottle brew to sweet sparkling), juice wizard with shopping list/equipment/plan, label checker, 7 juice recipes.
+- **Yeast:** full yeast guide + yeast picker.
 - **Calculators:** ABV & attenuation, sugar for target ABV, priming sugar, keg PSI, hydrometer temperature correction, refractometer (Terrill), mash water & strike temp, yeast pitch rate, dilution & blending, mead designer with TOSNA schedule, stabilise & back-sweeten, units/calories/cost, unit converter.
 - **Beer recipe designer:** grain bill and hops with live OG/FG/ABV/IBU (Tinseth)/colour (Morey) and a style match.
 - **Brew-day timer:** mash and boil countdown with beeping, vibrating hop-addition alarms.
-- **Recipes:** 8 starter recipes that scale to any batch size.
+- **Recipes:** 15 recipes that scale to any batch size.
 - **Batch log:** gravity readings, fermentation curve, live ABV, timeline, JSON export/import (stored in localStorage).
 - **Reference:** beer styles, malts, hops, yeasts, glossary.
 

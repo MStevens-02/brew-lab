@@ -2,7 +2,7 @@
    Beer recipes carry a `beer` block that loads straight into the recipe designer. */
 window.Recipes = [
 {
-  id: 'turbo-cider', name: 'Shop-juice cider', drink: 'cider', baseL: 4.5, level: 1, time: '4–6 weeks',
+  id: 'turbo-cider', name: 'Shop-juice cider', drink: 'cider', juice: true, baseL: 4.5, level: 1, time: '4–6 weeks',
   og: 1.048, fg: 0.998, abv: '6.5% (≈8% with sugar)',
   desc: 'The easiest brew there is. Supermarket apple juice, yeast, done. A great first project to learn the basics.',
   ingredients: [
@@ -159,3 +159,140 @@ window.Recipes = [
   ],
 },
 ];
+
+/* ---------- Shop-juice recipes ---------- */
+window.Recipes.splice(1, 0,
+{
+  id: 'bottle-cider', name: 'Bottle cider (level 1, no kit)', drink: 'cider', juice: true, baseL: 1.5, level: 1, time: '2 weeks',
+  og: 1.046, fg: 1.000, abv: '≈6%',
+  desc: 'The absolute minimum: a bottle of apple juice, a pinch of yeast and a balloon. Perfect for seeing whether you enjoy this before buying anything.',
+  ingredients: [
+    { q: 1.5, u: 'L', n: 'Apple juice in a plastic bottle, 100% juice, no preservatives' },
+    { q: 0.25, u: 'sachet', n: 'Cider or wine yeast (≈¼ sachet per litre; bread yeast in an emergency)', fixed: true },
+    { q: 1, u: '', n: 'Balloon + pin, or just loosen the cap', fixed: true },
+  ],
+  steps: [
+    'Pour off about a mugful of juice to leave room for foam.',
+    'Add the yeast, put the cap on loosely (or a pin-pricked balloon over the neck) and give it a gentle swirl.',
+    'Stand it on a tray at 18–22 °C, out of sunlight. Foam appears in 1–2 days.',
+    'After 7–12 days, when the fizzing has stopped and it tastes dry, put it in the fridge for 2–3 days.',
+    'Pour carefully into a glass, leaving the sediment. Drink within a week.',
+    'Never tighten the cap while it\'s fermenting: pressure builds and bottles can burst.',
+  ],
+},
+{
+  id: 'carton-white', name: 'Carton white wine', drink: 'wine', juice: true, baseL: 4.5, level: 2, time: '2–3 months',
+  og: 1.081, fg: 0.996, abv: '≈11.5%',
+  desc: 'Long-life white grape juice turned into a crisp, dry white wine. Costs about £1 a bottle.',
+  ingredients: [
+    { q: 4.5, u: 'L', n: 'White grape juice (100%, no preservatives)' },
+    { q: 150, u: 'g', n: 'Table sugar' },
+    { q: 1, u: 'tsp', n: 'Citric or tartaric acid' },
+    { q: 0.25, u: 'tsp', n: 'Wine tannin (or 1 strong tea bag steeped in 100 ml)' },
+    { q: 1, u: 'tsp', n: 'Yeast nutrient' },
+    { q: 1, u: 'sachet', n: 'Wine yeast: QA23, K1-V1116 or GV1', fixed: true },
+  ],
+  steps: [
+    'Sanitise a demijohn. Warm 500 ml of the juice and dissolve the sugar, acid and tannin in it.',
+    'Add everything to the demijohn, leaving ~10% headspace (keep any leftover juice in the fridge for topping up).',
+    'Take the OG (≈1.080). Add nutrient and yeast, fit the airlock.',
+    'Ferment at 16–20 °C for 2–3 weeks until the gravity is stable below 1.000.',
+    'Rack off the sediment and top up. Leave 4–6 weeks to clear (finings speed this up).',
+    'Optional: stabilise and add 20–40 g sugar for off-dry. Bottle. Best after 2–3 more months.',
+  ],
+},
+{
+  id: 'carton-red', name: 'Carton red / rosé wine', drink: 'wine', juice: true, baseL: 4.5, level: 2, time: '2–4 months',
+  og: 1.081, fg: 0.996, abv: '≈11.5%',
+  desc: 'Red grape juice made into a light, fruity red. Extra tannin gives it grip; drink it chilled like a rosé.',
+  ingredients: [
+    { q: 4.5, u: 'L', n: 'Red grape juice (100%, no preservatives)' },
+    { q: 175, u: 'g', n: 'Table sugar' },
+    { q: 0.5, u: 'tsp', n: 'Wine tannin' },
+    { q: 0.5, u: 'tsp', n: 'Citric or tartaric acid' },
+    { q: 1, u: 'tsp', n: 'Yeast nutrient' },
+    { q: 1, u: 'sachet', n: 'RC212 or K1-V1116', fixed: true },
+  ],
+  steps: [
+    'Dissolve the sugar, tannin and acid in 500 ml warmed juice, then add everything to a sanitised demijohn.',
+    'Take the OG, add nutrient and yeast, fit the airlock. Ferment at 18–22 °C.',
+    'When stable (≈0.996), rack, top up and leave to clear for 4–6 weeks.',
+    'Bottle. Concord-based juices taste very "grapey" when young; 3+ months smooths them out.',
+  ],
+},
+{
+  id: 'juice-perry', name: 'Easy perry (pear cider)', drink: 'cider', juice: true, baseL: 4.5, level: 2, time: '6–8 weeks',
+  og: 1.050, fg: 1.004, abv: '≈6%',
+  desc: 'Pear juice ferments to a soft, naturally just-off-dry perry thanks to unfermentable sorbitol.',
+  ingredients: [
+    { q: 4.5, u: 'L', n: 'Pear juice (100%, no preservatives)' },
+    { q: 2.5, u: 'g', n: 'Yeast nutrient' },
+    { q: 1, u: 'sachet', n: 'Cider yeast (M02/AB-1) or QA23', fixed: true },
+  ],
+  steps: [
+    'Pour the juice into a sanitised demijohn, take the OG, add nutrient and yeast.',
+    'Ferment cool (14–18 °C) to keep the delicate pear aroma.',
+    'Expect it to finish around 1.002–1.006 (sorbitol), not below 1.000.',
+    'Rack once stable and leave to clear, then bottle still or prime for ≈2.5 vols.',
+  ],
+},
+{
+  id: 'quick-cyser', name: 'Quick cyser (apple + honey)', drink: 'mead', juice: true, baseL: 4.5, level: 3, time: '2–4 months',
+  og: 1.076, fg: 0.998, abv: '≈10.5%',
+  desc: 'Half cider, half mead. Apple juice gives acidity and body, honey gives depth and strength.',
+  ingredients: [
+    { q: 4, u: 'L', n: 'Apple juice (100%, no preservatives)' },
+    { q: 0.5, u: 'kg', n: 'Honey' },
+    { q: 3, u: 'g', n: 'Yeast nutrient (split over 3 days)' },
+    { q: 1, u: 'sachet', n: 'Lalvin 71B', fixed: true },
+  ],
+  steps: [
+    'Warm 1 L of the juice (not boiling) and stir in the honey until dissolved.',
+    'Combine in a sanitised demijohn, take the OG (≈1.075), pitch the yeast.',
+    'Add a third of the nutrient on days 1, 2 and 3, degassing gently first.',
+    'When stable, rack. Back-sweeten with a little more honey if you like (after stabilising).',
+    'Good at 2 months, lovely at 6.',
+  ],
+},
+{
+  id: 'apple-blackcurrant', name: 'Sparkling apple & blackcurrant', drink: 'cider', juice: true, baseL: 4.5, level: 3, time: '6–8 weeks',
+  og: 1.055, fg: 0.998, abv: '≈7%',
+  desc: 'A fruity, deep-pink sparkling cider. Frozen blackcurrants give real fruit without the preservatives in squash.',
+  ingredients: [
+    { q: 4, u: 'L', n: 'Apple juice (100%, no preservatives)' },
+    { q: 300, u: 'g', n: 'Frozen blackcurrants, thawed and crushed' },
+    { q: 100, u: 'g', n: 'Table sugar' },
+    { q: 1, u: 'tsp', n: 'Pectolase' },
+    { q: 2.5, u: 'g', n: 'Yeast nutrient' },
+    { q: 1, u: 'sachet', n: 'Cider yeast or 71B', fixed: true },
+    { q: 27, u: 'g', n: 'Priming sugar at bottling (≈2.6 vols)' },
+  ],
+  steps: [
+    'Put the crushed blackcurrants in a sanitised straining bag inside a bucket (or straight into a wide-neck fermenter).',
+    'Dissolve the sugar in some warm juice, add all the juice, pectolase and nutrient. Pitch the yeast.',
+    'After 5–7 days, lift out the fruit bag (squeeze gently) and move the cider into a demijohn under airlock.',
+    'When stable for 3 days, rack off the sediment.',
+    'Prime and bottle in pressure-safe bottles. Two weeks warm, then chill. Add erythritol at bottling for a sweeter version.',
+  ],
+},
+{
+  id: 'pineapple-ginger', name: 'Pineapple & ginger brew', drink: 'cider', juice: true, baseL: 4.5, level: 3, time: '4–6 weeks',
+  og: 1.055, fg: 0.998, abv: '≈7.5%',
+  desc: 'Tropical, zingy and unusual, a bit like a boozy tepache. Ferments fast; serve very cold.',
+  ingredients: [
+    { q: 4.5, u: 'L', n: 'Pineapple juice (100%, no preservatives)' },
+    { q: 40, u: 'g', n: 'Fresh ginger, grated' },
+    { q: 1, u: '', n: 'Lime, zest + juice' },
+    { q: 1, u: 'tsp', n: 'Pectolase' },
+    { q: 1, u: 'tsp', n: 'Yeast nutrient' },
+    { q: 1, u: 'sachet', n: 'K1-V1116 or 71B', fixed: true },
+  ],
+  steps: [
+    'Simmer the ginger and lime zest in 300 ml of the juice for 10 min. Cool it and add to the rest of the juice in a sanitised fermenter.',
+    'Add the lime juice, pectolase and nutrient, then pitch the yeast.',
+    'Ferment at 18–20 °C. A sulphur smell mid-ferment is normal with pineapple and fades.',
+    'When stable, rack, and give it 2 weeks to settle (pineapple drops lots of pulp).',
+    'Bottle still, or prime for sparkling. Back-sweeten with erythritol for a soft-drink feel.',
+  ],
+},
+);

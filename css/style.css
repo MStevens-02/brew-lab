@@ -222,8 +222,9 @@ input[type=date] { color-scheme: dark; }
 .glass svg { width: 100%; height: auto; max-height: 300px; display: block; filter: drop-shadow(0 20px 40px rgba(245,165,36,.18)); }
 .bub { animation: rise linear infinite; }
 @keyframes rise { from { transform: translateY(0); opacity: 0; } 10% { opacity: .9; } 90% { opacity: .8; } to { transform: translateY(-170px); opacity: 0; } }
-.drinks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-@media (max-width: 700px) { .drinks { grid-template-columns: repeat(2, 1fr); } }
+.drinks { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+@media (max-width: 960px) { .drinks { grid-template-columns: repeat(2, 1fr); } .drink.feat { grid-column: 1 / -1; } }
+.drink.feat { border-color: color-mix(in srgb, var(--c) 50%, transparent); }
 .drink { padding: 16px; border-radius: var(--r); text-decoration: none; color: var(--text); border: 1px solid var(--line);
   background: linear-gradient(160deg, color-mix(in srgb, var(--c) 18%, var(--panel)), var(--panel) 70%); transition: transform .15s, border-color .15s; }
 .drink:hover { transform: translateY(-3px); border-color: var(--c); }

@@ -311,7 +311,7 @@ function milestones(b) {
     wine: [[0, 'Pitch yeast, log OG'], [6, 'Strain fruit / move to demijohn'], [21, 'Check gravity'], [35, 'First racking'], [100, 'Second racking, check clarity'], [180, 'Stabilise, sweeten & bottle'], [365, 'Peak for most country wines']],
     mead: [[1, 'Nutrient dose 1 + degas'], [2, 'Nutrient dose 2 + degas'], [3, 'Nutrient dose 3 + degas'], [6, '⅓ sugar break: final nutrient dose'], [30, 'Rack once stable'], [90, 'Rack again, check clarity'], [180, 'Stabilise, sweeten & bottle'], [365, 'Peak']],
     other: [[0, 'Pitch yeast, log OG'], [10, 'Check gravity'], [21, 'Bottle / prime'], [35, 'Ready']],
-  }[b.drink] || [];
+  }[b.drink === 'juice' ? 'cider' : b.drink] || [];
   return p.map(([d, t]) => ({ d: addDays(b.start, d), t }));
 }
 function gravityChart(b) {

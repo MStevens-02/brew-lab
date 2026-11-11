@@ -464,3 +464,126 @@ window.Glossary = [
   ['Wort', 'Unfermented beer: the sugary liquid from the mash.'],
   ['YAN', 'Yeast assimilable nitrogen: the food yeast needs besides sugar. Honey has almost none.'],
 ];
+
+/* ---------- Added: shop juice + yeast ---------- */
+window.Guides.splice(4, 0, {
+  id: 'juice', title: 'Brewing with shop-bought juice', drink: 'juice', mins: 11, level: 'Beginner → Advanced',
+  summary: 'Apple, pear, grape, pineapple and more, from a balloon on a bottle to sparkling sweet cider. Everything you need at each level.',
+  html: `
+<p>Supermarket juice is the perfect brewing base. It's pasteurised (so there are no wild bugs), consistent, cheap, and it already has the sugar yeast needs. A litre of apple juice at about £1 becomes a litre of ~6% cider. This guide climbs from the easiest possible brew to the hardest.</p>
+${calc('juice', 'Juice wizard: shopping list & plan for any juice')}
+<h3>Step zero: buying the right juice</h3>
+<ul>
+<li><b>100% juice</b>, "from concentrate" or "not from concentrate"; both are fine.</li>
+<li><b>No preservatives.</b> Read the ingredients: potassium sorbate (E202) and sodium benzoate (E211) will stop fermentation. Most long-life cartons of pure apple, grape and pineapple juice are preservative-free; squashes, cordials and many "juice drinks" are not.</li>
+<li><b>Ascorbic acid (vitamin C)</b> is just an antioxidant. Fine.</li>
+<li>"No added sugar" drinks that use sucralose/aspartame <i>will</i> ferment, just to a lower strength, and stay a little sweet.</li>
+<li>Chilled fresh juice from the fridge aisle is fine too, sometimes tastier, but it can carry wild yeast. A Campden tablet 24 h before adding yeast fixes that.</li>
+</ul>
+${calc('label', 'Label checker')}
+<h3>Level 1: Bottle brew (≈£5, no equipment)</h3>
+<p>The "can I really just do that?" level. You ferment in the juice's own plastic bottle.</p>
+<ol class="steps">
+<li>Buy a 1–2 L <b>plastic</b> bottle of apple juice and a sachet of wine or cider yeast (about £1–£3 from a homebrew shop, Wilko-style stores or online). Bread yeast works in a pinch but tastes bready.</li>
+<li>Pour out a mug's worth to leave room for foam.</li>
+<li>Add about ¼ sachet per litre. Fold the rest of the sachet shut and keep it in the fridge.</li>
+<li>Put the cap on <b>loose</b> (just resting, or a quarter-turn off), or stretch a balloon over the neck and prick it once with a pin. Gas must be able to escape.</li>
+<li>Leave it on a tray at room temperature (18–22 °C) for 7–14 days. It fizzes, foams, then calms down.</li>
+<li>When it tastes dry and has stopped fizzing, put it in the fridge for 2–3 days so the yeast settles, then pour gently into a glass.</li>
+</ol>
+${warn('Never tighten the cap while there\'s sugar left. A sealed bottle with active yeast builds pressure until it bursts. Plastic bottles bulge first (a warning sign); glass doesn\'t.')}
+<p>Level-1 cider is young, cloudy and a bit rough, but it's real. It teaches you what fermentation looks and smells like.</p>
+<h3>Level 2: Demijohn cider (≈£20 setup)</h3>
+<p>Buy a 4.5 L glass demijohn, a bored rubber bung and an airlock (often sold together for about £12), a bottle of no-rinse sanitiser and a syphon tube. Four litres of juice plus yeast and ½ tsp nutrient gives about 4 L of dry ~6% cider in 4–6 weeks. The airlock keeps air out, so you can leave it to clear properly, and racking it off the sediment makes it far cleaner tasting.</p>
+<h3>Level 3: Stronger & flavoured (+£15)</h3>
+<p>Get a <a href="#/guide/hydrometer">hydrometer</a>. Now you can:</p>
+<ul>
+<li><b>Hit a strength:</b> add sugar or honey (see the <a href="#/calc/sugar">sugar calculator</a>). Apple juice to 8% with sugar, or apple juice + honey to make a quick cyser.</li>
+<li><b>Blend juices:</b> apple + cherry, apple + cranberry, white grape + elderflower, pineapple + ginger. Keep tart or odd juices to 20–30%.</li>
+<li><b>Add flavour:</b> a cinnamon stick and 2 cloves (spiced cider), 20 g of grated ginger, a vanilla pod, the zest of a lemon, 10 g of dry hops for the last 4 days (hopped cider), a handful of oak chips.</li>
+<li><b>Balance it:</b> ¼ tsp tannin (or a strong tea bag) for body; ½–1 tsp citric/tartaric acid in grape juice to make it taste like wine.</li>
+<li><b>Carton wine:</b> white or red grape juice + about 150 g sugar per 4.5 L + wine yeast makes a perfectly drinkable ~11% wine in 2–3 months. See the recipes.</li>
+</ul>
+<h3>Level 4: Sparkling (+£10)</h3>
+<p>Once fermentation is <b>completely finished</b> (two identical hydrometer readings 3 days apart), dissolve a measured amount of sugar (about 6–7 g per litre for sparkling cider; use the <a href="#/calc/priming">priming calculator</a>) and bottle into pressure-safe bottles: PET fizzy-drink bottles, swing-tops or crown-capped beer bottles. Never use old wine bottles or jam jars. Keep warm for 2 weeks, then chill. Include one plastic bottle as a squeeze-tester.</p>
+<h3>Level 5: Sweet, sparkling & polished</h3>
+<p>Shop cider is sweet <i>and</i> fizzy because it's filtered and force-carbonated. At home the yeast eats any sugar you add, so you have to be clever:</p>
+<table class="tbl">
+<tr><th>Method</th><th>How</th><th>Difficulty</th></tr>
+<tr><td>Non-fermentable sweetener</td><td>Add erythritol, xylitol, stevia or sucralose with the priming sugar. Yeast ignores it, so the fizz comes from the priming sugar and the sweetness stays. Easiest and safe.</td><td>★★☆</td></tr>
+<tr><td>Sweeten from the glass</td><td>Bottle dry and sparkling; add a splash of fresh apple juice or a sugar syrup when you pour.</td><td>★☆☆</td></tr>
+<tr><td>Stabilise + keg</td><td>Sorbate + Campden, back-sweeten, force-carbonate in a mini keg or Cornelius keg with CO₂.</td><td>★★★</td></tr>
+<tr><td>Bottle pasteurisation</td><td>Prime with extra sugar, then heat the bottles to kill the yeast once carbonated. Real risk of exploding bottles. Experienced brewers only, with eye protection.</td><td>★★★★</td></tr>
+</table>
+<p>Also at level 5: <b>finings</b> (kieselsol + chitosan) for crystal clarity, <b>oak</b> for depth, <b>ageing</b> for 6+ months, and <b>keeving</b>-style tricks borrowed from traditional cider makers.</p>
+${tip('Easiest sweet-and-fizzy recipe: dry cider + priming sugar + about 30 g erythritol per litre, dissolved together in a little boiled water at bottling. Taste the mix before bottling and adjust the sweetener.')}
+<h3>Common juice problems</h3>
+<ul>
+<li><b>Smells like rotten eggs:</b> very common with juice (it's low in nitrogen). Use yeast nutrient. It fades with time; racking helps.</li>
+<li><b>Tastes thin and sour:</b> it's dry. Back-sweeten a little, add tannin next time, or blend with something sweeter.</li>
+<li><b>Didn't start:</b> preservative in the juice, yeast pitched into very cold juice, or old yeast.</li>
+<li><b>Tastes like wine, not cider:</b> too strong. Keep apple-based brews under ~8%.</li>
+</ul>`
+});
+
+window.Guides.splice(4, 0, {
+  id: 'yeast', title: 'The yeast guide', drink: 'all', mins: 12, level: 'Start here',
+  summary: 'Beer, wine, cider, champagne, kveik, bread and wild yeast: what each does, how to choose, pitch, feed and reuse it.',
+  html: `
+<p>You don't make alcohol, yeast does. You just set up the conditions. Choosing the right yeast changes the flavour, strength, sweetness and clarity of your drink more than almost anything else.</p>
+${calc('yeastpick', 'Yeast picker: get a recommendation')}
+<h3>The main families</h3>
+<table class="tbl">
+<tr><th>Type</th><th>Good for</th><th>Strength</th><th>Character</th><th>Examples</th></tr>
+<tr><td><b>Ale yeast</b></td><td>Beer; also cider</td><td>8–12%</td><td>Clean (US-05) to fruity (S-04, Windsor). Leaves some body.</td><td>US-05, S-04, Nottingham, Windsor</td></tr>
+<tr><td><b>Lager yeast</b></td><td>Lager, pilsner</td><td>8–11%</td><td>Very clean and crisp, but needs 9–15 °C.</td><td>W-34/70</td></tr>
+<tr><td><b>Kveik</b></td><td>Beer, cider when it's warm</td><td>10–12%</td><td>Norwegian farmhouse yeast. Ferments clean at 25–40 °C in 2–4 days.</td><td>Voss Kveik</td></tr>
+<tr><td><b>Wine yeast</b></td><td>Wine, juice, cider, mead</td><td>14–18%</td><td>Ferments fully dry. Strains vary: fruity (71B, K1), crisp (QA23), red (RC212).</td><td>K1-V1116, 71B, QA23, GV1</td></tr>
+<tr><td><b>Champagne yeast</b></td><td>Anything strong; rescuing stuck brews</td><td>18%</td><td>Neutral, bone dry, fast, tough. Can strip delicate aroma.</td><td>EC-1118</td></tr>
+<tr><td><b>Cider yeast</b></td><td>Cider, perry, juice</td><td>12–13%</td><td>Bred to keep apple character. Usually fully dry.</td><td>M02, AB-1, Young's</td></tr>
+<tr><td><b>Mead yeast</b></td><td>Mead</td><td>14–18%</td><td>Tolerant of honey's low nutrients.</td><td>M05, 71B, D47</td></tr>
+<tr><td><b>Bread yeast</b></td><td>Emergencies</td><td>~8–10%</td><td>Bready, yeasty, stays cloudy. Works, but a £1 wine yeast is much better.</td><td>Allinson, Doves</td></tr>
+<tr><td><b>Wild / spontaneous</b></td><td>Traditional cider, sours</td><td>varies</td><td>Uses yeast on the fruit or in the air. Exciting and unpredictable; can go to vinegar.</td><td>—</td></tr>
+</table>
+${warn('Skip "turbo yeast". It\'s designed to blast sugar water to 15–20% as fast as possible, and the result tastes harsh and solvent-like. It\'s not meant for drinks you want to enjoy.')}
+<h3>How to choose (quick rules)</h3>
+<ul>
+<li><b>First brew of anything:</b> a forgiving strain. Nottingham for beer, K1-V1116 or GV1 for wine/juice, M02 for cider, 71B for mead.</li>
+<li><b>Want it dry and strong:</b> EC-1118.</li>
+<li><b>Want some sweetness left without stabilising:</b> pick a yeast whose tolerance is <i>below</i> your potential ABV (e.g. 71B at 14% in a 1.120 mead). It's not perfectly reliable, so still stabilise before bottling.</li>
+<li><b>No temperature control and a warm flat:</b> Kveik (beer/cider) or K1-V1116 (wine).</li>
+<li><b>Cold garage at 10–14 °C:</b> lager yeast for beer; EC-1118 or AB-1 for cider and wine.</li>
+<li><b>Want it clear quickly:</b> high-flocculation strains (S-04, Nottingham, EC-1118).</li>
+</ul>
+<h3>Attenuation and tolerance</h3>
+<p><b>Attenuation</b> is the % of sugar eaten. Beer yeasts are 65–85%, because malt contains sugars they can't eat, which gives beer its body. Wine, cider and champagne yeasts on fruit or honey are effectively 100%: they eat everything until they hit their <b>alcohol tolerance</b>, the strength at which the alcohol stops them. The <a href="#/calc/mead">mead calculator</a> uses that to predict leftover sweetness.</p>
+<h3>Pitching it properly</h3>
+<ol class="steps">
+<li><b>Temperature first.</b> Get the juice, must or wort into the yeast's range before adding it. Above ~40 °C you'll kill it.</li>
+<li><b>Sprinkle or rehydrate.</b> Sprinkling dry yeast on top works fine for most brews. For high-gravity mead or wine, rehydrate: stir the sachet into 50 ml of water at 35–40 °C (with Go-Ferm if you have it), wait 15 minutes, then add.</li>
+<li><b>How much:</b> one 5 g wine sachet does up to 23 L of wine or cider. Beer uses more yeast: one 11.5 g sachet per 20–23 L of normal-strength ale, two for strong ales or lagers (see the <a href="#/calc/yeast">pitch-rate calculator</a>).</li>
+<li><b>Oxygen at the start, never after.</b> Yeast needs oxygen to grow in the first hours, so shake or splash at pitching. After fermentation starts, oxygen only causes staleness.</li>
+</ol>
+<h3>Feeding: nutrients</h3>
+<p>Yeast needs nitrogen as well as sugar. Malt has plenty. Juice has a little. Honey has almost none. Signs of a hungry yeast: rotten-egg smell, slow or stuck ferment, harsh flavours.</p>
+<ul>
+<li><b>Juice/cider:</b> ½ tsp general yeast nutrient per 4.5 L.</li>
+<li><b>Wine from fruit or carton juice:</b> 1 tsp per 4.5 L.</li>
+<li><b>Mead:</b> staggered additions over the first few days (TOSNA). See the <a href="#/guide/mead">mead guide</a>.</li>
+<li><b>Beer:</b> usually none needed; a pinch of yeast nutrient in the boil for very pale or sugary beers.</li>
+</ul>
+<h3>Temperature & flavour</h3>
+<p>Warm fermentation means more fruity esters and, eventually, harsh "hot" fusel alcohols. Cool means cleaner and slower. Fermentation also makes its own heat, so a fermenter in a 20 °C room can sit at 23–24 °C in the first few days. A stick-on thermometer strip tells you the truth.</p>
+<h3>Storing & reusing yeast</h3>
+<ul>
+<li>Dry yeast keeps 1–2 years unopened in the fridge. Opened sachets: fold, clip and refrigerate; use within a few weeks.</li>
+<li>Liquid yeast keeps a few months in the fridge and loses viability over time, so make a starter if it's old.</li>
+<li><b>Re-pitching:</b> you can pour a fresh batch straight onto the yeast cake of a finished one (same type of drink, similar or higher strength). Or save a jar of slurry in the fridge for up to 2 weeks. Keep everything sanitised. Don't reuse yeast from a batch that tasted off.</li>
+</ul>
+<h3>Killer yeasts</h3>
+<p>Some wine strains (EC-1118, K1-V1116, QA23) are "killer" strains: they release a protein that kills sensitive yeasts. That makes them great for overpowering wild yeast in fresh juice, and good to know about if you blend yeasts.</p>
+<h3>Wild fermentation</h3>
+<p>Fresh-pressed apples carry wild yeast on their skins. Traditional farmhouse cider just lets them go. It can be wonderful or vinegary. If you try it, use unpasteurised fresh juice, keep it cool (10–15 °C), keep air out with an airlock, and taste as you go. <b>Pasteurised shop juice has no wild yeast</b>, so it needs you to add some.</p>
+<h3>Yeast reference</h3>
+<p>Full table of strains, temperatures and tolerances: <a href="#/ref">Reference → Yeast</a>.</p>`
+});

@@ -57,7 +57,7 @@ function recipeCard(r) {
 
 function pageHome(el) {
   const active = getBatches().filter(b => b.status !== 'Finished').slice(0, 3);
-  const featured = ['abv', 'recipe', 'priming', 'mead', 'sugar', 'timer'].map(id => Calcs.find(c => c.id === id));
+  const featured = ['juice', 'yeastpick', 'abv', 'recipe', 'mead', 'timer'].map(id => Calcs.find(c => c.id === id));
   el.innerHTML = `
   <section class="hero">
     <div><div class="eyebrow">Home brewing, worked out</div>
@@ -68,7 +68,7 @@ function pageHome(el) {
   </section>
   <h2>What are you making?</h2>
   <div class="drinks">
-    ${['beer', 'wine', 'cider', 'mead'].map(k => `<a class="drink" href="#/drink/${k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style' }[k]}</span></a>`).join('')}
+    ${['juice', 'beer', 'wine', 'cider', 'mead'].map(k => `<a class="drink ${k === 'juice' ? 'feat' : ''}" href="${k === 'juice' ? '#/juice' : '#/drink/' + k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ juice: 'Easiest start: apple, grape, pear… from the supermarket', beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style' }[k]}</span></a>`).join('')}
   </div>
   <div class="section-h"><h2>Quick ABV</h2><a href="#/calc/abv">Full calculator →</a></div>
   <div class="panel"><div class="quick">
@@ -92,6 +92,7 @@ function pageHome(el) {
 }
 
 function pageDrink(el, k) {
+  if (k === 'juice') return pageJuice(el);
   const d = DRINK[k]; if (!d) return notFound(el);
   const intro = {
     beer: 'Beer is the most technical of the four and the most rewarding to design. Start with a kit or extract brew, then move to Brew in a Bag once you\'re hooked.',
@@ -99,7 +100,7 @@ function pageDrink(el, k) {
     cider: 'The easiest place to start. Good supermarket juice and a packet of yeast makes a crisp, dry cider in a few weeks.',
     mead: 'Honey, water and yeast. Modern staggered-nutrient methods mean great mead in months, not years. Endlessly customisable with fruit and spice.',
   }[k];
-  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'priming', 'keg', 'abv'], wine: ['sugar', 'sweeten', 'abv', 'hydrotemp', 'dilute'], cider: ['sugar', 'priming', 'sweeten', 'abv'], mead: ['mead', 'sweeten', 'priming', 'abv'] }[k];
+  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'] }[k];
   el.innerHTML = `<a class="back" href="#/">${I.arrowL} Home</a>
     <div class="eyebrow" style="color:${d.c}">${d.em} ${d.name}</div><h1>${d.name}</h1><p class="lead">${intro}</p>
     <h2>Guides</h2><div class="grid two">${Guides.filter(g => g.drink === k || g.drink === 'all').sort((a, b) => (b.drink === k) - (a.drink === k)).map(guideCard).join('')}</div>
@@ -108,7 +109,7 @@ function pageDrink(el, k) {
 }
 
 function pageGuides(el) {
-  const order = ['all', 'beer', 'wine', 'cider', 'mead'];
+  const order = ['all', 'juice', 'beer', 'wine', 'cider', 'mead'];
   el.innerHTML = `<div class="eyebrow">Learn</div><h1>Guides</h1><p class="lead">Everything from your first cider to all-grain brew days. Start with the first three if you're new.</p>
     ${order.map(k => { const gs = Guides.filter(g => g.drink === k); return gs.length ? `<h2>${k === 'all' ? 'Fundamentals' : DRINK[k].em + ' ' + DRINK[k].name}</h2><div class="grid two">${gs.map(guideCard).join('')}</div>` : ''; }).join('')}
     <h2>Reference</h2><div class="grid two"><a class="card" href="#/ref"><div class="ic">${I.ref}</div><h3>Styles, ingredients & glossary</h3><p>Beer style ranges, hop and yeast tables, sweetness and carbonation levels, and a searchable A–Z.</p></a></div>`;
@@ -127,7 +128,7 @@ function pageGuide(el, id) {
 }
 
 function pageCalcs(el) {
-  const groups = ['Essentials', 'Beer', 'Wine, cider & mead', 'Packaging'];
+  const groups = ['Shop juice', 'Essentials', 'Beer', 'Wine, cider & mead', 'Packaging'];
   el.innerHTML = `<div class="eyebrow">Tools</div><h1>Calculators</h1><p class="lead">Every number you need, from first gravity reading to the last bottle. Your inputs are remembered.</p>
     ${groups.map(g => `<h2>${g}</h2><div class="grid">${Calcs.filter(c => c.group === g).map(calcCard).join('')}</div>`).join('')}`;
 }
@@ -144,7 +145,8 @@ function pageCalc(el, id) {
 
 function pageRecipes(el) {
   el.innerHTML = `<div class="eyebrow">Brew</div><h1>Recipes</h1><p class="lead">Tested starting points, scaled to any batch size. Beer recipes open straight into the designer so you can make them your own.</p>
-    ${['cider', 'other', 'mead', 'wine', 'beer'].map(k => { const rs = Recipes.filter(r => r.drink === k); return rs.length ? `<h2>${DRINK[k].em} ${k === 'other' ? 'Other brews' : DRINK[k].name}</h2><div class="grid">${rs.map(recipeCard).join('')}</div>` : ''; }).join('')}`;
+    <h2>🧃 From shop-bought juice</h2><div class="grid">${Recipes.filter(r => r.juice).map(recipeCard).join('')}</div>
+    ${['cider', 'other', 'mead', 'wine', 'beer'].map(k => { const rs = Recipes.filter(r => r.drink === k && !r.juice); return rs.length ? `<h2>${DRINK[k].em} ${k === 'other' ? 'Other brews' : DRINK[k].name}</h2><div class="grid">${rs.map(recipeCard).join('')}</div>` : ''; }).join('')}`;
 }
 
 function pageRecipe(el, id) {
@@ -201,8 +203,8 @@ function pageRef(el) {
       ${Data.grains.map(g => `<tr><td>${g.name}</td><td>${g.type}</td><td class="num">${g.ppg}</td><td><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${Calc.srmHex(Math.min(40, g.lov))};vertical-align:middle"></span> <span class="num">${g.lov} °L / ${Math.round(g.lov * 2.6)} EBC</span></td><td>${g.mash ? 'Mash/steep' : 'Add to boil'}</td></tr>`).join('')}</table></div>`,
     hops: () => `<p class="lead">Typical alpha acids; check the packet, since it varies by harvest.</p>
       <div class="tbl-wrap"><table class="tbl"><tr><th>Hop</th><th>Origin</th><th>AA%</th><th>Character</th></tr>${Data.hops.map(h => `<tr><td>${h.name}</td><td>${h.origin}</td><td class="num">${h.aa}</td><td>${h.notes}</td></tr>`).join('')}</table></div>`,
-    yeast: () => `<p class="lead">Popular dry yeasts available in the UK. Attenuation and tolerance are typical figures.</p>
-      <div class="tbl-wrap"><table class="tbl"><tr><th>Yeast</th><th>For</th><th>Atten.</th><th>Tolerance</th><th>Temp</th><th>Notes</th></tr>${Data.yeasts.map(y => `<tr><td>${y.name}</td><td>${y.kind}</td><td class="num">${y.att}%</td><td class="num">${y.tol}%</td><td class="num">${y.temp} °C</td><td>${y.notes}</td></tr>`).join('')}</table></div>`,
+    yeast: () => `<p class="lead">Popular dry yeasts available in the UK. Attenuation and tolerance are typical figures. <a href="#/guide/yeast">Yeast guide</a> · <a href="#/calc/yeastpick">Yeast picker</a></p>
+      <div class="tbl-wrap"><table class="tbl"><tr><th>Yeast</th><th>Good for</th><th>Atten.</th><th>Tolerance</th><th>Temp</th><th>Settles</th><th>Notes</th></tr>${Data.yeasts.map(y => `<tr><td><b>${y.name}</b></td><td>${y.uses.join(', ')}</td><td class="num">${y.att}%</td><td class="num">${y.tol}%</td><td class="num">${y.temp} °C</td><td>${y.floc}</td><td>${y.notes}</td></tr>`).join('')}</table></div>`,
     glossary: () => `<div class="inp search"><input id="gq" type="text" placeholder="Search ${Glossary.length} terms…"></div><div id="gl"></div>`,
   };
   const show = k => {
@@ -237,6 +239,7 @@ const ROUTES = [
   [/^\/recipe\/([\w-]+)$/, pageRecipe, 'recipes'],
   [/^\/log(?:\/([\w-]+))?$/, pageLog, 'log'],
   [/^\/ref$/, pageRef, 'ref'],
+  [/^\/juice$/, pageJuice, 'home'],
 ];
 const TITLES = { home: 'Brew Lab', guides: 'Guides', calcs: 'Calculators', recipes: 'Recipes', log: 'Batch log', ref: 'Reference' };
 function route() {
