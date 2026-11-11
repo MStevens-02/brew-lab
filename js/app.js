@@ -66,7 +66,7 @@ function recipeStats(r) {
 function recipeCard(r) {
   const d = DRINK[r.drink], s = recipeStats(r);
   return `<a class="card" href="#/recipe/${r.id}" style="--c:${d.c}"><div class="meta" style="margin:0 0 10px"><span class="pill c" style="--c:${d.c}">${d.em} ${d.name}</span><span class="pill"><span style="color:var(--amber2)">${'★'.repeat(r.level)}</span><span style="opacity:.3">${'★'.repeat(3 - r.level)}</span></span></div>
-    <h3>${r.name}</h3><p>${r.desc}</p><div class="meta"><span class="pill">${s.abv}</span>${s.ibu != null ? `<span class="pill">${s.ibu} IBU</span>` : ''}<span class="pill">${r.baseL} L</span><span class="pill">${r.time}</span></div></a>`;
+    ${typeof miniGlass === 'function' ? miniGlass(r) : ''}<h3>${r.name}</h3><p>${r.desc}</p><div class="meta">${s.abv ? `<span class="pill">${s.abv}</span>` : ''}${s.ibu != null ? `<span class="pill">${s.ibu} IBU</span>` : ''}<span class="pill">${r.baseL} L</span><span class="pill">${r.time}</span></div></a>`;
 }
 
 function pageHome(el) {
@@ -113,7 +113,7 @@ function pageHome(el) {
     <div id="qout"></div></div></div>
   ${active.length ? `<div class="section-h"><h2>On the go</h2><a href="#/log">Batch log →</a></div><div class="grid two">${active.map(b => {
     const l = latest(b); const sg = l ? l.sg : b.og;
-    return `<a class="card batch" href="#/log/${b.id}" style="--c:${DRINK[b.drink]?.c}"><div class="strip"></div><div><h3>${DRINK[b.drink]?.em} ${esc(b.name)}</h3><div class="meta"><span class="status">${esc(b.status)}</span><span class="pill">Day ${Math.max(0, daysBetween(b.start, today()))}</span></div></div><div class="r"><b>${fmt(Calc.abv(b.og, sg), 1)}%</b><small>${sgf(sg)}</small></div></a>`;
+    return `<a class="card batch" href="#/log/${b.id}" style="--c:${DRINK[b.drink]?.c}">${typeof tankMini === 'function' ? tankMini(b) : '<div class="strip"></div>'}<div><h3>${DRINK[b.drink]?.em} ${esc(b.name)}</h3><div class="meta"><span class="status">${esc(b.status)}</span><span class="pill">Day ${Math.max(0, daysBetween(b.start, today()))}</span></div></div><div class="r"><b>${fmt(Calc.abv(b.og, sg), 1)}%</b><small>${sgf(sg)}</small></div></a>`;
   }).join('')}</div>` : ''}
   <div class="section-h"><h2>Popular tools</h2><a href="#/calcs">All ${Calcs.length} →</a></div>
   <div class="grid">${featured.map(calcCard).join('')}</div>

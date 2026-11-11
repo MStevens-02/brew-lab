@@ -365,6 +365,7 @@ function scotOverview(el) {
     <a class="panel now-card" href="#/scotland/month"><div><div class="eyebrow">Right now · ${MONTH[m - 1]}</div><h2>${now.length} plants in season</h2>
       <p>${now.slice(0, 6).map(p => p.em + ' ' + p.n).join(' · ')}${now.length > 6 ? ' …' : ''}</p><p class="note">⚠️ ${d.risk.join(' · ')}</p></div><span class="go">Open →</span></a>
     ${last && SCOT_SECTIONS[last] ? `<div class="btns" style="margin:8px 0 0"><a class="btn sm" href="#/scotland/${last}">↩ Carry on: ${SCOT_SECTIONS[last][1]}</a></div>` : ''}
+    ${typeof seasonWheel === 'function' ? seasonWheel() : ''}
     ${SCOT_GROUPS.map(([g, ks]) => `<h2>${g}</h2><div class="grid sec-grid">${ks.map(k => `<a class="card sec-tile" href="#/scotland/${k}"><span class="st-em">${SCOT_SECTIONS[k][0]}</span><div><h3>${SCOT_SECTIONS[k][1]}</h3><p>${SCOT_SECTIONS[k][2]}</p></div></a>`).join('')}</div>`).join('')}
     <h2>Also</h2><div class="grid sec-grid">
       <a class="card sec-tile" href="#/drink/scot"><span class="st-em">🪜</span><div><h3>Scottish skill ladder & recipes</h3><p>Nettle beer to field-to-glass ale.</p></div></a>

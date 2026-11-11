@@ -186,5 +186,6 @@ const ANIM = (() => {
   document.addEventListener('click', e => { const b = e.target.closest('[data-done]'); if (b && b.classList.contains('ghost')) burst(e.clientX, e.clientY, 20); }, true);
   window.addEventListener('hashchange', () => setTimeout(place, 0));
   setTimeout(place, 0);
-  return { S, drinkScene, burst, glass };
+  const kindFor = k => ({ wine: 'wine', mead: 'goblet', cider: 'tumbler', other: 'tumbler', potato: 'wine', rice: 'tumbler', misc: 'tumbler', wild: 'wine', juice: 'tumbler' }[k] || 'pint');
+  return { S, drinkScene, burst, glass, DR, kindFor, bubbles };
 })();

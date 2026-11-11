@@ -490,6 +490,8 @@ function pageLearn(el) {
       ${tool('#/calc/normal', '🤔', 'Is this normal?', '23 common worries answered.')}
       ${tool('#/calc/flavours', '👃', 'Flavour finder', 'What causes that taste?')}
       ${tool('#/kit', '🧰', 'Kit explained', 'Every bit of equipment, illustrated.')}
+      ${tool('#/calc/swap', '🔁', 'What can I use instead?', 'Missing an ingredient or bit of kit? Rated swaps.')}
+      ${tool('#/calc/wheel', '🎡', 'Flavour wheel', 'Tap what you taste; spots faults and how to fix them.')}
     </div>
     <h2>Off-grid, survival & distilling</h2><div class="grid">
       ${tool('#/scotland', '🦌', 'Off-grid Scotland', 'Month-by-month foraging with plant photos, deadly lookalikes, water, shelter, hazards and the law.')}

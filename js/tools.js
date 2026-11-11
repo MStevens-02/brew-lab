@@ -340,7 +340,7 @@ function renderLogList(el) {
   const card = b => {
     const l = latest(b), sg = l ? l.sg : b.og;
     const abv = b.og && sg ? Calc.abv(b.og, sg) : 0;
-    return `<a class="card batch" href="#/log/${b.id}" style="--c:${DRINK[b.drink]?.c}"><div class="strip"></div>
+    return `<a class="card batch" href="#/log/${b.id}" style="--c:${DRINK[b.drink]?.c}">${typeof tankMini === 'function' ? tankMini(b) : '<div class="strip"></div>'}
       <div><h3>${DRINK[b.drink]?.em || ''} ${esc(b.name)}</h3><div class="meta"><span class="status">${esc(b.status)}</span><span class="pill">Day ${Math.max(0, daysBetween(b.start, today()))}</span>${isStable(b) ? '<span class="pill c" style="--c:var(--ok)">Stable</span>' : ''}</div></div>
       <div class="r"><b>${fmt(abv, 1)}%</b><small>${sgf(sg)}</small></div></a>`;
   };

@@ -387,7 +387,7 @@ const MORE_GROUPS = [
     ['#/learn', '🎓', 'Learn hub', 'Everything to learn, in one place'], ['#/school', '📝', 'Brew School', '10 lessons + distilling course, with quizzes'],
     ['#/start', '🌱', 'Find your first brew', '5-question beginner quiz'], ['#/kit', '🧰', 'Kit explained', 'What every bit of equipment is for'],
     ['#/calc/doctor', '🩺', 'Problem Doctor', 'Step-by-step troubleshooting'], ['#/calc/normal', '🤔', 'Is this normal?', 'Weird foam, smells, film, flat bottles'],
-    ['#/calc/bottlecheck', '✅', 'Ready to bottle?', 'Safety check before bottling'], ['#/ref', '📚', 'Reference', 'Styles, malts, hops, yeasts, glossary']]],
+    ['#/calc/bottlecheck', '✅', 'Ready to bottle?', 'Safety check before bottling'], ['#/calc/swap', '🔁', 'What can I use instead?', 'Swaps for missing ingredients & kit'], ['#/calc/wheel', '🎡', 'Flavour wheel', 'Tap to build a tasting profile'], ['#/ref', '📚', 'Reference', 'Styles, malts, hops, yeasts, glossary']]],
   ['📒 My brewery', [
     ['#/log', '📒', 'Batch log', 'Every brew, readings and notes'], ['#/calendar', '📅', 'Calendar & reminders', 'Batch timelines and phone-calendar export'],
     ['#/inbox', '🔔', 'Notifications', 'Batch nudges, reminders, tips'], ['#/cellar', '🍾', 'Cellar', 'Bottles ready to drink'],
