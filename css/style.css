@@ -586,3 +586,59 @@ input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 
 .hist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; margin: 14px 0; }
 .hist-grid h3 { margin-top: 0; color: var(--text); font-size: 17px; } .hist-grid p { margin: 0; font-size: 14.5px; }
 .prose .timeline { margin: 10px 0 18px; }
+
+/* =================== Off-grid Scotland =================== */
+.scot-tabs { contain: inline-size; display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 10px; margin: 6px 0 16px; scrollbar-width: thin; }
+.scot-tabs a { flex: none; padding: 9px 13px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; white-space: nowrap; }
+.scot-tabs a.on { color: var(--text); border-color: #5b8fd6; background: color-mix(in srgb, #5b8fd6 18%, var(--panel)); }
+.mon-pick { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; margin-bottom: 14px; }
+.mon-pick button { padding: 9px 0; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--muted); font: 600 12px var(--mono); cursor: pointer; min-width: 0; }
+.mon-pick button.cur { border-color: var(--amber); }
+.mon-pick button.on { background: #5b8fd6; color: #fff; border-color: #5b8fd6; }
+.mon-hero { display: flex; gap: 16px; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.mon-hero > div:first-child { flex: 1 1 260px; min-width: 0; }
+.mon-hero .stats { flex: 0 1 auto; }
+.tagcloud { display: flex; flex-wrap: wrap; gap: 8px; }
+.tagcloud .chip { flex: 0 1 auto; padding: 8px 11px; color: var(--text); text-decoration: none; font-size: 14px; }
+.tagcloud .chip.dim { opacity: .75; border-style: dashed; }
+.splant { border-left: 4px solid var(--c); }
+.splant p { margin: 6px 0; font-size: 14.5px; }
+.splant .pill.c { --c: inherit; }
+.sp-head { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+.sp-head h3 { margin: 0; color: var(--text); }
+.sp-em { font-size: 28px; flex: none; }
+.sp-danger { background: rgba(255,107,91,.08); border-radius: 8px; padding: 8px 10px; }
+.months { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; margin: 4px 0 10px; }
+.months span { text-align: center; font: 600 10.5px/22px var(--mono); border-radius: 4px; background: color-mix(in srgb, var(--line) 50%, transparent); color: var(--muted); }
+.months span.in { background: color-mix(in srgb, var(--c) 35%, transparent); color: var(--text); }
+.months span.in.pk { background: var(--c); color: #111; }
+.months span.now { outline: 2px solid var(--amber); outline-offset: -2px; }
+.splant.hl { animation: flash 1s ease-in-out 3; }
+.danger-list { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.dg { border-left: 4px solid var(--danger); }
+.dg h3 { margin: 0 0 6px; color: var(--text); }
+.dg p { margin: 5px 0; font-size: 14px; }
+.sos { border: 2px solid var(--danger); background: rgba(255,107,91,.06); margin-bottom: 16px; }
+.sos h2 { font-size: 21px; }
+.handbook { margin-top: 16px; padding: 18px; border: 1px dashed var(--line); border-radius: 12px; }
+.handbook h1 { font-size: 26px; margin: 0 0 4px; }
+.handbook h2 { font-size: 18px; margin: 18px 0 6px; }
+.handbook p, .handbook td, .handbook th { font-size: 13px; }
+.handbook table.tbl { margin: 6px 0; }
+.scot-card h3 { margin: 0 0 4px; }
+@media (max-width: 760px) {
+  .mon-pick { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .handbook { padding: 10px; }
+  .handbook table.tbl { display: block; overflow-x: auto; }
+}
+@media print {
+  body.printing-hb * { visibility: hidden; }
+  body.printing-hb #hb, body.printing-hb #hb * { visibility: visible; color: #000 !important; background: transparent !important; border-color: #999 !important; }
+  body.printing-hb #hb { position: absolute; left: 0; top: 0; width: 100%; border: 0; padding: 0; margin: 0; }
+  body.printing-hb #hb table.tbl { display: table; overflow: visible; font-size: 10.5px; }
+  body.printing-hb #hb tr { break-inside: avoid; }
+  body.printing-hb #hb h2 { break-after: avoid; }
+  body.printing-hb { background: #fff !important; }
+}
+.mon-hero .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 760px) { .mon-hero .stats { width: 100%; } }

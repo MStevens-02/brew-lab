@@ -11,6 +11,7 @@ const NAV = [
   ['stats', '#/stats', 'Stats', I.chart],
   ['shop', '#/shop', 'Shopping list', I.cart],
   ['paths', '#/paths', 'Skill ladders', I.ladder],
+  ['scotland', '#/scotland', 'Off-grid Scotland', I.hop],
   ['ref', '#/ref', 'Reference', I.library],
   ['search', '#/search', 'Search', I.ref],
   ['features', '#/features', 'Feature guide', I.help],
@@ -81,7 +82,8 @@ function pageHome(el) {
     ${['juice', 'beer', 'wine', 'cider', 'mead', 'other'].map(k => `<a class="drink ${k === 'juice' ? 'feat' : ''}" href="${k === 'juice' ? '#/juice' : '#/drink/' + k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ juice: 'Easiest start: apple, grape, pear… from the supermarket', beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style', other: 'Ginger beer, hard lemonade, seltzer, sake' }[k]}</span></a>`).join('')}
   </div>
   <h3 style="margin:22px 0 10px;color:var(--text)">…or from bread, potatoes, rice & more</h3>
-  <div class="drinks drinks5">${['bread', 'potato', 'rice', 'grain', 'misc', 'wild'].map(k => `<a class="drink" href="#/drink/${k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ bread: 'Kvass to bread beer', potato: 'Potato wine to potato ale', rice: 'Jiuniang, makgeolli, sake', grain: 'Gluten-free, corn beer, chicha', misc: 'Tepache, tea wine, kombucha, birch sap', wild: 'No shops: wild yeast, foraging, survival' }[k]}</span></a>`).join('')}</div>
+  <div class="drinks drinks5">${['bread', 'potato', 'rice', 'grain', 'misc', 'wild'].map(k => `<a class="drink" href="#/drink/${k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ bread: 'Kvass to bread beer', potato: 'Potato wine to potato ale', rice: 'Jiuniang, makgeolli, sake', grain: 'Gluten-free, corn beer, chicha', misc: 'Tepache, tea wine, kombucha, birch sap', wild: 'No shops: wild yeast, foraging, survival', scot: 'Living off the land in Scotland' }[k]}</span></a>`).join('')}</div>
+  <a class="card scot-card" href="#/scotland" style="margin-top:12px;display:flex;gap:14px;align-items:center;--c:#5b8fd6"><div class="ic" style="margin:0;font-size:24px">🦌</div><div><h3>Off-grid Scotland</h3><p>Living off the land in Scotland: what to forage each month, deadly lookalikes, water, fire, shelter, hazards, the law, Scottish wild drinks and a printable field handbook.</p></div></a>
   <a class="card" href="#/paths" style="margin-top:12px;display:flex;gap:14px;align-items:center;--c:#7fd18b"><div class="ic" style="margin:0">${I.ladder}</div><div><h3>Skill ladders</h3><p>Every drink, five ways: super easy → easy → medium → hard → expert. Tick them off as you level up.</p></div></a>
   <div class="section-h"><h2>Your brewery</h2><a href="#/more">Everything →</a></div>
   <div class="grid">
@@ -135,9 +137,10 @@ function pageDrink(el, k) {
     rice: 'From sweet Chinese jiuniang in 2 days to milky Korean makgeolli and Japanese sake. Rice needs moulds (yeast balls, nuruk or koji) to turn its starch into sugar.',
     grain: 'Gluten-free sorghum beer, oat ales, corn beer and Andean chicha, right up to malting your own grain.',
     misc: 'Tepache from pineapple peel, thrifty tea wine, hard kombucha, rich banana wine and springtime birch sap wine.',
+    scot: 'Brewing from the Scottish land: nettle beer, gorse and blaeberry wines, rowan wine, heather ale with bog myrtle and home-malted Orkney-style ale. <a href="#/scotland">Open the full Off-grid Scotland guide →</a>',
     wild: 'No shops, no internet: how to brew with foraged sugar, wild yeast you catch and keep yourself, home-made vessels and airlocks, and how strong you can really get without a still.',
   }[k];
-  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'], other: ['yeastpick', 'sugar', 'sweeten', 'priming', 'keg', 'abv'], bread: ['planner', 'priming', 'abv', 'normal'], potato: ['planner', 'sugar', 'sweeten', 'abv'], rice: ['planner', 'abv', 'normal', 'doctor'], grain: ['recipe', 'planner', 'water', 'priming'], misc: ['planner', 'sugar', 'sweeten', 'priming'], wild: ['normal', 'doctor', 'flavours', 'abv', 'still'] }[k];
+  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'], other: ['yeastpick', 'sugar', 'sweeten', 'priming', 'keg', 'abv'], bread: ['planner', 'priming', 'abv', 'normal'], potato: ['planner', 'sugar', 'sweeten', 'abv'], rice: ['planner', 'abv', 'normal', 'doctor'], grain: ['recipe', 'planner', 'water', 'priming'], misc: ['planner', 'sugar', 'sweeten', 'priming'], wild: ['normal', 'doctor', 'flavours', 'abv', 'still'], scot: ['forage', 'mead', 'sugar', 'abv'] }[k];
   el.innerHTML = `<a class="back" href="#/">${I.arrowL} Home</a>
     <div class="eyebrow" style="color:${d.c}">${d.em} ${d.name}</div><h1>${d.name}</h1><p class="lead">${intro}</p>
     <h2>Ways to make it: super easy to expert</h2><div id="dl"></div>
@@ -192,7 +195,7 @@ function pageRecipes(el) {
   const draw = () => {
     store.set('rfilter', f);
     const q = f.q.toLowerCase();
-    const list = Recipes.filter(r => (f.d === 'all' || (f.d === 'juice' ? r.juice : f.d === 'starch' ? ['bread', 'potato', 'rice', 'grain', 'misc', 'wild'].includes(r.drink) : r.drink === f.d)) && (!f.lvl || r.level === f.lvl) && (!f.quick || recipeWeeks(r) <= 6)
+    const list = Recipes.filter(r => (f.d === 'all' || (f.d === 'juice' ? r.juice : f.d === 'starch' ? ['bread', 'potato', 'rice', 'grain', 'misc', 'wild', 'scot'].includes(r.drink) : r.drink === f.d)) && (!f.lvl || r.level === f.lvl) && (!f.quick || recipeWeeks(r) <= 6)
       && (r.name + r.desc + r.ingredients.map(i => i.n).join(' ')).toLowerCase().includes(q))
       .sort((a, b) => a.level - b.level || recipeWeeks(a) - recipeWeeks(b));
     $('#rlist', el).innerHTML = `<p class="note">${list.length} recipe${list.length === 1 ? '' : 's'}</p><div class="grid">${list.map(recipeCard).join('')}</div>` + (list.length ? '' : '<div class="empty">No matches. Try clearing a filter.</div>');
@@ -314,6 +317,7 @@ const ROUTES = [
   [/^\/certificate$/, pageCertificate, 'guides'],
   [/^\/flashcards$/, pageFlash, 'guides'],
   [/^\/kit$/, pageKit, 'home'],
+  [/^\/scotland(?:\/(\w+))?$/, pageScotland, 'scotland'],
   [/^\/brew\/([\w-]+)$/, pageBrew, 'recipes'],
 ];
 const TITLES = { home: 'Brew Lab', guides: 'Guides', calcs: 'Calculators', recipes: 'Recipes', log: 'Batch log', ref: 'Reference' };

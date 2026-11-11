@@ -379,6 +379,7 @@ function pageApp(el) {
 /* ---------- "More" page (everything, for phones) ---------- */
 function pageMore(el) {
   const items = [
+    ['#/scotland', '🦌', 'Off-grid Scotland', 'Forage calendar, deadly plants, water, shelter, law, handbook'],
     ['#/calc/planner', '🛒', 'Batch shopping planner', 'Amounts, packs to buy & cost'],
     ['#/features', '📖', 'Feature guide', 'Everything Brew Lab can do + tour'],
     ['#/whatsnew', '🆕', 'What\'s new', 'Latest updates'],
