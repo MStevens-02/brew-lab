@@ -5,20 +5,21 @@ const NAV = [
   ['calcs', '#/calcs', 'Calculators', I.calc],
   ['recipes', '#/recipes', 'Recipes', I.flask],
   ['log', '#/log', 'Batch log', I.log],
+  ['paths', '#/paths', 'Skill ladders', I.ladder],
   ['ref', '#/ref', 'Reference', I.ref],
 ];
 const HUB = 'https://mstevens-02.github.io/tools/';
 
 function shell() {
   document.body.innerHTML = `
-  <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><a class="ref" href="#/ref">Reference</a></header>
+  <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><span style="display:flex;gap:8px"><a class="ref" href="#/paths">Levels</a><a class="ref" href="#/ref">Reference</a></span></header>
   <div class="app">
     <aside class="side"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b><span>Ferment anything</span></div></a>
       ${NAV.map(([k, h, l, ic]) => `<a class="navlink" data-nav="${k}" href="${h}">${ic}${l}</a>`).join('')}
       <div class="foot">Made by Michael Stevens<br><a href="${HUB}">← All my tools</a></div></aside>
     <main id="view"></main>
   </div>
-  <nav class="bottom">${NAV.filter(n => n[0] !== 'ref').map(([k, h, l, ic]) => `<a data-nav="${k}" href="${h}">${ic}<span>${l === 'Calculators' ? 'Calcs' : l === 'Batch log' ? 'Log' : l}</span></a>`).join('')}</nav>`;
+  <nav class="bottom">${NAV.filter(n => !['ref', 'paths'].includes(n[0])).map(([k, h, l, ic]) => `<a data-nav="${k}" href="${h}">${ic}<span>${l === 'Calculators' ? 'Calcs' : l === 'Batch log' ? 'Log' : l}</span></a>`).join('')}</nav>`;
 }
 
 /* ---------- Pages ---------- */
@@ -68,8 +69,9 @@ function pageHome(el) {
   </section>
   <h2>What are you making?</h2>
   <div class="drinks">
-    ${['juice', 'beer', 'wine', 'cider', 'mead'].map(k => `<a class="drink ${k === 'juice' ? 'feat' : ''}" href="${k === 'juice' ? '#/juice' : '#/drink/' + k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ juice: 'Easiest start: apple, grape, pear… from the supermarket', beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style' }[k]}</span></a>`).join('')}
+    ${['juice', 'beer', 'wine', 'cider', 'mead', 'other'].map(k => `<a class="drink ${k === 'juice' ? 'feat' : ''}" href="${k === 'juice' ? '#/juice' : '#/drink/' + k}" style="--c:${DRINK[k].c}"><div class="em">${DRINK[k].em}</div><b>${DRINK[k].name}</b><span>${{ juice: 'Easiest start: apple, grape, pear… from the supermarket', beer: 'Kits, extract, all-grain', wine: 'Kits, juice, hedgerow', cider: 'Juice or pressed apples', mead: 'Honey wine, any style', other: 'Ginger beer, hard lemonade, seltzer, sake' }[k]}</span></a>`).join('')}
   </div>
+  <a class="card" href="#/paths" style="margin-top:12px;display:flex;gap:14px;align-items:center;--c:#7fd18b"><div class="ic" style="margin:0">${I.ladder}</div><div><h3>Skill ladders</h3><p>Every drink, five ways: super easy → easy → medium → hard → expert. Tick them off as you level up.</p></div></a>
   <div class="section-h"><h2>Quick ABV</h2><a href="#/calc/abv">Full calculator →</a></div>
   <div class="panel"><div class="quick">
     <div class="field"><label>OG</label><div class="inp"><input id="qog" type="number" step="0.001" inputmode="decimal" value="1.050"></div></div>
@@ -99,13 +101,16 @@ function pageDrink(el, k) {
     wine: 'From a weekend wine kit to foraged blackberry wine. Wine is easy to make but rewards patience: most of the magic happens in the months of ageing.',
     cider: 'The easiest place to start. Good supermarket juice and a packet of yeast makes a crisp, dry cider in a few weeks.',
     mead: 'Honey, water and yeast. Modern staggered-nutrient methods mean great mead in months, not years. Endlessly customisable with fruit and spice.',
+    other: 'Ginger beer, hard lemonade, hard seltzer, wild ginger-bug ferments and even sake-style rice wine. Same yeast science, different ingredients.',
   }[k];
-  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'] }[k];
+  const calcs = { beer: ['recipe', 'water', 'timer', 'yeast', 'yeastpick', 'priming', 'keg', 'abv'], wine: ['juice', 'sugar', 'sweeten', 'yeastpick', 'abv', 'hydrotemp', 'dilute'], cider: ['juice', 'label', 'sugar', 'priming', 'sweeten', 'yeastpick', 'abv'], mead: ['mead', 'yeastpick', 'sweeten', 'priming', 'abv'], other: ['yeastpick', 'sugar', 'sweeten', 'priming', 'keg', 'abv'] }[k];
   el.innerHTML = `<a class="back" href="#/">${I.arrowL} Home</a>
     <div class="eyebrow" style="color:${d.c}">${d.em} ${d.name}</div><h1>${d.name}</h1><p class="lead">${intro}</p>
-    <h2>Guides</h2><div class="grid two">${Guides.filter(g => g.drink === k || g.drink === 'all').sort((a, b) => (b.drink === k) - (a.drink === k)).map(guideCard).join('')}</div>
+    <h2>Ways to make it: super easy to expert</h2><div id="dl"></div>
+    <h2>Guides</h2><div class="grid two">${Guides.filter(g => g.drink === k || g.drink === 'all' || (k === 'other' && g.id === 'yeast')).sort((a, b) => (b.drink === k) - (a.drink === k)).map(guideCard).join('')}</div>
     <h2>Recipes</h2><div class="grid">${Recipes.filter(r => r.drink === k).map(recipeCard).join('') || '<p class="muted">Use the calculators to design your own.</p>'}</div>
     <h2>Calculators</h2><div class="grid">${calcs.map(id => calcCard(Calcs.find(c => c.id === id))).join('')}</div>`;
+  ladder($('#dl', el), k);
 }
 
 function pageGuides(el) {
@@ -240,6 +245,7 @@ const ROUTES = [
   [/^\/log(?:\/([\w-]+))?$/, pageLog, 'log'],
   [/^\/ref$/, pageRef, 'ref'],
   [/^\/juice$/, pageJuice, 'home'],
+  [/^\/paths$/, pagePaths, 'paths'],
 ];
 const TITLES = { home: 'Brew Lab', guides: 'Guides', calcs: 'Calculators', recipes: 'Recipes', log: 'Batch log', ref: 'Reference' };
 function route() {

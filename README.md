@@ -8,6 +8,7 @@ Home brewing guides, calculators, recipes and a batch log for **beer, wine, cide
 
 - **Guides:** fermentation basics, equipment, sanitising, hydrometers & refractometers, kit/extract beer, all-grain BIAB, wine (kits, juice, country wines), cider, mead, bottling & kegging, troubleshooting/off-flavours, and safety & UK law.
 - **Shop-juice section:** easy→hard levels (bottle brew to sweet sparkling), juice wizard with shopping list/equipment/plan, label checker, 7 juice recipes.
+- **Skill ladders:** every drink (beer, wine, cider, mead, shop juice, other brews) made five ways, super easy to expert, with progress tracking.
 - **Yeast:** full yeast guide + yeast picker.
 - **Calculators:** ABV & attenuation, sugar for target ABV, priming sugar, keg PSI, hydrometer temperature correction, refractometer (Terrill), mash water & strike temp, yeast pitch rate, dilution & blending, mead designer with TOSNA schedule, stabilise & back-sweeten, units/calories/cost, unit converter.
 - **Beer recipe designer:** grain bill and hops with live OG/FG/ABV/IBU (Tinseth)/colour (Morey) and a style match.

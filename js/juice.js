@@ -96,6 +96,13 @@ function juiceYeast(mainId, abv, style) {
 function renderWizard(el) {
   const st = store.get('wizard', { rows: [{ id: 'apple', L: 4.5 }], level: 2, style: 'still-dry', abv: 0, start: today() });
   const save = () => store.set('wizard', st);
+  const ql = +qparams().lvl;
+  if (ql >= 1 && ql <= 5) {
+    st.level = ql; st.style = ['still-dry', 'still-dry', 'still-dry', 'sparkling-dry', 'sparkling-sweet'][ql - 1];
+    if (ql === 1) st.rows = [{ id: 'apple', L: 1.5 }]; else if (st.rows.reduce((a, r) => a + r.L, 0) < 3) st.rows = [{ id: 'apple', L: 4.5 }];
+    if (ql === 3 && !st.abv) st.abv = 8;
+    save(); history.replaceState(null, '', '#/calc/juice');
+  }
   el.innerHTML = `<div class="calc"><div>
     <div class="panel"><h3>1. Your juice</h3><div class="rows" id="wr"></div>
       <div class="btns"><button class="btn sm" id="wadd">${I.plus} Add another juice</button></div></div>
@@ -304,8 +311,9 @@ function pageJuice(el) {
   <div class="eyebrow" style="color:${DRINK.juice.c}">🧃 Shop juice</div><h1>Brew from shop-bought juice</h1>
   <p class="lead">The cheapest, easiest way into home brewing. Supermarket juice already has everything yeast needs. Start with a bottle and a balloon, finish with sparkling sweet cider that rivals the shop stuff.</p>
   <div class="btns" style="margin-bottom:8px"><a class="btn pri" href="#/calc/juice">${I.drop} Open the juice wizard</a><a class="btn" href="#/calc/label">${I.ref} Check a label</a><a class="btn" href="#/guide/juice">Read the full guide</a></div>
-  <h2>From easy to hard</h2>
-  <div class="adds">${Data.levels.map(l => `<a class="card" href="#/calc/juice" style="--c:${DRINK.juice.c}" data-lvl="${l.n}">
+  <h2>Skill ladder: super easy to expert</h2>
+  <div id="jl"></div>
+  <div style="display:none">${Data.levels.map(l => `<a class="card" href="#/calc/juice" style="--c:${DRINK.juice.c}" data-lvl="${l.n}">
     <div class="meta" style="margin:0 0 8px"><span class="pill c" style="--c:${DRINK.juice.c}">Level ${l.n}</span><span class="pill">${l.time}</span><span class="pill">${l.cost}</span></div>
     <h3>${l.em} ${l.name}</h3><p>${l.what}</p><p class="note" style="margin-top:8px"><b>You need:</b> ${l.gear.join(' · ')}</p><p class="note"><b>You'll learn:</b> ${l.learn}</p></a>`).join('')}</div>
   <h2>Which juices work?</h2>
@@ -315,5 +323,6 @@ function pageJuice(el) {
   <div class="callout warn"><b>Rule 1</b><div>Buy <b>100% juice with no preservatives</b>. Potassium sorbate (E202) and sodium benzoate (E211) stop yeast dead. Vitamin C (ascorbic acid) is fine. <a href="#/calc/label">Label checker →</a></div></div>
   <h2>Juice recipes</h2><div class="grid">${Recipes.filter(r => r.juice).map(recipeCard).join('')}</div>
   <h2>Handy tools</h2><div class="grid">${['juice', 'label', 'yeastpick', 'sugar', 'priming', 'sweeten'].map(id => calcCard(Calcs.find(c => c.id === id))).join('')}</div>`;
+  ladder($('#jl', el), 'juice');
   el.addEventListener('click', e => { const c = e.target.closest('[data-lvl]'); if (c) { const w = store.get('wizard', null) || { rows: [{ id: 'apple', L: 4.5 }], style: 'still-dry', abv: 0, start: today() }; w.level = +c.dataset.lvl; if (w.level === 1) w.rows = [{ id: 'apple', L: 1.5 }]; store.set('wizard', w); } });
 }

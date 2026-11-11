@@ -23,7 +23,7 @@ const DRINK = {
   wine:  { c: 'var(--wine)', em: '🍷', name: 'Wine' },
   cider: { c: 'var(--cider)', em: '🍏', name: 'Cider' },
   mead:  { c: 'var(--mead)', em: '🍯', name: 'Mead' },
-  other: { c: 'var(--other)', em: '🫚', name: 'Other' },
+  other: { c: 'var(--other)', em: '🫚', name: 'Other brews' },
   all:   { c: 'var(--hop)', em: '📘', name: 'All drinks' },
 };
 
@@ -53,6 +53,7 @@ Object.assign(I, {
   swap: ico('<path d="M7 3L3 7l4 4M3 7h14M17 21l4-4-4-4M21 17H7"/>'),
   pint: ico('<path d="M6 3h12l-1.5 17a1.5 1.5 0 0 1-1.5 1.5H9a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M6.4 8h11.2"/>'),
   timer: ico('<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>'),
+  ladder: ico('<path d="M7 2v20M17 2v20M7 6h10M7 11h10M7 16h10"/>'),
   plus: ico('<path d="M12 5v14M5 12h14"/>'),
   trash: ico('<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/>'),
   arrowL: ico('<path d="M15 18l-6-6 6-6"/>'),
