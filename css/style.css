@@ -582,3 +582,7 @@ input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 
 .site-foot { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
 .site-foot a:not(.btn) { color: var(--muted); } .site-foot small { flex-basis: 100%; color: var(--dim); }
 .back-tools { display: flex; gap: 14px; align-items: center; border-color: color-mix(in srgb, var(--amber) 40%, transparent); }
+
+.hist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; margin: 14px 0; }
+.hist-grid h3 { margin-top: 0; color: var(--text); font-size: 17px; } .hist-grid p { margin: 0; font-size: 14.5px; }
+.prose .timeline { margin: 10px 0 18px; }

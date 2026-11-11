@@ -479,6 +479,7 @@ function pageLearn(el) {
       ${tool('#/kit', '🧰', 'Kit explained', 'Every bit of equipment, illustrated.')}
       ${tool('#/start', '🧭', 'Find your first brew', 'A 5-question quiz.')}
       ${tool('#/paths', '🪜', 'Skill ladders', 'Super easy → expert for every drink.')}
+      ${tool('#/guide/history', '📜', 'History of booze', 'Ancient brews, whisky smugglers, Prohibition and moonshine.')}
     </div>
     <h2>Guides</h2><div id="lg"></div>`;
   const g = document.createElement('div'); pageGuides(g); g.querySelector('.eyebrow')?.remove(); g.querySelector('h1')?.remove(); g.querySelector('.lead')?.remove();

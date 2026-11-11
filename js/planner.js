@@ -170,8 +170,9 @@ defCalc({ id: 'planner', title: 'Batch shopping planner', icon: 'cart', group: '
   } });
 
 /* =================== What's new =================== */
-const APP_VERSION = '2.6';
+const APP_VERSION = '2.7';
 const CHANGELOG = [
+  ['2.7', '2026-11-11', '📜 History of booze, bans & bootleggers', ['New guide: from 9,000-year-old rice wine to Scottish whisky smugglers, US Prohibition, moonshine runners and NASCAR', 'Timeline of brewing in Britain, including the 1963 end of home-brew licences', 'Myth vs fact, and Prohibition around the world']],
   ['2.6', '2026-11-11', '🛒 Shopping planner, 🍞 bread, potatoes & rice', ['Batch shopping planner: exact amounts → packs to buy → cost → shopping list', 'New drink families with full skill ladders: bread & kvass, potato, rice wine, corn & grains, unusual ferments', '12 new recipes: kvass, potato wine, jiuniang, makgeolli, tepache, tea wine, hard kombucha, banana wine, birch sap wine, sorghum & corn beers', 'Guide: brewing from starch (malt, koji, nuruk, yeast balls, enzymes)', 'Feature tour for first-time users, this What\'s new page, and a link back to all my tools on every page']],
   ['2.5', '2026-11-11', '🎓 Learn hub & Brew School', ['10-lesson course with quizzes and a certificate', 'Flashcards, fermentation simulator, Problem Doctor, flavour finder', '6 new beginner guides']],
   ['2.4', '2026-11-11', '🔔 Notifications & coaching', ['Notification inbox with preferences and Android background checks', 'Daily fermentation coach, Kit explained, tap-to-explain jargon, achievements, Ready to bottle?']],
