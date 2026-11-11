@@ -186,7 +186,7 @@ function renderTimer(el) {
   const phaseLen = () => (s.phase === 'mash' ? s.mashMin : s.boilMin) * 60000;
   const remaining = () => (s.running ? Math.max(0, s.endAt - Date.now()) : s.left);
   el.innerHTML = `<div class="timer">
-    <div class="panel"><div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="#251d17" stroke-width="8"/><circle id="arc" cx="60" cy="60" r="54" fill="none" stroke="#f5a524" stroke-width="8" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="0"/></svg>
+    <div class="panel"><div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" style="stroke:var(--panel2)" stroke-width="8"/><circle id="arc" cx="60" cy="60" r="54" fill="none" stroke="#f5a524" stroke-width="8" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="0"/></svg>
       <div class="c"><div class="p" id="ph"></div><div class="t" id="tt">00:00</div><div class="n" id="nx"></div></div></div>
       <div class="btns" style="justify-content:center" id="ctl"></div>
       <div class="fields" style="margin-top:14px">
@@ -326,11 +326,11 @@ function gravityChart(b) {
   const yt = []; const step = (ymax - ymin) > 0.04 ? 0.01 : 0.005;
   for (let v = Math.ceil(ymin / step) * step; v <= ymax; v += step) yt.push(v);
   return `<svg viewBox="0 0 ${W} ${H}">
-    ${yt.map(v => `<line x1="${P}" x2="${W - 10}" y1="${Y(v)}" y2="${Y(v)}" stroke="#2a2119"/><text x="${P - 6}" y="${Y(v) + 4}" text-anchor="end" font-size="12" fill="#ab9b8c" font-family="monospace">${v.toFixed(3)}</text>`).join('')}
+    ${yt.map(v => `<line x1="${P}" x2="${W - 10}" y1="${Y(v)}" y2="${Y(v)}" style="stroke:var(--line)"/><text x="${P - 6}" y="${Y(v) + 4}" text-anchor="end" font-size="12" style="fill:var(--muted)" font-family="monospace">${v.toFixed(3)}</text>`).join('')}
     <text x="${W - 10}" y="${H - 8}" text-anchor="end" font-size="11" fill="#7d6e61" font-family="monospace">day ${xmax}</text><text x="${P}" y="${H - 8}" font-size="11" fill="#7d6e61" font-family="monospace">day 0</text>
     <path d="${line} L${X(pts[pts.length - 1].x)} ${H - P + 4} L${X(0)} ${H - P + 4}Z" fill="rgba(245,165,36,.1)"/>
     <path d="${line}" fill="none" stroke="#f5a524" stroke-width="2.5" stroke-linejoin="round"/>
-    ${pts.map(p => `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="4.5" fill="#110d0a" stroke="#ffc861" stroke-width="2"><title>Day ${p.x}: ${p.y.toFixed(3)}</title></circle>`).join('')}
+    ${pts.map(p => `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="4.5" style="fill:var(--panel);stroke:var(--amber)" stroke-width="2.5"><title>Day ${p.x}: ${p.y.toFixed(3)}</title></circle>`).join('')}
   </svg>`;
 }
 

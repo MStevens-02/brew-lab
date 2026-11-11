@@ -10,7 +10,7 @@ function gauge(og, fg) {
   const ticks = [];
   for (let s = Math.ceil(lo * 100) / 100; s <= hi; s += 0.01) ticks.push(s);
   return `<svg viewBox="0 0 260 200" style="width:100%;max-width:340px;display:block;margin:0 auto">
-    <rect x="96" y="8" width="44" height="184" rx="22" fill="#1a1410" stroke="#4a3a2d"/>
+    <rect x="96" y="8" width="44" height="184" rx="22" style="fill:var(--bg2);stroke:var(--line2)"/>
     <rect x="102" y="${y(og)}" width="32" height="${Math.max(0, 186 - y(og))}" rx="6" fill="rgba(245,165,36,.18)"/>
     <rect x="102" y="${y(fg)}" width="32" height="${Math.max(0, 186 - y(fg))}" rx="6" fill="rgba(245,165,36,.5)"/>
     ${ticks.map(s => `<line x1="140" x2="150" y1="${y(s)}" y2="${y(s)}" stroke="#7d6e61"/><text x="155" y="${y(s) + 4}" font-size="10" fill="#7d6e61" font-family="monospace">${s.toFixed(3)}</text>`).join('')}

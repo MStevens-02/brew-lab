@@ -12,6 +12,18 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="css/style.css">
+<script>
+  // Apply theme + text size before first paint
+  (function () {
+    try {
+      var t = JSON.parse(localStorage.getItem('bl.theme') || '"auto"');
+      var s = JSON.parse(localStorage.getItem('bl.textsize') || '"m"');
+      if (t === 'auto') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = t;
+      if (s !== 'm') document.documentElement.classList.add('ts-' + s);
+    } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+  })();
+</script>
 </head>
 <body>
 <noscript>Brew Lab needs JavaScript turned on.</noscript>
@@ -26,6 +38,7 @@
 <script src="js/paths.js"></script>
 <script src="js/beginner.js"></script>
 <script src="js/extras.js"></script>
+<script src="js/more.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

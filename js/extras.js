@@ -384,6 +384,7 @@ function pageMore(el) {
     ['#/start', '🌱', 'Find your first brew', '5-question beginner quiz'],
     ['#/paths', '🪜', 'Skill ladders', 'Every drink, super easy → expert'],
     ['#/juice', '🧃', 'Shop-juice brewing', 'Juice wizard, label checker, levels'],
+    ['#/stats', '📊', 'Your stats', 'Litres brewed, ratings, money saved'],
     ['#/calc/labels', '🏷️', 'Bottle labels', 'Design & print a sheet of labels'],
     ['#/calc/normal', '🤔', 'Is this normal?', 'Weird foam, smells, film, flat bottles'],
     ['#/calc/timer', '⏱', 'Brew-day timer', 'Mash & boil with hop alarms'],

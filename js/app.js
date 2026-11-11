@@ -7,9 +7,10 @@ const NAV = [
   ['log', '#/log', 'Batch log', I.log],
   ['calendar', '#/calendar', 'Calendar', I.cal],
   ['cellar', '#/cellar', 'Cellar', I.bottle],
+  ['stats', '#/stats', 'Stats', I.chart],
   ['shop', '#/shop', 'Shopping list', I.cart],
   ['paths', '#/paths', 'Skill ladders', I.ladder],
-  ['ref', '#/ref', 'Reference', I.ref],
+  ['ref', '#/ref', 'Reference', I.library],
   ['search', '#/search', 'Search', I.ref],
   ['app', '#/app', 'App & settings', I.gear],
 ];
@@ -20,7 +21,7 @@ function shell() {
   <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><span class="tb-icons"><a href="#/search" aria-label="Search">${I.ref}</a><a href="#/calendar" aria-label="Calendar" data-nav="calendar">${I.cal}</a><a href="#/more" aria-label="More">${I.menu}</a></span></header>
   <div class="app">
     <aside class="side"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b><span>Ferment anything</span></div></a>
-      ${NAV.map(([k, h, l, ic]) => `<a class="navlink" data-nav="${k}" href="${h}">${ic}${l}</a>`).join('')}
+      ${NAV.map(([k, h, l, ic]) => `<a class="navlink" data-nav="${k}" href="${h}" title="${l}">${ic}<span>${l}</span></a>`).join('')}
       <div class="foot">Made by Michael Stevens<br><a href="${HUB}">← All my tools</a></div></aside>
     <main id="view"></main>
   </div>
@@ -82,7 +83,7 @@ function pageHome(el) {
     <a class="card" href="#/calendar"><div class="ic">${I.cal}</div><h3>Calendar & reminders</h3><p>Every batch step on a calendar, plus your own reminders. Export to your phone for real alarms.</p></a>
     <a class="card" href="#/cellar"><div class="ic">${I.bottle}</div><h3>Cellar</h3><p>Bottles ready to drink, what's still conditioning, and a "drank one" counter.</p></a>
     <a class="card" href="#/shop"><div class="ic">${I.cart}</div><h3>Shopping list</h3><p>Add any recipe's ingredients in one tap. Tick off in the shop, share with someone.</p></a>
-    <a class="card" href="#/calc/labels"><div class="ic">${I.log}</div><h3>Bottle labels</h3><p>Design and print a sheet of labels for your bottles.</p></a>
+    <a class="card" href="#/stats"><div class="ic">${I.chart}</div><h3>Your stats</h3><p>Litres brewed, favourite drinks, best-rated batch and money saved.</p></a>
   </div>
   <div class="section-h"><h2>Beginner toolkit</h2><a href="#/guide/beginner">Beginner FAQ →</a></div>
   <div class="grid">
@@ -289,6 +290,7 @@ const ROUTES = [
   [/^\/search$/, pageSearch, 'search'],
   [/^\/app$/, pageApp, 'app'],
   [/^\/more$/, pageMore, 'more'],
+  [/^\/stats$/, pageStats, 'stats'],
   [/^\/brew\/([\w-]+)$/, pageBrew, 'recipes'],
 ];
 const TITLES = { home: 'Brew Lab', guides: 'Guides', calcs: 'Calculators', recipes: 'Recipes', log: 'Batch log', ref: 'Reference' };

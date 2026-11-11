@@ -60,6 +60,8 @@ Object.assign(I, {
   bottle: ico('<path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3z"/><path d="M8 13h8"/>'),
   gear: ico('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>'),
   menu: ico('<path d="M4 6h16M4 12h16M4 18h16"/>'),
+  chart: ico('<path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/>'),
+  library: ico('<path d="M4 4h4v16H4zM10 4h4v16h-4z"/><path d="M16.5 4.5l3.8 1-4 15-3.8-1z"/>'),
   plus: ico('<path d="M12 5v14M5 12h14"/>'),
   trash: ico('<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/>'),
   arrowL: ico('<path d="M15 18l-6-6 6-6"/>'),
