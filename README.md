@@ -16,6 +16,7 @@ Home brewing guides, calculators, recipes and a batch log for **beer, wine, cide
 - **Recipes:** 33 recipes with search & filters, all scalable, each with a step-by-step brew-along mode (timers + calendar reminders).
 - **Calendar & reminders:** month view of every batch milestone + custom reminders, due banner, app badge, notifications, one-tap export to phone calendar (.ics with alarms).
 - **Your brewery:** cellar with bottle counts & ready dates, tasting notes & star ratings, shopping list (one-tap from recipes), printable bottle labels, global search.
+- **Learn:** Brew School (10 lessons, 32 quiz questions, printable certificate), flashcards with spaced repetition, fermentation simulator, Problem Doctor troubleshooter, flavour finder, 6 more beginner guides (first 6 weeks, tasting, sweetness methods, flavour additions, ageing, scaling/units).
 - **Notifications:** inbox with unread badge, per-type preferences and quiet-morning hour, background checks on installed Android app (periodic sync), tappable notifications that open the right page, tip of the day.
 - **Newbie help:** daily fermentation coach on every batch, illustrated "Kit explained", tap-to-explain jargon in guides, achievements, "Ready to bottle?" safety check.
 - **Looks:** light / dark / auto theme, text-size setting, tablet icon-rail layout, small-phone and landscape fixes.

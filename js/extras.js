@@ -378,6 +378,8 @@ function pageApp(el) {
 /* ---------- "More" page (everything, for phones) ---------- */
 function pageMore(el) {
   const items = [
+    ['#/learn', '🎓', 'Learn & Brew School', 'Lessons, quizzes, flashcards, simulator'],
+    ['#/calc/doctor', '🩺', 'Problem Doctor', 'Step-by-step troubleshooting'],
     ['#/inbox', '🔔', 'Notifications', 'Inbox of batch nudges, reminders, tips'],
     ['#/kit', '🧰', 'Kit explained', 'What every bit of equipment is for'],
     ['#/calc/bottlecheck', '✅', 'Ready to bottle?', 'Safety check before bottling'],

@@ -84,8 +84,8 @@ function fieldHTML(f, val) {
   if (f.t === 'sel') {
     input = `<select id="${id}" data-k="${f.k}">${f.o.map(([v, l]) => `<option value="${esc(v)}"${String(v) === String(val) ? ' selected' : ''}>${esc(l)}</option>`).join('')}</select>`;
   } else {
-    const type = f.t === 'date' ? 'date' : f.t === 'text' ? 'text' : 'number';
-    input = `<input id="${id}" data-k="${f.k}" type="${type}" ${type === 'number' ? `inputmode="decimal" step="${f.step ?? 'any'}"` : ''} ${f.min != null ? `min="${f.min}"` : ''} value="${esc(val)}" class="${f.u ? 'has-u' : ''}">`;
+    const type = f.t === 'date' ? 'date' : f.t === 'text' ? 'text' : f.t === 'range' ? 'range' : 'number';
+    input = `<input id="${id}" data-k="${f.k}" type="${type}" ${type === 'number' ? `inputmode="decimal" step="${f.step ?? 'any'}"` : ''} ${f.min != null ? `min="${f.min}"` : ''} ${f.max != null ? `max="${f.max}"` : ''} value="${esc(val)}" class="${f.u ? 'has-u' : ''}">`;
   }
   return `<div class="field ${f.wide ? 'wide' : ''}" data-f="${f.k}"><label for="${id}">${f.l}</label><div class="inp">${input}${f.u ? `<span class="u">${f.u}</span>` : ''}</div>${f.hint ? `<div class="hint">${f.hint}</div>` : ''}</div>`;
 }
@@ -101,7 +101,7 @@ function mountForm(id, formEl, outEl, fields, compute) {
     const v = {};
     for (const f of fields) {
       const el = formEl.querySelector(`[data-k="${f.k}"]`);
-      v[f.k] = (f.t === 'num' || !f.t) ? parseFloat(el.value) : el.value;
+      v[f.k] = (f.t === 'num' || f.t === 'range' || !f.t) ? parseFloat(el.value) : el.value;
     }
     return v;
   };

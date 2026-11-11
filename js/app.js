@@ -1,7 +1,7 @@
 /* Brew Lab — pages and hash router. */
 const NAV = [
   ['home', '#/', 'Home', I.home],
-  ['guides', '#/guides', 'Guides', I.book],
+  ['guides', '#/learn', 'Learn', I.book],
   ['calcs', '#/calcs', 'Calculators', I.calc],
   ['recipes', '#/recipes', 'Recipes', I.flask],
   ['log', '#/log', 'Batch log', I.log],
@@ -86,6 +86,7 @@ function pageHome(el) {
     <a class="card" href="#/shop"><div class="ic">${I.cart}</div><h3>Shopping list</h3><p>Add any recipe's ingredients in one tap. Tick off in the shop, share with someone.</p></a>
     <a class="card" href="#/stats"><div class="ic">${I.chart}</div><h3>Your stats</h3><p>Litres brewed, favourite drinks, best-rated batch and money saved.</p></a>
   </div>
+  <a class="card school-hero" href="#/learn" style="margin-top:28px"><div><div class="eyebrow">🎓 New: Brew School</div><h2 style="margin:8px 0 6px">Learn to brew in 10 short lessons</h2><p>Bite-size lessons with quizzes, flashcards, a fermentation simulator and a certificate at the end.</p></div><span class="sh-em">🎓</span></a>
   <div class="section-h"><h2>Beginner toolkit</h2><a href="#/guide/beginner">Beginner FAQ →</a></div>
   <div class="grid">
     <a class="card" href="#/start" style="--c:#7fd18b"><div class="ic">${I.flask}</div><h3>Find your first brew</h3><p>A 5-question quiz that picks a recipe for your taste, budget and patience, and tells you exactly what to buy.</p></a>
@@ -295,6 +296,11 @@ const ROUTES = [
   [/^\/more$/, pageMore, 'more'],
   [/^\/stats$/, pageStats, 'stats'],
   [/^\/inbox$/, pageInbox, 'inbox'],
+  [/^\/learn$/, pageLearn, 'guides'],
+  [/^\/school$/, pageSchool, 'guides'],
+  [/^\/lesson\/(\w+)$/, pageLesson, 'guides'],
+  [/^\/certificate$/, pageCertificate, 'guides'],
+  [/^\/flashcards$/, pageFlash, 'guides'],
   [/^\/kit$/, pageKit, 'home'],
   [/^\/brew\/([\w-]+)$/, pageBrew, 'recipes'],
 ];

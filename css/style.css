@@ -503,3 +503,56 @@ abbr.gl { text-decoration: underline dotted color-mix(in srgb, var(--amber) 70%,
 .inbox-i.unread b::before { content: "● "; color: var(--amber); }
 .inbox-i small { white-space: nowrap; }
 .tb-icons a[data-nav][data-badge]:not([data-badge=""])::after { top: -5px; right: -5px; }
+
+/* ---------- Learning ---------- */
+.school-hero { display: flex; gap: 16px; align-items: center; border-color: color-mix(in srgb, var(--amber) 45%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--amber) 16%, var(--panel)), var(--panel) 70%); }
+.school-hero > div { flex: 1; } .school-hero h2 { color: var(--text); } .sh-em { font-size: 64px; }
+@media (max-width: 520px) { .sh-em { font-size: 44px; } }
+.lessons { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.lesson { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); text-decoration: none; color: var(--text); }
+.lesson:hover { border-color: var(--amber); }
+.lesson .ln { width: 30px; height: 30px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--bg2); border: 1px solid var(--line2); font: 700 13px var(--mono); }
+.lesson.done .ln { background: var(--ok); color: #fff; border-color: var(--ok); }
+.lesson.next { border-color: var(--amber); background: color-mix(in srgb, var(--amber) 8%, var(--panel)); }
+.lesson .le { font-size: 24px; } .lesson .lt { flex: 1; display: flex; flex-direction: column; } .lesson .lt small { color: var(--muted); }
+.lesson-body { font-size: 17px; } .keypts { margin: 16px 0; border-color: color-mix(in srgb, var(--hop) 45%, transparent); }
+.qq { margin-bottom: 10px; } .qopts { display: grid; gap: 8px; margin-top: 10px; }
+.qopt { appearance: none; text-align: left; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--line2); background: var(--bg2); color: var(--text); font: 500 15px var(--sans); cursor: pointer; }
+.qopt:hover:not([disabled]) { border-color: var(--amber); }
+.qopt.right { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 15%, var(--bg2)); font-weight: 700; }
+.qopt.wrong { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 12%, var(--bg2)); }
+.qopt.dim { opacity: .5; } .qopt[disabled] { cursor: default; }
+.result { text-align: center; } .result.pass { border-color: var(--ok); } .result .btns { justify-content: center; }
+.flash { appearance: none; border: 0; background: none; padding: 0; width: 100%; max-width: 560px; height: 300px; perspective: 1000px; cursor: pointer; display: block; margin: 0 auto; font: inherit; color: inherit; }
+.fi { position: relative; width: 100%; height: 100%; transition: transform .5s; transform-style: preserve-3d; }
+.flash.flipped .fi { transform: rotateY(180deg); }
+.ff, .fb { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 18px; border: 1px solid var(--line2); background: var(--panel);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center; font-size: 18px; line-height: 1.5; box-shadow: var(--shadow); }
+.fb { transform: rotateY(180deg); background: linear-gradient(160deg, color-mix(in srgb, var(--amber) 12%, var(--panel)), var(--panel)); border-color: var(--amber); }
+.ff small { color: var(--dim); font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: .1em; }
+.flash .big { font-family: var(--serif); font-size: 32px; font-weight: 700; }
+.flash-btns { justify-content: center; } .flash-btns .btn { min-width: 150px; justify-content: center; }
+@media (prefers-reduced-motion: reduce) { .fi { transition: none; } }
+.flav { display: flex; flex-wrap: wrap; gap: 8px; }
+.flav-b { appearance: none; display: inline-flex; gap: 8px; align-items: center; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line2); background: var(--panel); color: var(--text); font: 600 14px var(--sans); cursor: pointer; }
+.flav-b span { font-size: 18px; } .flav-b.on, .flav-b:hover { border-color: var(--amber); background: color-mix(in srgb, var(--amber) 10%, var(--panel)); }
+.flav-out { margin-top: 12px; border-color: var(--amber); }
+.crumbs { display: flex; gap: 8px; margin-bottom: 10px; } .dres p { line-height: 1.6; }
+.cert { max-width: 760px; padding: 14px; border-radius: 18px; background: linear-gradient(135deg, #f5a524, #a96300); margin-top: 16px; }
+.cert-in { background: #fffaf0; color: #2b1d10; border-radius: 10px; padding: 36px 28px; text-align: center; border: 2px solid #e6c27a; font-family: var(--serif); }
+.cert-in .eyebrow { color: #a96300; } .cert-in p { color: #4a3826; font-family: var(--sans); }
+.cert-name { font-size: clamp(28px, 6vw, 44px); font-weight: 700; color: #a96300; border-bottom: 2px solid #e6c27a; display: inline-block; padding: 0 24px 6px; margin: 6px 0 12px; }
+.cert-foot { display: flex; justify-content: space-between; margin-top: 26px; font: 600 13px var(--mono); color: #6a5845; }
+@media print {
+  body.printing-cert * { visibility: hidden; }
+  body.printing-cert #cert, body.printing-cert #cert * { visibility: visible; }
+  body.printing-cert #cert { position: absolute; left: 0; top: 0; width: 100%; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 44px; background: transparent; padding: 0; border: 0; min-height: 0; }
+input[type=range]::-webkit-slider-runnable-track { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--amber), var(--hop)); }
+input[type=range]::-moz-range-track { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--amber), var(--hop)); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--panel); border: 3px solid var(--amber); margin-top: -9px; box-shadow: var(--shadow); }
+input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--panel); border: 3px solid var(--amber); }
+.inp input[type=range]:focus { box-shadow: none; }
