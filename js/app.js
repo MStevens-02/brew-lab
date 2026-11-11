@@ -5,6 +5,7 @@ const NAV = [
   ['calcs', '#/calcs', 'Calculators', I.calc],
   ['recipes', '#/recipes', 'Recipes', I.flask],
   ['log', '#/log', 'Batch log', I.log],
+  ['inbox', '#/inbox', 'Notifications', I.bell],
   ['calendar', '#/calendar', 'Calendar', I.cal],
   ['cellar', '#/cellar', 'Cellar', I.bottle],
   ['stats', '#/stats', 'Stats', I.chart],
@@ -18,7 +19,7 @@ const HUB = 'https://mstevens-02.github.io/tools/';
 
 function shell() {
   document.body.innerHTML = `
-  <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><span class="tb-icons"><a href="#/search" aria-label="Search">${I.ref}</a><a href="#/calendar" aria-label="Calendar" data-nav="calendar">${I.cal}</a><a href="#/more" aria-label="More">${I.menu}</a></span></header>
+  <header class="topbar"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b></div></a><span class="tb-icons"><a href="#/search" aria-label="Search">${I.ref}</a><a href="#/inbox" aria-label="Notifications" data-nav="inbox">${I.bell}</a><a href="#/calendar" aria-label="Calendar" data-nav="calendar">${I.cal}</a><a href="#/more" aria-label="More">${I.menu}</a></span></header>
   <div class="app">
     <aside class="side"><a class="brand" href="#/">${LOGO()}<div><b>Brew Lab</b><span>Ferment anything</span></div></a>
       ${NAV.map(([k, h, l, ic]) => `<a class="navlink" data-nav="${k}" href="${h}" title="${l}">${ic}<span>${l}</span></a>`).join('')}
@@ -89,6 +90,8 @@ function pageHome(el) {
   <div class="grid">
     <a class="card" href="#/start" style="--c:#7fd18b"><div class="ic">${I.flask}</div><h3>Find your first brew</h3><p>A 5-question quiz that picks a recipe for your taste, budget and patience, and tells you exactly what to buy.</p></a>
     <a class="card" href="#/calc/normal" style="--c:#7fd18b"><div class="ic">${I.ref}</div><h3>Is this normal?</h3><p>Foam, smells, film, no bubbles: relax, keep an eye on it, or act.</p></a>
+    <a class="card" href="#/kit" style="--c:#7fd18b"><div class="ic">${I.flask}</div><h3>Kit explained</h3><p>Pictures of every bit of equipment: what it is, what it's for and whether you need it yet.</p></a>
+    <a class="card" href="#/calc/bottlecheck" style="--c:#7fd18b"><div class="ic">${I.bottle}</div><h3>Ready to bottle?</h3><p>A 30-second safety check before bottling. No flat beer, no exploding bottles.</p></a>
     <a class="card" href="#/calc/trainer" style="--c:#7fd18b"><div class="ic">${I.therm}</div><h3>Hydrometer trainer</h3><p>Practise reading the scale before brew day. 10 rounds.</p></a>
     <a class="card" href="#/recipes?f=easy" style="--c:#7fd18b"><div class="ic">${I.timer}</div><h3>Brew along, step by step</h3><p>Every recipe has a guided mode: one step at a time, with ticks, timers and calendar reminders.</p></a>
   </div>
@@ -291,6 +294,8 @@ const ROUTES = [
   [/^\/app$/, pageApp, 'app'],
   [/^\/more$/, pageMore, 'more'],
   [/^\/stats$/, pageStats, 'stats'],
+  [/^\/inbox$/, pageInbox, 'inbox'],
+  [/^\/kit$/, pageKit, 'home'],
   [/^\/brew\/([\w-]+)$/, pageBrew, 'recipes'],
 ];
 const TITLES = { home: 'Brew Lab', guides: 'Guides', calcs: 'Calculators', recipes: 'Recipes', log: 'Batch log', ref: 'Reference' };

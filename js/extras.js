@@ -378,6 +378,9 @@ function pageApp(el) {
 /* ---------- "More" page (everything, for phones) ---------- */
 function pageMore(el) {
   const items = [
+    ['#/inbox', '🔔', 'Notifications', 'Inbox of batch nudges, reminders, tips'],
+    ['#/kit', '🧰', 'Kit explained', 'What every bit of equipment is for'],
+    ['#/calc/bottlecheck', '✅', 'Ready to bottle?', 'Safety check before bottling'],
     ['#/calendar', '📅', 'Calendar & reminders', 'Batch timelines, reminders, phone-calendar export'],
     ['#/cellar', '🍾', 'Cellar', 'Bottles ready to drink, conditioning, "drank one"'],
     ['#/shop', '🛒', 'Shopping list', 'Ingredients from recipes, tick off in the shop'],
