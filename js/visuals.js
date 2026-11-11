@@ -52,7 +52,7 @@ function tankSVG(b, big) {
 function tankMini(b) { return `<div class="tank-mini">${tankSVG(b)}</div>`; }
 function progressRing(p, label, sub) {
   const r = 34, c = 2 * Math.PI * r, v = Math.max(0, Math.min(1, p));
-  return `<svg class="ring" viewBox="0 0 90 90"><circle cx="45" cy="45" r="${r}" fill="none" stroke="var(--line)" stroke-width="8"/>
+  return `<svg class="pring" viewBox="0 0 90 90"><circle cx="45" cy="45" r="${r}" fill="none" stroke="var(--line)" stroke-width="8"/>
     <circle cx="45" cy="45" r="${r}" fill="none" stroke="var(--amber)" stroke-width="8" stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${(c * (1 - v)).toFixed(1)}" transform="rotate(-90 45 45)" class="ring-v"/>
     <text x="45" y="45" text-anchor="middle" font-size="17" font-weight="700" style="fill:var(--text)">${label}</text><text x="45" y="60" text-anchor="middle" font-size="9" style="fill:var(--muted)">${sub}</text></svg>`;
 }

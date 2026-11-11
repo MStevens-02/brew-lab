@@ -126,7 +126,7 @@ const ANIM = (() => {
   S.camp = () => { const id = uid(); return svg(`
     <defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f1630"/><stop offset="1" stop-color="#2a2348"/></linearGradient></defs>
     <rect width="800" height="160" fill="url(#${id})"/>
-    ${Array.from({ length: 34 }, (_, i) => `<circle class="star" cx="${R(0, 800, i, 3).toFixed(0)}" cy="${R(5, 90, i, 7).toFixed(0)}" r="${R(.6, 1.8, i).toFixed(1)}" fill="#fff" style="animation-delay:-${R(0, 4, i, 5).toFixed(1)}s"/>`).join('')}
+    ${Array.from({ length: 34 }, (_, i) => `<circle class="tw" cx="${R(0, 800, i, 3).toFixed(0)}" cy="${R(5, 90, i, 7).toFixed(0)}" r="${R(.6, 1.8, i).toFixed(1)}" fill="#fff" style="animation-delay:-${R(0, 4, i, 5).toFixed(1)}s"/>`).join('')}
     <circle cx="640" cy="34" r="14" fill="#f5f0d8"/><circle cx="646" cy="30" r="13" fill="#0f1630"/>
     <g fill="#141a2e">${[120, 160, 200, 600, 650, 700, 740].map((x, i) => `<path d="M${x} 150l${18 + i % 3 * 4}-${60 + i % 2 * 20} ${18 + i % 3 * 4} ${60 + i % 2 * 20}z"/>`).join('')}</g>
     <path d="M0 150h800v10H0z" fill="#141a2e"/>
@@ -187,5 +187,5 @@ const ANIM = (() => {
   window.addEventListener('hashchange', () => setTimeout(place, 0));
   setTimeout(place, 0);
   const kindFor = k => ({ wine: 'wine', mead: 'goblet', cider: 'tumbler', other: 'tumbler', potato: 'wine', rice: 'tumbler', misc: 'tumbler', wild: 'wine', juice: 'tumbler' }[k] || 'pint');
-  return { S, drinkScene, burst, glass, DR, kindFor, bubbles };
+  return { S, drinkScene, burst, glass, DR, kindFor, bubbles, svg, grad, bokeh, floaty, R, routes: ROUTES, place };
 })();

@@ -732,7 +732,7 @@ input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 
 .tank-hero h2 { margin: 4px 0 6px; }
 .tank-hero p { margin: 4px 0; }
 .th-next { color: var(--amber2); }
-.ring { width: 100px; height: 100px; }
+.pring { width: 100px; height: 100px; }
 .ring-v { transition: stroke-dashoffset 1s ease; }
 @media (max-width: 760px) { .tank-hero { grid-template-columns: 90px 1fr; } .th-tank { height: 120px; } .th-ring { grid-column: 1 / -1; display: flex; justify-content: center; } }
 .wheel-wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px; align-items: start; }
@@ -759,3 +759,150 @@ input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 
 .swap li.r-last { color: var(--muted); }
 .rc-glass { background: radial-gradient(80% 90% at 50% 100%, #5a3517, #1d130b); border-radius: 12px; padding: 4px 2px; width: 58px; height: 78px; }
 .scene + .inp, .scene + div > .inp:first-child { margin-top: 0; }
+
+/* =================== More animations =================== */
+.fall, .snow { animation: fallsway linear infinite; }
+@keyframes fallsway { from { transform: translate(0, 0) rotate(0); } to { transform: translate(var(--sway, 20px), 190px) rotate(200deg); } }
+.rain { animation: rain linear infinite; }
+@keyframes rain { from { transform: translate(0, 0); } to { transform: translate(-30px, 180px); } }
+.lightning-flash { opacity: 0; animation: lflash 6s infinite; }
+@keyframes lflash { 0%, 60%, 64%, 100% { opacity: 0; } 61%, 63% { opacity: .55; } 62% { opacity: .1; } }
+.bolt { opacity: 0; animation: bolt 6s infinite; }
+@keyframes bolt { 0%, 59%, 66%, 100% { opacity: 0; } 60%, 65% { opacity: 1; } }
+.smoke circle { animation: smoke 3.6s ease-out infinite; opacity: 0; }
+@keyframes smoke { 0% { transform: translate(0, 0) scale(.5); opacity: .8; } 100% { transform: translate(30px, -60px) scale(2); opacity: 0; } }
+.window { animation: win 3s ease-in-out infinite; }
+@keyframes win { 0%, 100% { opacity: 1; } 40% { opacity: .75; } 45% { opacity: .95; } }
+.flow path { animation: flow 1.4s linear infinite; }
+@keyframes flow { from { transform: translate(-6px, -10px); opacity: 0; } 40% { opacity: 1; } to { transform: translate(6px, 14px); opacity: 0; } }
+.fish { animation: fish 4s ease-in-out infinite; opacity: 0; }
+@keyframes fish { 0%, 55% { transform: translate(400px, 140px) rotate(-30deg); opacity: 0; } 62% { opacity: 1; } 75% { transform: translate(430px, 92px) rotate(10deg); opacity: 1; } 90% { transform: translate(456px, 140px) rotate(60deg); opacity: 0; } 100% { opacity: 0; } }
+.sway { transform-origin: 50% 100%; animation: sway 3s ease-in-out infinite; }
+@keyframes sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+.sbar { transform-origin: 50% 100%; animation: bar 2.4s cubic-bezier(.2,.8,.3,1) infinite alternate; }
+@keyframes bar { from { transform: scaleY(.15); } to { transform: scaleY(1); } }
+.trend { stroke-dasharray: 260; animation: trend 2.4s ease-in-out infinite alternate; }
+@keyframes trend { from { stroke-dashoffset: 260; } to { stroke-dashoffset: 0; } }
+.dropin { animation: dropin 4.2s cubic-bezier(.5,0,.7,1) infinite; opacity: 0; }
+@keyframes dropin { 0% { transform: translateY(-20px); opacity: 0; } 10% { opacity: 1; } 55% { transform: translateY(112px); opacity: 1; } 65%, 100% { transform: translateY(112px); opacity: 0; } }
+.ticks text { animation: tickpop 2.4s ease-out infinite; transform-origin: center; }
+@keyframes tickpop { 0% { transform: scale(0); } 20% { transform: scale(1.2); } 30%, 100% { transform: scale(1); } }
+.fillup { animation: fillup 5s ease-in-out infinite; }
+@keyframes fillup { 0% { transform: translateY(70px); } 80%, 100% { transform: translateY(0); } }
+.stream { animation: stream .5s linear infinite; }
+@keyframes stream { to { stroke-dashoffset: -18; } }
+.carton { animation: carton 2.5s ease-in-out infinite; transform-origin: 0 0; }
+@keyframes carton { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-4deg); } }
+.calnum text { opacity: 0; animation: calnum 8s infinite; }
+@keyframes calnum { 0% { opacity: 0; } 3%, 22% { opacity: 1; } 25%, 100% { opacity: 0; } }
+.flip { transform-origin: 50% 0; animation: flipp 2s ease-in infinite; }
+@keyframes flipp { 0%, 70% { transform: scaleY(0); opacity: 0; } 72% { opacity: 1; transform: scaleY(1); } 100% { transform: scaleY(-.2); opacity: 0; } }
+.moon .shadow { animation: moon 10s linear infinite; }
+@keyframes moon { from { transform: translateX(-46px); } to { transform: translateX(46px); } }
+.ring-bell { transform-origin: 50% 0; animation: ringbell 2.4s ease-in-out infinite; }
+@keyframes ringbell { 0%, 50%, 100% { transform: rotate(0); } 10% { transform: rotate(16deg); } 20% { transform: rotate(-14deg); } 30% { transform: rotate(10deg); } 40% { transform: rotate(-6deg); } }
+.clapper { animation: clap 2.4s ease-in-out infinite; }
+@keyframes clap { 0%, 50%, 100% { transform: translateX(0); } 10% { transform: translateX(-8px); } 20% { transform: translateX(8px); } 30% { transform: translateX(-5px); } }
+.waves path { animation: waves 2.4s ease-out infinite; opacity: 0; }
+@keyframes waves { 0%, 5% { opacity: 0; } 15% { opacity: .8; } 45%, 100% { opacity: 0; } }
+.pop { animation: popin 3.6s ease-in-out infinite; transform-origin: center; opacity: 0; }
+@keyframes popin { 0% { transform: scale(.2); opacity: 0; } 15%, 70% { transform: scale(1); opacity: 1; } 85%, 100% { transform: scale(.8) translateY(-10px); opacity: 0; } }
+.badge-pulse { animation: bp 1.6s ease-in-out infinite; transform-origin: center; }
+@keyframes bp { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+.page { transform-origin: 0 50%; animation: page 3.2s ease-in-out infinite; }
+@keyframes page { 0%, 20% { transform: scaleX(1); } 60%, 100% { transform: scaleX(-1); } }
+.spin { animation: spin 6s linear infinite; transform-origin: center; }
+.spin.rev { animation-direction: reverse; animation-duration: 4s; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.install { animation: bp 2s ease-in-out infinite; transform-origin: center; }
+.cork { animation: cork 3s ease-out infinite; }
+@keyframes cork { 0%, 30% { transform: translate(0, 0) rotate(0); opacity: 1; } 55% { transform: translate(60px, -60px) rotate(260deg); opacity: 1; } 70%, 100% { transform: translate(90px, -40px) rotate(400deg); opacity: 0; } }
+.confetti rect { opacity: 0; animation: confetti 3s ease-out infinite; }
+@keyframes confetti { 0%, 30% { transform: translate(0, 0) rotate(0); opacity: 0; } 34% { opacity: 1; } 100% { transform: translate(var(--x), var(--y)) rotate(var(--r)); opacity: 0; } }
+.newbadge { animation: nb 3s ease-in-out infinite; transform-origin: center; }
+@keyframes nb { 0%, 30% { transform: scale(.6) rotate(-8deg); opacity: 0; } 40%, 85% { transform: scale(1) rotate(-8deg); opacity: 1; } 100% { opacity: 0; } }
+.climber { animation: climb 6s ease-in-out infinite; }
+@keyframes climb { 0% { transform: translateY(0); } 20% { transform: translateY(-28px); } 40% { transform: translateY(-56px); } 60% { transform: translateY(-84px); } 80%, 90% { transform: translateY(-112px); } 100% { transform: translateY(0); opacity: 0; } }
+.steam.big path { stroke: rgba(255,255,255,.6); stroke-width: 3; fill: none; stroke-linecap: round; animation: steam 2.4s ease-in-out infinite; opacity: 0; }
+.heat path { animation: steam 2s ease-in-out infinite; opacity: 0; }
+.paper { animation: paper 4s ease-in-out infinite; }
+@keyframes paper { 0% { transform: translateY(-70px); } 70%, 100% { transform: translateY(0); } }
+.tilt { transform-origin: 50% 50%; animation: tilt 4s ease-in-out infinite; }
+@keyframes tilt { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+.tilt .hang { transform-origin: 50% 0; animation: untilt 4s ease-in-out infinite; }
+@keyframes untilt { 0%, 100% { transform: rotate(6deg); } 50% { transform: rotate(-6deg); } }
+.warn-pulse { animation: bp 1.8s ease-in-out infinite; transform-origin: center; }
+.poured { animation: poured 1.6s cubic-bezier(.2,.8,.3,1) both; }
+@keyframes poured { from { transform: translateY(14px) scale(.9); opacity: 0; } to { transform: none; opacity: 1; } }
+.pourstream { stroke-dasharray: 120; animation: pourst 2.2s ease-in-out both; }
+@keyframes pourst { 0% { stroke-dashoffset: 120; opacity: 1; } 50% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: -120; opacity: 0; } }
+.mtitle { paint-order: stroke; stroke: rgba(0,0,0,.35); stroke-width: 3px; }
+/* Wiggle icons on hover */
+@keyframes wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-12deg) scale(1.1); } 75% { transform: rotate(10deg) scale(1.1); } }
+.sec-tile:hover .st-em, .menu-item:hover .mi-em, .quick a:hover span, .card:hover .ic, .lesson:hover .le, .swap:hover .sw-h span { display: inline-block; animation: wiggle .5s ease-in-out; }
+.empty .big { display: inline-block; animation: fl 3s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .scene-svg *, .empty .big { animation: none !important; } }
+
+/* =================== Animated scenes (core) =================== */
+.scene { position: relative; height: 150px; margin: 6px 0 22px; border-radius: 18px; overflow: hidden; border: 1px solid rgba(245,165,36,.25);
+  background: radial-gradient(90% 130% at 50% 115%, #5a3517 0%, #2a1a0e 55%, #170f09 100%); box-shadow: inset 0 0 40px rgba(0,0,0,.35); }
+.scene-svg { display: block; width: 100%; height: 100%; }
+@media (max-width: 760px) { .scene { height: 118px; border-radius: 14px; margin-bottom: 16px; } }
+.scene-svg *, .rc-glass *, .tank * { transform-box: fill-box; }
+.sb { animation: sbrise linear infinite; opacity: 0; }
+@keyframes sbrise { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: .9; } 85% { opacity: .7; } 100% { transform: translateY(var(--h, -100px)); opacity: 0; } }
+.bk { animation: bk ease-in-out infinite alternate; opacity: .9; }
+@keyframes bk { from { transform: translate(0, 0); } to { transform: translate(14px, -18px); } }
+.fl { animation: fl 4s ease-in-out infinite; transform-origin: center; }
+@keyframes fl { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-8px) rotate(4deg); } }
+.foam { animation: foam 3s ease-in-out infinite; transform-origin: center bottom; }
+@keyframes foam { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.03, 1.08); } }
+.slosh { animation: slosh 4s ease-in-out infinite; transform-origin: center; }
+@keyframes slosh { 0%, 100% { transform: rotate(-3deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-2px); } }
+.gl { animation: glb 6s ease-in-out infinite; }
+@keyframes glb { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.bob { animation: bob 3.2s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.needle { transform-origin: 50% 100%; animation: needle 5s ease-in-out infinite; }
+@keyframes needle { 0%, 100% { transform: rotate(-55deg); } 50% { transform: rotate(50deg); } }
+.ticker text { animation: tick 5s ease-in-out infinite; }
+.ticker text:nth-child(2) { animation-delay: -1.7s; } .ticker text:nth-child(3) { animation-delay: -3.3s; }
+@keyframes tick { 0% { opacity: 0; transform: translateY(10px); } 30%, 60% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-14px); } }
+.krausen { animation: kr 2.5s ease-in-out infinite; }
+@keyframes kr { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+.blip { animation: blip 2.4s ease-out infinite; opacity: 0; }
+.blip.b2 { animation-delay: 1.2s; } .blip.b3 { animation-delay: .6s; animation-duration: 3s; }
+@keyframes blip { 0% { opacity: 0; transform: translateY(6px) scale(.6); } 20% { opacity: .95; } 100% { opacity: 0; transform: translateY(-26px) scale(1.2); } }
+.bloop { animation: bloop 2.4s ease-out infinite; opacity: 0; }
+@keyframes bloop { 0%, 15% { opacity: 0; transform: translateY(4px); } 30% { opacity: .9; } 70% { opacity: 0; transform: translateY(-8px); } 100% { opacity: 0; } }
+.steam path, .vapour path { stroke: rgba(255,255,255,.55); stroke-width: 2; fill: none; stroke-linecap: round; animation: steam 2.6s ease-in-out infinite; opacity: 0; }
+.steam path:nth-child(2), .vapour path:nth-child(2) { animation-delay: 1.3s; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(6px); } 40% { opacity: .9; } 100% { opacity: 0; transform: translateY(-14px); } }
+.cell { animation: cell 3.6s ease-in-out infinite; transform-origin: center; }
+@keyframes cell { 0%, 100% { transform: scale(1) translate(0, 0); } 50% { transform: scale(1.1) translate(4px, -6px); } }
+.sun { animation: sun 6s ease-in-out infinite; }
+@keyframes sun { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
+.cl { animation: cloud linear infinite; }
+@keyframes cloud { from { transform: translateX(-120px); } to { transform: translateX(920px); } }
+.bird { animation: bird 16s linear infinite; }
+@keyframes bird { 0% { transform: translate(-40px, 40px); } 50% { transform: translate(400px, 22px); } 100% { transform: translate(840px, 36px); } }
+.mist { animation: mist 14s ease-in-out infinite alternate; }
+@keyframes mist { from { transform: translateX(-60px); opacity: .12; } to { transform: translateX(60px); opacity: .25; } }
+.flag { transform-origin: 0 50%; animation: flag 1.6s ease-in-out infinite; }
+@keyframes flag { 0%, 100% { transform: skewY(0) scaleX(1); } 50% { transform: skewY(6deg) scaleX(.92); } }
+.flame { transform-origin: 50% 100%; animation: flame .5s ease-in-out infinite alternate; }
+@keyframes flame { from { transform: scale(1, 1); } to { transform: scale(.94, 1.1); } }
+.drip { animation: drip 1.6s ease-in infinite; }
+@keyframes drip { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 80% { transform: translateY(14px); opacity: 1; } 100% { transform: translateY(16px); opacity: 0; } }
+.jarfill { transform-origin: 50% 100%; animation: jar 12s linear infinite; }
+@keyframes jar { from { transform: scaleY(.08); } to { transform: scaleY(1); } }
+.tw { animation: twinkle 3s ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+.ember { animation: ember 2.6s ease-out infinite; opacity: 0; }
+@keyframes ember { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx, 0), -70px); } }
+.shine { animation: shine 4.5s ease-in-out infinite; }
+@keyframes shine { 0%, 30% { transform: skewX(-15deg) translateX(150px); } 100% { transform: skewX(-15deg) translateX(780px); } }
+.burst { position: fixed; z-index: 300; pointer-events: none; width: 0; height: 0; }
+.burst i { position: absolute; left: 0; top: 0; border-radius: 50%; opacity: 0; animation: pop 1.2s cubic-bezier(.2,.7,.3,1) forwards; box-shadow: inset -2px -2px 0 rgba(0,0,0,.08); }
+@keyframes pop { 0% { transform: translate(-50%, -50%) scale(.3); opacity: 1; } 70% { opacity: 1; } 100% { transform: translate(calc(var(--x) - 50%), calc(var(--y) - 50%)) scale(1); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .scene-svg *, .rc-glass *, .tank *, .burst i, .lb, .empty .big { animation: none !important; } .sb, .blip, .bloop, .ember { opacity: .6; } }
