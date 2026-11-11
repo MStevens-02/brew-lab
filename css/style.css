@@ -906,3 +906,39 @@ input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 
 .burst i { position: absolute; left: 0; top: 0; border-radius: 50%; opacity: 0; animation: pop 1.2s cubic-bezier(.2,.7,.3,1) forwards; box-shadow: inset -2px -2px 0 rgba(0,0,0,.08); }
 @keyframes pop { 0% { transform: translate(-50%, -50%) scale(.3); opacity: 1; } 70% { opacity: 1; } 100% { transform: translate(calc(var(--x) - 50%), calc(var(--y) - 50%)) scale(1); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .scene-svg *, .rc-glass *, .tank *, .burst i, .lb, .empty .big { animation: none !important; } .sb, .blip, .bloop, .ember { opacity: .6; } }
+
+/* =================== Animation pack 3 =================== */
+.roll-wrap { animation: rollx 9s linear infinite; }
+@keyframes rollx { from { transform: translate(-40px, 108px); } to { transform: translate(840px, 108px); } }
+.roll { animation: spin 2s linear infinite; transform-origin: center; }
+.soapb { animation: soapb linear infinite; }
+@keyframes soapb { 0% { transform: translate(0, 0) scale(.6); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translate(var(--sway, 0), -200px) scale(1.1); opacity: 0; } }
+.sparkle text { animation: twinkle 2.4s ease-in-out infinite; }
+.cardflip { transform-origin: center; animation: cardflip 3.4s ease-in-out infinite; }
+@keyframes cardflip { 0%, 40% { transform: scaleX(1); } 50% { transform: scaleX(0); } 60%, 100% { transform: scaleX(1); } }
+.qmarks text { animation: qm 3.6s ease-in-out infinite; transform-origin: center; }
+@keyframes qm { 0%, 100% { transform: translateY(0) rotate(-10deg); opacity: .5; } 50% { transform: translateY(-10px) rotate(10deg); opacity: 1; } }
+.trophy { animation: bob 2.6s ease-in-out infinite; }
+.rays { animation: spin 14s linear infinite; transform-origin: center; }
+.lens { animation: lens 7s ease-in-out infinite; }
+@keyframes lens { 0%, 100% { transform: translate(250px, 80px); } 25% { transform: translate(420px, 60px); } 50% { transform: translate(560px, 100px); } 75% { transform: translate(380px, 110px); } }
+.scan text { animation: fl 4s ease-in-out infinite; }
+.scan text:nth-child(2n) { animation-delay: -1.5s; }
+/* Scroll reveal */
+.rv { opacity: 0; transform: translateY(16px); }
+.rv.in { animation: rvin .55s cubic-bezier(.2,.8,.3,1) both; }
+.rv.in.q { animation: none; opacity: 1; transform: none; }
+@keyframes rvin { from { opacity: 0; transform: translateY(16px) scale(.985); } to { opacity: 1; transform: none; } }
+@media print { .rv { opacity: 1 !important; transform: none !important; animation: none !important; } }
+/* Page transition */
+.pg-in { animation: pgin .35s cubic-bezier(.2,.8,.3,1) both; }
+@keyframes pgin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+/* Ripple */
+.ripple { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: rgba(255,255,255,.45); pointer-events: none; animation: ripple .6s ease-out forwards; }
+@keyframes ripple { from { transform: scale(0); opacity: .9; } to { transform: scale(28); opacity: 0; } }
+/* Ringing bell */
+.ringing svg { animation: ringbell 1.2s ease-in-out; transform-origin: 50% 10%; }
+/* Toast pop */
+.toast { animation: toastin .35s cubic-bezier(.2,1.4,.4,1) both; }
+@keyframes toastin { from { opacity: 0; transform: translate(-50%, 20px) scale(.9); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; } .rv.in, .pg-in, .ringing svg, .toast { animation: none !important; } }
